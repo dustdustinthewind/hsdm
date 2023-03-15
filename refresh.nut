@@ -2,6 +2,6 @@
 
 Convars.SetValue("mp_restartgame", 1)
 
-IncludeScript("hookshotdm/thirdparty/give_tf_weapon/_master.nut") // thanks
-IncludeScript("hookshotdm/hookshotdmWeapons.nut") // custom weapons for hsdm
-IncludeScript("hookshotdm/hookshotdm.nut") // other code
+IncludeScript("hsdm/thirdparty/give_tf_weapon/_master.nut") // thanks
+IncludeScript("hsdm/hookshotdmWeapons.nut") // custom weapons for hsdm
+IncludeScript("hsdm/hookshotdm.nut") // other code

@@ -35,6 +35,6 @@
 ::CVAR_GTFW_ENABLEWEAPON_AUTO_SWITCH <- false		// Automatically switches weapon to another if re-enabling a weapon. False by default.
 Convars.SetValue("tf_dropped_weapon_lifetime", 0)	//disables dropped weapons because they're buggy with this script
 
-IncludeScript("hookshotdm/thirdparty/give_tf_weapon/tables.nut")	// All TF2 weapons listed in tables
-IncludeScript("hookshotdm/thirdparty/give_tf_weapon/code.nut")	// All give_tf_weapon code
+IncludeScript("hsdm/thirdparty/give_tf_weapon/tables.nut")	// All TF2 weapons listed in tables
+IncludeScript("hsdm/thirdparty/give_tf_weapon/code.nut")	// All give_tf_weapon code
 //IncludeScript("thirdpargive_tf_weapon/custom_weapons.nut")	// All custom weapons

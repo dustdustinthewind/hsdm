@@ -11,7 +11,7 @@ Convars.SetValue("tf_weapon_criticals", 0)
 
 ::CTFPlayer.LastGrappleTarget <- null
 
-IncludeScript("hookshotdm/refresh.nut")
+IncludeScript("hsdm/refresh.nut")
 
 // TODO
 //  find every reload id and put it into a table somewhere for easy access
