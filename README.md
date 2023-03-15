@@ -6,7 +6,7 @@ discord: https://discord.gg/pURj4aY7GU
 
 how to install
 - create folder in `[gamedirectory]/scripts/vscripts/` called `hsdm`
-- dragndrop all the shit there
+- dragndrop all the shit into hsdm
 
 how to run
 - `script_execute hsdm/master` in tf2 console
