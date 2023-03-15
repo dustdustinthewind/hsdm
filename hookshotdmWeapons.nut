@@ -197,7 +197,7 @@ function CW_Stats_Stock_Melee(weapon, player)
 	RegisterCustomWeapon("Lollichop HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
 	RegisterCustomWeapon("Bottle HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
 	RegisterCustomWeapon("Unique Bottle HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
-	RegisterCustomWeapon("Ullapool Caber HsDM", "Ullapool Caber", true, CW_Stats_Stock_Melee, null) // * may need special ver
+	RegisterCustomWeapon("Ullapool Caber HsDM", "Ullapool Caber", true, CW_Stats_Stock_Melee, null) // * may need special ver. can't pick up ammo to regen unless you have another wep :(
 	RegisterCustomWeapon("Scottish Handshake HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
 	RegisterCustomWeapon("Fists HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
 	RegisterCustomWeapon("Unique Fists HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)

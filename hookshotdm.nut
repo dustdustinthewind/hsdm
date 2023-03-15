@@ -208,14 +208,13 @@ function OnGameEvent_item_pickup(params)
 						// if reloadable weapon and ready to be filled (owo)
 						if (wep.Clip1() != -1 && wep.Clip1() <= wep.GetMaxClip1() + revolverBonus)
 						{
-							// fill or... overfill (OωO)
 							local max = wep.GetMaxClip1()
-							if (isRevolver) max = 4
-							else if (overfillClip) max++
+							if (isRevolver) max = 4      // revolver gets max mfax overfill of 4
+							else if (overfillClip) max++ // every other overfill only gets max+1
 
-							local clip = wep.Clip1() + 1             // add 1 to clip1
-							//if (isRevolver && overfillClip) clip++ // add 1 more if big pack and revolver
-							if (clip > max) clip = max               // clamp to max
+							// fill or... overfill (OωO)
+							local clip = wep.Clip1() + 1 // add 1 to clip1
+							if (clip > max) clip = max   // clamp to max
  				
 							wep.SetClip1(clip) // * * (-ω-) * * i'm soo full!!
 							// ... stop the uwu shit
@@ -245,11 +244,11 @@ function OnGameEvent_item_pickup(params)
 function FixAmmoFor(shortstop, prettyboys)
 {
 	// shortstop
-	if (thereIsShortstop && NetProps.GetPropIntArray(hPlayer, "m_iAmmo", TF_AMMO.PRIMARY) > 2)
+	if (shortstop && NetProps.GetPropIntArray(hPlayer, "m_iAmmo", TF_AMMO.PRIMARY) > 2)
 		NetProps.SetPropIntArray(hPlayer, "m_iAmmo", 2, TF_AMMO.PRIMARY)
 
 	// prettyboys
-	if (thereIsPrettyBoys && NetProps.GetPropIntArray(hPlayer, "m_iAmmo", TF_AMMO.SECONDARY) > 6)
+	if (prettyboys && NetProps.GetPropIntArray(hPlayer, "m_iAmmo", TF_AMMO.SECONDARY) > 6)
 		NetProps.SetPropIntArray(hPlayer, "m_iAmmo", 6, TF_AMMO.SECONDARY)
 }
 
@@ -262,6 +261,8 @@ function RegenerateCaber(hPlayer)
 		NetProps.GetPropIntArray(hPlayer, "m_iAmmo", TF_AMMO.SECONDARY)
 	]
 	local clipCounts = [-1,-1]
+	local shieldCharge = NetProps.GetPropFloat(hPlayer, "m_Shared.m_flChargeMeter")
+	printl(shieldCharge)
 
 	for (local i = 0; i < 2; i++)
 	{
@@ -284,9 +285,13 @@ function RegenerateCaber(hPlayer)
 
 	NetProps.SetPropIntArray(hPlayer, "m_iAmmo", reserveCounts[0], TF_AMMO.PRIMARY)
 	NetProps.SetPropIntArray(hPlayer, "m_iAmmo", reserveCounts[1], TF_AMMO.SECONDARY)
+	
+	local primary = hPlayer.ReturnWeaponBySlot(0)
+	if (primary) primary.SetClip1(clipCounts[0])
+	local secondary = hPlayer.ReturnWeaponBySlot(1)
+	if (secondary) secondary.SetClip1(clipCounts[1])
 
-	hPlayer.ReturnWeaponBySlot(0).SetClip1(clipCounts[0])
-	hPlayer.ReturnWeaponBySlot(1).SetClip1(clipCounts[1])
+	NetProps.SetPropFloat(hPlayer, "m_Shared.m_flChargeMeter", shieldCharge)
 }
 
 // make sure we don't call ammo pickup multiple times same tick
