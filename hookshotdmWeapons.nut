@@ -320,7 +320,7 @@ function CW_Stats_Shortstop_HsDM(weapon, player)
 	ChangeDamageTo(weapon, 28 / SHORTSTOP_CRIT_DAMAGE_PER_PELLET) // max 112 damage
 
 	weapon.AddAttribute("clip size penalty", 1 / SCATTERGUN_CLIP, -1)
-	weapon.AddAttribute("maxammo primary reduced", (2 + 1) / PISTOL_SCOUT_RESERVE, -1)
+	weapon.AddAttribute("maxammo primary reduced", (2 + 1) / SCATTERGUN_RESERVE, -1)
 
 	weapon.AddAttribute("mult_spread_scales_consecutive", -1, -1) // panic attack spread on each shot, ??? ehhhh
 }

@@ -229,26 +229,26 @@ function OnGameEvent_item_pickup(params)
 				}
 			}
 		
+			// bugfix to prevent reserves from going to high
+			FixAmmoFor(hPlayer, thereIsShortstop, thereIsPrettyBoys)
+
 			LowerAmmosByOne(hPlayer, validPrimary, validSecondary || thereIsReolver)
 
 			// caber regen on large ammo pack
 			if (thereIsCaber && overfillClip) RegenerateCaber(hPlayer)
-
-			// bugfix to prevent reserves from going to high
-			FixAmmoFor(thereIsShortstop, thereIsPrettyBoys)
 		}			
 	}
 }
 	__CollectEventCallbacks(this, "OnGameEvent_", "GameEventCallbacks", RegisterScriptGameEventListener)
 
-function FixAmmoFor(shortstop, prettyboys)
+function FixAmmoFor(hPlayer, shortstop, prettyboys)
 {
 	// shortstop
-	if (shortstop && NetProps.GetPropIntArray(hPlayer, "m_iAmmo", TF_AMMO.PRIMARY) > 2)
-		NetProps.SetPropIntArray(hPlayer, "m_iAmmo", 2, TF_AMMO.PRIMARY)
+	if (shortstop)
+		NetProps.SetPropIntArray(hPlayer, "m_iAmmo", 2 + 1, TF_AMMO.PRIMARY)
 
 	// prettyboys
-	if (prettyboys && NetProps.GetPropIntArray(hPlayer, "m_iAmmo", TF_AMMO.SECONDARY) > 6)
+	if (prettyboys)
 		NetProps.SetPropIntArray(hPlayer, "m_iAmmo", 6, TF_AMMO.SECONDARY)
 }
 
@@ -312,8 +312,7 @@ function PlayerAlreadyPickedUpAmmoThisTick(hPlayer)
 //  Pistols x
 //  Syringe Guns x
 //  Smgs x
-//  ?? Beggars / Air Strike
-//  ?? Loose Cannon
+//  Beggars / Air Strike x
 ::DoNotLoadThesePrimariesPlzThankYou <- [
 	"", // dummy? plz work plz work plz work plz work
 	"Crusader's Crossbow",
@@ -323,6 +322,7 @@ function PlayerAlreadyPickedUpAmmoThisTick(hPlayer)
 	"Huntsman", "Fortified Compound",
 	"Beggar's Bazooka", "Beggars",
 	"Air Strike", "Airstrike",
+	//"Shortstop"
 ]
 
 // maybe shoulda done "load these secondaries thank you" oh well
@@ -352,6 +352,9 @@ function Give_HSDM_Weapon(hPlayer)
 	local lowerAmmoForPrimary = true
 	local lowerAmmoForSecondary = true
 
+	local isThereShortStop = false
+	local isTherePrettyBoys = false
+
 	for (local i = 0; i < GLOBAL_WEAPON_COUNT; i++)
 	{
 		// find wep
@@ -360,7 +363,9 @@ function Give_HSDM_Weapon(hPlayer)
 
 		// if it exists, change it to hsdm ver
 		if (wep != null)
-		{			
+		{	
+			local wepClassName = realWep.GetClassname()
+			printl(wepClassName)	
 			local customWeapon = hPlayer.ReturnWeaponTable(wep.itemName + " HsDM") // give_tf_weapon weapon
 			if (customWeapon)
 			{
@@ -373,7 +378,10 @@ function Give_HSDM_Weapon(hPlayer)
 				realWep.ReapplyProvision()
 
 				// check ammo (for rare cases where ammo counts are too high)
-
+				if (!isThereShortStop)
+					isThereShortStop = wepClassName == "tf_weapon_handgun_scout_primary"
+				if (!isTherePrettyBoys)
+					isTherePrettyBoys = wepClassName == "tf_weapon_handgun_scout_secondary"
 
 				// lower ammo if needed
 				if (!LowerPrimaryAmmoFor(realWep, hPlayer)) lowerAmmoForPrimary = false
@@ -388,6 +396,7 @@ function Give_HSDM_Weapon(hPlayer)
 	}
 	
 	hPlayer.Regenerate(true)
+	FixAmmoFor(hPlayer, isThereShortStop, isTherePrettyBoys)
 	LowerAmmosByOne(hPlayer, lowerAmmoForPrimary, lowerAmmoForSecondary)
 }
 
