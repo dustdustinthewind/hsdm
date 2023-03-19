@@ -18,14 +18,12 @@ function ChangeDamageTo(weapon, damage, changeBuildingDamage = true, shotgunMod 
 	if (damage < 1.0)
 	{
 		weapon.AddAttribute("damage penalty", damage, -1)
-		if (changeBuildingDamage)
-		weapon.AddAttribute("dmg bonus vs buildings", inversePlayerDamage, -1)
+		if (changeBuildingDamage) weapon.AddAttribute("dmg bonus vs buildings", inversePlayerDamage, -1)
 	}
 	else
 	{
 		weapon.AddAttribute("damage bonus", damage, -1)
-		if (changeBuildingDamage)
-		weapon.AddAttribute("dmg penalty vs buildings", inversePlayerDamage, -1)
+		if (changeBuildingDamage) weapon.AddAttribute("dmg penalty vs buildings", inversePlayerDamage, -1)
 	}
 }
 
@@ -101,6 +99,25 @@ function CW_Stats_Shotgun_HsDM(weapon, player)
 	RegisterCustomWeapon("Engineer Shotgun HsDM", "Shotgun", true, CW_Stats_Shotgun_HsDM, null)
 	RegisterCustomWeapon("Shotgun Primary HsDM", "Shotgun", true, CW_Stats_Shotgun_HsDM, null)
 	RegisterCustomWeapon("Festive Shotgun HsDM", "Shotgun", true, CW_Stats_Shotgun_HsDM, null)
+
+PANIC_ATTACK_CRIT_DAMAGE_PER_PELLET <- 14.4
+PANIC_ATTACK_PELLETS <- 15.0
+function CW_Stats_Panic_Attack_HsDM(weapon, player)
+{
+	weapon.RemoveAttribute("damage penalty")
+	local damagePerPellet = 172.8 / PANIC_ATTACK_PELLETS // 144*1.2 = 172.8 (panic attack max 216, 1.2 * shotgun max 180)
+	ChangeDamageTo(weapon, damagePerPellet / SHOTGUN_CRIT_DAMAGE_PER_PELLET)
+	printl(damagePerPellet / PANIC_ATTACK_CRIT_DAMAGE_PER_PELLET)
+
+	weapon.AddAttribute("clip size penalty", 2 / SHOTGUN_CLIP, -1)
+	
+	// if engie? modify primary ammo not secondary
+	local slot
+	if (player.GetPlayerClass() != 9) slot = "secondary"
+	else slot = "primary"
+	weapon.AddAttribute("maxammo " + slot + " reduced", (2 + 1) / SHOTGUN_RESERVE, -1)
+}
+	RegisterCustomWeapon("Panic Attack HsDM", "Panic Attack", true, CW_Stats_Panic_Attack_HsDM, null)
 
 function BasePistol(weapon, player)
 {
@@ -657,7 +674,7 @@ function CW_Stats_Sticky_Jumper(weapon, player)
 	weapon.AddAttribute("clip size penalty", 2 / STICKYBOMB_CLIP, -1)
 	weapon.AddAttribute("maxammo secondary reduced", (3 + 1) / STICKYBOMB_RESERVE, -1)
 
-	weapon.AddAttribute("sticky arm time bonus", -0.4, -1)
+	weapon.AddAttribute("sticky arm time bonus", -0.2, -1)
 }
 	RegisterCustomWeapon("Sticky Jumper HsDM", "Sticky Jumper", true, CW_Stats_Quickiebomb_Launcher_HsDM, null)
 
@@ -666,6 +683,7 @@ function CW_Stats_Sticky_Jumper(weapon, player)
 // ==========================================
 // BUG: running out of ammo and grappling will cause heavy to be stuck on grapple.
 //      can fix by picking up ammo and swapping to minigun, or with "next/prev weapon" key
+//      could i fix this by like, keep track of ammo with a thinkscript? (when primary ammo 0, swap to next weapon)
 
 MINIGUN_AMMO <- 200.0
 MINIGUN_CRIT_DPS_CLOSE_RANGE <- 1026.0
