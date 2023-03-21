@@ -1,8 +1,6 @@
 // run this to init script, use refresh.nut after making changes
 
 // Init	
-// low grav
-SetGravityMultiplier(0.6);
 
 Convars.SetValue("tf_grapplinghook_enable", 1)
 Convars.SetValue("tf_use_fixed_weaponspreads", 1)
