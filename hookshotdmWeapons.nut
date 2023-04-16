@@ -44,27 +44,56 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 	// remove previous scripts
 	AddThinkToEnt(weapon, null)
 
-	// class specific hookshot/modifiers? (#MakeHeavyMobile)
-	local playerClass = player.GetPlayerClass()
-	if (playerClass == 2) // Sniper
+	if (weapon.ValidateScriptScope())
 	{
-		ResetJumpOnHook(weapon, player)
-	}
-	else if (playerClass == 1) // Scout
-	{
-		ResetDoubleJumpOnHook(weapon, player)
-	}
-	else if (playerClass == 3) // Soldier
-	{
-		ResetBaseJumperOnHook(weapon, player)
-	}
-	else if (playerClass == 4) // Demo
-	{
-		ResetBaseJumperOnHook(weapon, player)
-	}
-	else if (playerClass == 6) // heavy
-	{
-		AllowJumpDetach(weapon, player)
+		local entityscript = weapon.GetScriptScope()
+		entityscript["think_hookshotThinkScript"] <- function()
+		{
+			local playerClass = player.GetPlayerClass()
+			local grappleTarget = player.GetGrapplingHookTarget()
+			
+			// on detach
+			if (player.LastGrappleTarget && !grappleTarget)
+			{
+				// remove hookshot parent
+				//NetProps.SetPropEntity(weapon, "m_hMoveParent", null)
+				
+				// heavy jump-detach fix
+				if (playerClass == 6) // heavy
+				{
+					// v note: other classes gets 375 jump detach boost
+					local jump = NetProps.GetPropInt(player, "m_nButtons") & Constants.FButtons.IN_JUMP ? 275 : 0
+					player.SetVelocity(player.GetVelocity() + Vector(0, 0, jump))
+				}
+
+				player.LastGrappleTarget = null
+			}
+			// on attach
+			else if (!player.LastGrappleTarget && grappleTarget)
+			{
+				// set LastGrappleTarget to what we attached to
+				player.LastGrappleTarget = grappleTarget
+ 				
+				// make whatever you attach to the "parent" of hookshot
+				// need to set the grapple projectile parent to this, not the weapon itself
+				//NetProps.SetPropEntity(weapon, "m_hMoveParent", grappleTarget)
+
+				// sniper scope fix
+				if (playerClass == 2) // Sniper
+					NetProps.SetPropInt(player, "m_Shared.m_bJumping", 0)
+
+				// scout reset double jump
+				if (playerClass == 1) // Scout
+					NetProps.SetPropInt(player, "m_Shared.m_iAirDash", 0)
+				
+				// allow demoknight to retain crits after 650 speed for a little bit
+				if (playerClass == 4) // Demo
+					NetProps.SetPropInt(player, "m_Shared.m_bJumping", 1)
+			}
+
+			return 0.0
+		}
+		AddThinkToEnt(weapon, "think_hookshotThinkScript")
 	}
 }
 	RegisterCustomWeapon("Grappling Hook HsDM", "Grappling Hook", true, CW_Stats_Grappling_Hook_HsDM, null)
@@ -161,7 +190,8 @@ function CW_Stats_Pistol_HsDM(weapon, player)
 MELEE_CRIT_DAMAGE <- 195.0
 SCOUT_MELEE_CRIT_DAMAGE <- 105.0
 SPY_MELEE_CRIT_DAMAGE <- 120.0 // non backstab
-function DefaultMeleeSetup(weapon, player)
+// May be a damage bug with melees that have lower damage keep eye out
+function CW_Stats_Stock_Melee(weapon, player)
 {
 	if (HasNonMeleeWeapon(player))
 	{
@@ -179,12 +209,6 @@ function DefaultMeleeSetup(weapon, player)
 
 		ChangeDamageTo(weapon, playerDamage)
 	}
-}
-
-// May be a damage bug with melees that have lower damage keep eye out
-function CW_Stats_Stock_Melee(weapon, player)
-{
-	DefaultMeleeSetup(weapon, player)
 }
 // Oh lord the register list is super long (O////O)
 	RegisterCustomWeapon("Frying Pan HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
@@ -209,12 +233,19 @@ function CW_Stats_Stock_Melee(weapon, player)
 	RegisterCustomWeapon("Bat HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
 	RegisterCustomWeapon("Shovel HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
 	RegisterCustomWeapon("Unique Shovel HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
+	RegisterCustomWeapon("Half-Zatoichi HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null) // * do something for this, with hookshot on demoknight its unfair
 	RegisterCustomWeapon("Fire Axe HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
 	RegisterCustomWeapon("Unique Fire Axe HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
 	RegisterCustomWeapon("Lollichop HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
 	RegisterCustomWeapon("Bottle HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
 	RegisterCustomWeapon("Unique Bottle HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
-	RegisterCustomWeapon("Ullapool Caber HsDM", "Ullapool Caber", true, CW_Stats_Stock_Melee, null) // * may need special ver. can't pick up ammo to regen unless you have another wep :(
+	RegisterCustomWeapon("Eyelander HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null) // *
+	RegisterCustomWeapon("Ullapool Caber HsDM", "Ullapool Caber", true, CW_Stats_Stock_Melee, null) // * may need special ver for demoknight. can't pick up ammo to regen unless you have another wep :(
+	RegisterCustomWeapon("Scotsman's Skullcutter HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null) // *
+	RegisterCustomWeapon("Claidheamh Mor HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null) // *
+	RegisterCustomWeapon("Persian Persuader HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null) // *
+	RegisterCustomWeapon("Horseless Headless Horseman's Headtaker HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null) // *
+	RegisterCustomWeapon("Nessie's Nine Iron HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null) // *
 	RegisterCustomWeapon("Scottish Handshake HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
 	RegisterCustomWeapon("Fists HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
 	RegisterCustomWeapon("Unique Fists HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
@@ -426,6 +457,9 @@ function CW_Stats_Direct_Hit_HsDM(weapon, player)
 	// ammo
 	weapon.AddAttribute("clip size penalty", 2 / ROCKET_CLIP, -1)
 	weapon.AddAttribute("maxammo primary reduced", (2 + 1) / ROCKET_RESERVE, -1)
+
+	// minicrit airborne (stolen from old reserve shooter)
+	//weapon.AddAttribute("mod mini-crit airborne deploy")
 }
 	RegisterCustomWeapon("Direct Hit HsDM", "Direct Hit", true, CW_Stats_Direct_Hit_HsDM, null)
 
@@ -646,7 +680,8 @@ function CW_Stats_Stickybomb_Launcher_HsDM(weapon, player)
 }
 	RegisterCustomWeapon("Stickybomb Launcher HsDM", "Stickybomb Launcher", true, CW_Stats_Stickybomb_Launcher_HsDM, null)
 	RegisterCustomWeapon("Unique Stickybomb Launcher HsDM", "Stickybomb Launcher", true, CW_Stats_Stickybomb_Launcher_HsDM, null)
-	RegisterCustomWeapon("Festive Stickybomb LauncherD HsDM", "Stickybomb Launcher", true, CW_Stats_Stickybomb_Launcher_HsDM, null)
+	RegisterCustomWeapon("Festive Stickybomb Launcher HsDM", "Stickybomb Launcher", true, CW_Stats_Stickybomb_Launcher_HsDM, null)
+	RegisterCustomWeapon("Scottish Resistance HsDM", "Scottish Resistance", true, CW_Stats_Stickybomb_Launcher_HsDM, null)
 
 function CW_Stats_Quickiebomb_Launcher_HsDM(weapon, player)
 {
@@ -873,86 +908,3 @@ function CW_Stats_Ambassador_HsDM(weapon, player)
 	weapon.AddAttribute("revolver use hit locations", 1, -1)
 }
 	RegisterCustomWeapon("Ambassador HsDM", "Ambassador", true, CW_Stats_Ambassador_HsDM, null)
-
-// ==========================================
-//      think scripts & extra functions
-// ==========================================
-
-// vvvv could we change grapple scripts to put stuff in a single method, then the class specific stuff is added a funcparam maybe?
-
-function AllowJumpDetach(weapon, player)
-{
-	if (weapon.ValidateScriptScope())
-	{
-		local entityscript = weapon.GetScriptScope()
-		entityscript["think_AllowGrappleJumpUp"] <- function()
-		{
-			local grappleTarget = player.GetGrapplingHookTarget()
-
-			if (player.LastGrappleTarget && !grappleTarget)
-			{
-				// v note: other classes gets 375
-				local jump = NetProps.GetPropInt(player, "m_nButtons") & Constants.FButtons.IN_JUMP ? 275 : 0
-				player.SetVelocity(player.GetVelocity() + Vector(0, 0, jump))
-				player.LastGrappleTarget = null
-			}
-			else if (!player.LastGrappleTarget && grappleTarget)
-			{
-				// no super jump if you jump from ground and jump detach at same time
-				NetProps.SetPropInt(player, "m_Shared.m_bJumping", 1)
-				player.LastGrappleTarget = grappleTarget
-			}
-
-			return 0.1
-		}
-	}
-	AddThinkToEnt(weapon, "think_AllowGrappleJumpUp")
-}
-
-function ResetDoubleJumpOnHook(weapon, player)
-{
-	if (weapon.ValidateScriptScope())
-	{
-		local entityScript = weapon.GetScriptScope()
-		entityScript["think_ResetAirDashOnGrapple"] <- function()
-		{
-			local grappleTarget = player.GetGrapplingHookTarget()
-			if (player.LastGrappleTarget && !grappleTarget)
-			{
-				player.LastGrappleTarget = null
-			}
-			else if (!player.LastGrappleTarget && grappleTarget)
-			{
-				player.LastGrappleTarget = grappleTarget
-				NetProps.SetPropInt(player, "m_Shared.m_iAirDash", 0)
-			}
-
-			return 0.1
-		}
-	}
-	AddThinkToEnt(weapon, "think_ResetAirDashOnGrapple")
-}
-
-function ResetJumpOnHook(weapon, player)
-{
-	if (weapon.ValidateScriptScope())
-	{
-		local entityScript = weapon.GetScriptScope()
-		entityScript["think_ResetJumpOnHook"] <- function()
-		{
-			local grappleTarget = player.GetGrapplingHookTarget()
-			if (player.LastGrappleTarget && !grappleTarget)
-			{
-				player.LastGrappleTarget = null
-			}
-			else if (!player.LastGrappleTarget && grappleTarget)
-			{
-				player.LastGrappleTarget = grappleTarget
-				NetProps.SetPropInt(player, "m_Shared.m_bJumping", 0)
-			}
-
-			return 0.1
-		}
-	}
-	AddThinkToEnt(weapon, "think_ResetJumpOnHook")
-}

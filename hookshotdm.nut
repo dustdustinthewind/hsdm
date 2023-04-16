@@ -63,15 +63,27 @@ function AddPlayerThinkScript(player)
 			local activeWeapon = player.GetActiveWeapon()      // tf2 weapon
 			local wep = player.ReturnWeaponTable(activeWeapon) // give_tf_weapon weapon
 
-			if (activeWeapon)
+			local demoknightGrounded = false
+			local demoknightCrits = false
+
+			local demoknight = player.GetPlayerClass() == 4 && !HasNonMeleeWeapon(player)
+			if (demoknight)
 			{
-				if (NoCritWeapons.find(wep.itemName))
+				local currentVelocity = player.GetVelocity().Length()
+				demoknightCrits = currentVelocity >= 700
+				demoknightGrounded = player.LastDemoknightCrits && demoknightCrits
+				player.LastDemoknightCrits = demoknightCrits;
+			}
+
+			if (activeWeapon && !demoknightGrounded)
+			{
+				if (NoCritWeapons.find(wep.itemName) || (demoknight && !demoknightCrits))
 					player.RemoveCond(56)
 				else
 					player.AddCond(56)
 			}
 
-			return 0.1;
+			return demoknightGrounded ? 0.4 : 0.0; // give demoknights a window to hit after losing velocity
 		}
 		AddThinkToEnt(player, "think_PlayerThinkScript")
 	}

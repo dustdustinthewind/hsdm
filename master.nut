@@ -8,6 +8,7 @@ Convars.SetValue("mp_respawnwavetime", -1)
 Convars.SetValue("tf_weapon_criticals", 0)
 
 ::CTFPlayer.LastGrappleTarget <- null
+::CTFPlayer.LastDemoknightCrits <- false
 
 IncludeScript("hsdm/refresh.nut")
 
