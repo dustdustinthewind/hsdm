@@ -44,27 +44,70 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 	// remove previous scripts
 	AddThinkToEnt(weapon, null)
 
+	local onAttach = function() { return null }
+	local onDetach = function() { return null }
+
+	local playerClass = player.GetPlayerClass()
+
+	// set on attach/detach functions
+	if (playerClass == 1) // scout
+		onAttach = function()
+		{
+			// scout reset double jump
+			NetProps.SetPropInt(player, "m_Shared.m_iAirDash", 0)
+		}
+
+	/*if (playerClass == 4) // demo
+		onAttach = function()
+		{
+			// allow demoknight to retain crits after 650 speed for a little bit
+			NetProps.SetPropInt(player, "m_Shared.m_bJumping", 1)
+		}*/
+
+	if (playerClass == 2) // sniper
+		onAttach = function()
+		{
+			// sniper scope fix
+			NetProps.SetPropInt(player, "m_Shared.m_bJumping", 0)
+		}
+	
+	if (playerClass == 6) // heavy
+	{
+		onDetach = function()
+		{
+			// heavy jump-detach fix
+			// v note: other classes gets 375 jump detach boost
+			local jump = NetProps.GetPropInt(player, "m_nButtons") & Constants.FButtons.IN_JUMP ? 275 : 0
+			player.SetVelocity(player.GetVelocity() + Vector(0, 0, jump))
+				
+			// heavy fix getting stuck on hookshot
+			local ammo = NetProps.GetPropIntArray(player, "m_iAmmo", TF_AMMO.PRIMARY)
+			if (player.GetLastWeapon() == player.ReturnWeaponBySlot(0) && ammo <= 0)
+				player.Weapon_Switch(player.ReturnWeaponBySlot(2)); // swap to melee
+		}
+
+		onAttach = function()
+		{
+			// fix super jump if heavy jump-detach and ground-jump at same time
+			NetProps.SetPropInt(player, "m_Shared.m_bJumping", 1)
+		}
+	}
+
 	if (weapon.ValidateScriptScope())
 	{
 		local entityscript = weapon.GetScriptScope()
 		entityscript["think_hookshotThinkScript"] <- function()
 		{
-			local playerClass = player.GetPlayerClass()
 			local grappleTarget = player.GetGrapplingHookTarget()
 			
 			// on detach
 			if (player.LastGrappleTarget && !grappleTarget)
 			{
+				// run class specific function for hookshot detach
+				onDetach()
+				
 				// remove hookshot parent
 				//NetProps.SetPropEntity(weapon, "m_hMoveParent", null)
-				
-				// heavy jump-detach fix
-				if (playerClass == 6) // heavy
-				{
-					// v note: other classes gets 375 jump detach boost
-					local jump = NetProps.GetPropInt(player, "m_nButtons") & Constants.FButtons.IN_JUMP ? 275 : 0
-					player.SetVelocity(player.GetVelocity() + Vector(0, 0, jump))
-				}
 
 				player.LastGrappleTarget = null
 			}
@@ -73,22 +116,13 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 			{
 				// set LastGrappleTarget to what we attached to
 				player.LastGrappleTarget = grappleTarget
+
+				// run class specific function for hookshot attach
+				onAttach()
  				
 				// make whatever you attach to the "parent" of hookshot
 				// need to set the grapple projectile parent to this, not the weapon itself
 				//NetProps.SetPropEntity(weapon, "m_hMoveParent", grappleTarget)
-
-				// sniper scope fix
-				if (playerClass == 2) // Sniper
-					NetProps.SetPropInt(player, "m_Shared.m_bJumping", 0)
-
-				// scout reset double jump
-				if (playerClass == 1) // Scout
-					NetProps.SetPropInt(player, "m_Shared.m_iAirDash", 0)
-				
-				// allow demoknight to retain crits after 650 speed for a little bit
-				if (playerClass == 4) // Demo
-					NetProps.SetPropInt(player, "m_Shared.m_bJumping", 1)
 			}
 
 			return 0.0
@@ -249,6 +283,11 @@ function CW_Stats_Stock_Melee(weapon, player)
 	RegisterCustomWeapon("Scottish Handshake HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
 	RegisterCustomWeapon("Fists HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
 	RegisterCustomWeapon("Unique Fists HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
+	RegisterCustomWeapon("Gloves of Running Urgently HsDM", "Gloves of Running Urgently", true, CW_Stats_Stock_Melee) // *
+	RegisterCustomWeapon("Gloves of Running Urgently MvM HsDM", "Gloves of Running Urgently MvM", true, CW_Stats_Stock_Melee) // *
+	RegisterCustomWeapon("Bread Bite HsDM", "Gloves of Running Urgently MvM", true, CW_Stats_Stock_Melee) // *
+	RegisterCustomWeapon("Warrior's Spirit HsDM", "Gloves of Running Urgently", true, CW_Stats_Stock_Melee) // *
+	RegisterCustomWeapon("Fists of Steel HsDM", "Gloves of Running Urgently", true, CW_Stats_Stock_Melee) // *
 	RegisterCustomWeapon("Apoco-Fists HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
 	RegisterCustomWeapon("Wrench HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
 	RegisterCustomWeapon("Festive Wrench HsDM", "Frying Pan", true, CW_Stats_Stock_Melee, null)
@@ -703,6 +742,9 @@ function CW_Stats_Quickiebomb_Launcher_HsDM(weapon, player)
 
 function CW_Stats_Sticky_Jumper(weapon, player)
 {
+	// for some reason dealing damage???
+	ChangeDamageTo(weapon, 0.0)
+
 	SelfBlastBoost(weapon, 1.1)
 
 	// ammo
@@ -716,9 +758,6 @@ function CW_Stats_Sticky_Jumper(weapon, player)
 // ==========================================
 //                  heavy
 // ==========================================
-// BUG: running out of ammo and grappling will cause heavy to be stuck on grapple.
-//      can fix by picking up ammo and swapping to minigun, or with "next/prev weapon" key
-//      could i fix this by like, keep track of ammo with a thinkscript? (when primary ammo 0, swap to next weapon)
 
 MINIGUN_AMMO <- 200.0
 MINIGUN_CRIT_DPS_CLOSE_RANGE <- 1026.0
@@ -735,7 +774,7 @@ function CW_Stats_Minigun_HsDM(weapon, player)
 	RegisterCustomWeapon("Tomislav HsDM", "Tomislav", true, CW_Stats_Minigun_HsDM, null)
 
 FAMILY_BUSINESS_CLIP <- 8.0
-function CW_Stats_The_Family_Business(weapon, player)
+function CW_Stats_Family_Business(weapon, player)
 {
 	local damagePerPellet = 126 / SHOTGUN_PELLETS // insert max damage
 	ChangeDamageTo(weapon, damagePerPellet / SHOTGUN_CRIT_DAMAGE_PER_PELLET)
@@ -743,7 +782,20 @@ function CW_Stats_The_Family_Business(weapon, player)
 	weapon.AddAttribute("clip size penalty", 3 / FAMILY_BUSINESS_CLIP, -1)
 	weapon.AddAttribute("maxammo secondary reduced", (2 + 1) / SHOTGUN_RESERVE, -1)
 }
-	RegisterCustomWeapon("Family Business HsDM", "Family Business", true, CW_Stats_The_Family_Business, null)
+	RegisterCustomWeapon("Family Business HsDM", "Family Business", true, CW_Stats_Family_Business, null)
+
+// consider: turning off crits for all weapons, that way the crit buff can apply to those as well (buff em for crit mode)
+function CW_Stats_Killing_Gloves_of_Boxing(weapon, player)
+{
+	ChangeDamageTo(weapon, 120.0 / 65.0) // 120 normal damage, 360 crit damage
+}
+	RegisterCustomWeapon("Killing Gloves of Boxing HsDM", "Killing Gloves of Boxing", true, CW_Stats_Killing_Gloves_of_Boxing)
+
+function CW_Stats_Evicition_Notice(weapon, player)
+{
+	ChangeDamageTo(weapon, 87.0 / MELEE_CRIT_DAMAGE)
+}
+	RegisterCustomWeapon("Eviction Notice HsDM", "Gloves of Running Urgently", true, CW_Stats_Evicition_Notice)
 
 // ==========================================
 //                  engie

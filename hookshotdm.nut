@@ -42,7 +42,9 @@ function OnGameEvent_player_spawn(params)
 	"Festive Backburner",
 	"Ambassador",
 	"Loose Cannon",
-	"Neon Annihilator"
+	"Neon Annihilator",
+	"Killing Gloves of Boxing",
+	"Sticky Jumper" // i can't believe i have to do this
 ]
 
 function AddPlayerThinkScript(player)
@@ -77,7 +79,7 @@ function AddPlayerThinkScript(player)
 
 			if (activeWeapon && !demoknightGrounded)
 			{
-				if (NoCritWeapons.find(wep.itemName) || (demoknight && !demoknightCrits))
+				if (!demoknightCrits && (NoCritWeapons.find(wep.itemName) || demoknight))
 					player.RemoveCond(56)
 				else
 					player.AddCond(56)
@@ -119,7 +121,8 @@ function OnScriptHook_OnTakeDamage(params)
 	local weapon = params.weapon
 	local entityDamaged = params.const_entity
 	local victim = entityDamaged.IsPlayer() || BuildingClassNames.find(entityDamaged.GetClassname())
-	if (weapon && victim) // weapon valid and did we attack a player?
+
+	if (weapon && victim) // weapon valid and did we attack a valid target?
 	{
 		local wepClassName = weapon.GetClassname()
 		local attacker = weapon.GetOwner()

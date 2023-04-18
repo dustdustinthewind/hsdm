@@ -1,4 +1,5 @@
 // run this whenever you need to refresh the script, i.e. code changes
+// bugs: melee damage (specifically demoknight) can get stuck at 145 or 195 instead of swapping as required
 
 // projectiles keep the gravity of game start, even if the gravity changes half way through the match.
 //  so that means if we set the gravity *after* the game starts, we can have low grav for players but
