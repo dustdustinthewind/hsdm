@@ -61,14 +61,23 @@ function AddPlayerThinkScript(player)
 			// TODO: figure out something better (no weapon swapping event i can hijack darn)
 			//       make hookshot 100% crits through an attribute?
 			//       mod mini-crit airborne isn't perfect, mini-crit, and only on airborne targets, but could add crits whenever minicrits?
+			// CHECK: is this still an issue now we we know we can do 0.0 for think scripts?
 
 			local activeWeapon = player.GetActiveWeapon()      // tf2 weapon
 			local wep = player.ReturnWeaponTable(activeWeapon) // give_tf_weapon weapon
 
 			local demoknightGrounded = false
 			local demoknightCrits = false
+			local marketGardenCrits = false
 
-			local demoknight = player.GetPlayerClass() == 4 && !HasNonMeleeWeapon(player)
+			local playerClass = player.GetPlayerClass()
+
+			// if gardening and active weapon is market garden
+			local gardener = playerClass == 3 && wep.itemName == "Market Gardener"
+			// if blast jumping, show crits
+			local marketGardenCrits = gardener && player.InCond(81)
+
+			local demoknight = playerClass == 4 && !HasNonMeleeWeapon(player)
 			if (demoknight)
 			{
 				local currentVelocity = player.GetVelocity().Length()
@@ -76,10 +85,13 @@ function AddPlayerThinkScript(player)
 				demoknightGrounded = player.LastDemoknightCrits && demoknightCrits
 				player.LastDemoknightCrits = demoknightCrits;
 			}
+				
+			local exceptionClasses = demoknight || gardener
+			local critException = marketGardenCrits || demoknightCrits
 
 			if (activeWeapon && !demoknightGrounded)
 			{
-				if (!demoknightCrits && (NoCritWeapons.find(wep.itemName) || demoknight))
+				if (!critException && (NoCritWeapons.find(wep.itemName) || exceptionClasses))
 					player.RemoveCond(56)
 				else
 					player.AddCond(56)
@@ -135,6 +147,7 @@ function OnScriptHook_OnTakeDamage(params)
 		// consider making this work for flares too?
 		local ammoCount = NetProps.GetPropIntArray(attacker, "m_iAmmo", TF_AMMO.PRIMARY)
 
+		// damage_bonus exists but only returns 0 now awesome
 		if (DamageBonusThatGainReserveOnHit.find(params.damage_bonus) && ammoCount < HSDM_DRAGONS_AMMO)
 		{
 			NetProps.SetPropIntArray(attacker, "m_iAmmo", ammoCount + 1, TF_AMMO.PRIMARY)
@@ -143,7 +156,7 @@ function OnScriptHook_OnTakeDamage(params)
 		}
 	}
 }
-	__CollectGameEventCallbacks(this)
+	__CollectGameEventCallbacks(this) // why is this shorter?
 
 ::WeaponsThatGainClipOnHit <- [
 	"",
@@ -184,7 +197,7 @@ function OnGameEvent_item_pickup(params)
 			local validPrimary = true
 			local validSecondary = true
 
-			local thereIsReolver = false
+			local thereIsRevolver = false
 			local thereIsCaber = false
 			local thereIsShortstop = false
 			local thereIsPrettyBoys = false
@@ -201,7 +214,7 @@ function OnGameEvent_item_pickup(params)
 					local wepClassName = wep.GetClassname()
 
 					local isRevolver = wepClassName == "tf_weapon_revolver"
-					if (!thereIsReolver) thereIsReolver = isRevolver
+					if (!thereIsRevolver) thereIsRevolver = isRevolver
 					local revolverBonus = 0
 					if (isRevolver) revolverBonus = 2
 

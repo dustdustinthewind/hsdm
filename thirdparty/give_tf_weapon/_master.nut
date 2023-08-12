@@ -1,3 +1,5 @@
+// note: this is v3.2.4 from: https://tf2maps.net/downloads/vscript-give_tf_weapon.14897/
+
 // How to Use this Script in Your Maps
 //--> To execute this script, make sure to place these files in directory `/tf/scripts/vscripts/`
 //--> Then to execute this script in a map, make an entity with "vscripts" keyvalue, and place `give_tf_weapon/_master`

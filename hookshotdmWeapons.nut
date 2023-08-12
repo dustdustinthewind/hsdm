@@ -57,12 +57,24 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 			NetProps.SetPropInt(player, "m_Shared.m_iAirDash", 0)
 		}
 
-	/*if (playerClass == 4) // demo
+	if (playerClass == 3) // soldier
+		onAttach = function()
+		{
+			// reset parachute if not deployed
+			if (!player.InCond(80))
+				player.RemoveCond(122)
+		}
+
+	if (playerClass == 4) // demo
 		onAttach = function()
 		{
 			// allow demoknight to retain crits after 650 speed for a little bit
-			NetProps.SetPropInt(player, "m_Shared.m_bJumping", 1)
-		}*/
+			//NetProps.SetPropInt(player, "m_Shared.m_bJumping", 1)
+
+			// reset parachute if not deployed
+			if (!player.InCond(80))
+				player.RemoveCond(122)
+		}
 
 	if (playerClass == 2) // sniper
 		onAttach = function()
@@ -77,10 +89,11 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 		{
 			// heavy jump-detach fix
 			// v note: other classes gets 375 jump detach boost
-			local jump = NetProps.GetPropInt(player, "m_nButtons") & Constants.FButtons.IN_JUMP ? 275 : 0
+			local heavyJumpBoost = 275
+			local jump = NetProps.GetPropInt(player, "m_nButtons") & Constants.FButtons.IN_JUMP ? heavyJumpBoost : 0
 			player.SetVelocity(player.GetVelocity() + Vector(0, 0, jump))
 				
-			// heavy fix getting stuck on hookshot
+			// heavy fix getting stuck on hookshot when no ammo
 			local ammo = NetProps.GetPropIntArray(player, "m_iAmmo", TF_AMMO.PRIMARY)
 			if (player.GetLastWeapon() == player.ReturnWeaponBySlot(0) && ammo <= 0)
 				player.Weapon_Switch(player.ReturnWeaponBySlot(2)); // swap to melee
@@ -116,6 +129,10 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 			{
 				// set LastGrappleTarget to what we attached to
 				player.LastGrappleTarget = grappleTarget
+
+				// direct hit airshot fix
+				// TODO: test this works
+				player.AddCond(99)
 
 				// run class specific function for hookshot attach
 				onAttach()
@@ -170,7 +187,7 @@ function CW_Stats_Panic_Attack_HsDM(weapon, player)
 	weapon.RemoveAttribute("damage penalty")
 	local damagePerPellet = 172.8 / PANIC_ATTACK_PELLETS // 144*1.2 = 172.8 (panic attack max 216, 1.2 * shotgun max 180)
 	ChangeDamageTo(weapon, damagePerPellet / SHOTGUN_CRIT_DAMAGE_PER_PELLET)
-	printl(damagePerPellet / PANIC_ATTACK_CRIT_DAMAGE_PER_PELLET)
+	//printl(damagePerPellet / PANIC_ATTACK_CRIT_DAMAGE_PER_PELLET)
 
 	weapon.AddAttribute("clip size penalty", 2 / SHOTGUN_CLIP, -1)
 	
