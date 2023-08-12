@@ -73,7 +73,7 @@ function AddPlayerThinkScript(player)
 			local playerClass = player.GetPlayerClass()
 
 			// if gardening and active weapon is market garden
-			local gardener = playerClass == 3 && wep.itemName == "Market Gardener"
+			local gardener = playerClass == 3 && wep && wep.itemName == "Market Gardener"
 			// if blast jumping, show crits
 			local marketGardenCrits = gardener && player.InCond(81)
 
