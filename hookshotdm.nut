@@ -81,7 +81,7 @@ function AddPlayerThinkScript(player)
 			if (demoknight)
 			{
 				local currentVelocity = player.GetVelocity().Length()
-				demoknightCrits = currentVelocity >= 700
+				demoknightCrits = currentVelocity >= 666 // 700 with .6 grav, 666 with .65 grav
 				demoknightGrounded = player.LastDemoknightCrits && demoknightCrits
 				player.LastDemoknightCrits = demoknightCrits;
 			}
