@@ -155,22 +155,8 @@ SHOTGUN_CLIP <- 6.0
 SHOTGUN_RESERVE <- 32.0
 function CW_Stats_Shotgun_HsDM(weapon, player)
 {
-	// damage/spread
-	local damagePerPellet = 144 / SHOTGUN_PELLETS // insert max damage
-	ChangeDamageTo(weapon, damagePerPellet / SHOTGUN_CRIT_DAMAGE_PER_PELLET)
-	//weapon.AddAttribute("bullets per shot bonus", newPelletCount / SHOTGUN_PELLETS, -1) // 5 pellets, cross bullet pattern
-
-	// ammo
-	weapon.AddAttribute("clip size penalty", 2 / SHOTGUN_CLIP, -1) // clip of 2
-
-	// if engie? modify primary ammo not secondary
-	local slot
-	if (player.GetPlayerClass() != 9) slot = "secondary"
-	else slot = "primary"
-	weapon.AddAttribute("maxammo " + slot + " reduced", (2 + 1) / SHOTGUN_RESERVE, -1)
-
-	// faster reload (commented out cause we can refill clip through ammo now)
-	//weapon.AddAttribute("Reload time decreased", 0.75, -1) // consider .66 or lower?
+	BaseShotgun(weapon, player)
+	AdjustShotgunReserve(weapon, player)
 }
 	RegisterCustomWeapon("Shotgun HsDM", "Shotgun", true, CW_Stats_Shotgun_HsDM, null)
 	RegisterCustomWeapon("Soldier Shotgun HsDM", "Shotgun", true, CW_Stats_Shotgun_HsDM, null)
@@ -190,14 +176,33 @@ function CW_Stats_Panic_Attack_HsDM(weapon, player)
 	//printl(damagePerPellet / PANIC_ATTACK_CRIT_DAMAGE_PER_PELLET)
 
 	weapon.AddAttribute("clip size penalty", 2 / SHOTGUN_CLIP, -1)
-	
+
+	AdjustShotgunReserve(weapon, player)
+}
+	RegisterCustomWeapon("Panic Attack HsDM", "Panic Attack", true, CW_Stats_Panic_Attack_HsDM, null)
+
+function AdjustShotgunReserve(weapon, player)
+{
 	// if engie? modify primary ammo not secondary
 	local slot
 	if (player.GetPlayerClass() != 9) slot = "secondary"
 	else slot = "primary"
 	weapon.AddAttribute("maxammo " + slot + " reduced", (2 + 1) / SHOTGUN_RESERVE, -1)
 }
-	RegisterCustomWeapon("Panic Attack HsDM", "Panic Attack", true, CW_Stats_Panic_Attack_HsDM, null)
+
+function BaseShotgun(weapon, player)
+{
+	// damage/spread
+	local damagePerPellet = 144 / SHOTGUN_PELLETS // insert max damage
+	ChangeDamageTo(weapon, damagePerPellet / SHOTGUN_CRIT_DAMAGE_PER_PELLET)
+	//weapon.AddAttribute("bullets per shot bonus", newPelletCount / SHOTGUN_PELLETS, -1) // 5 pellets, cross bullet pattern
+
+	// ammo
+	weapon.AddAttribute("clip size penalty", 2 / SHOTGUN_CLIP, -1) // clip of 2
+
+	// faster reload (commented out cause we can refill clip through ammo now)
+	//weapon.AddAttribute("Reload time decreased", 0.75, -1) // consider .66 or lower?
+}
 
 function BasePistol(weapon, player)
 {
@@ -817,6 +822,17 @@ function CW_Stats_Evicition_Notice(weapon, player)
 // ==========================================
 //                  engie
 // ==========================================
+
+ENGIE_METAL <- 200
+HSDM_WIDOWMAKER_METAL_MULTI <- 0.2
+function CW_Stats_Widowmaker_HsDM(weapon, player)
+{
+	BaseShotgun(weapon, player)
+	weapon.AddAttribute("maxammo metal reduced", HSDM_WIDOWMAKER_METAL_MULTI, -1)
+	weapon.AddAttribute("building cost reduction", HSDM_WIDOWMAKER_METAL_MULTI - 0.005, -1) // small adjustment to fix rounding errors
+	weapon.AddAttribute("Repair rate increased", 1 + HSDM_WIDOWMAKER_METAL_MULTI, -1)
+}
+	RegisterCustomWeapon("Widowmaker HsDM", "Widowmaker", true, CW_Stats_Widowmaker_HsDM, null)
 
 function CW_Stats_Jag_HsDM(weapon, player)
 {

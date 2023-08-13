@@ -134,27 +134,36 @@ function OnScriptHook_OnTakeDamage(params)
 	// what did we damage
 	local entityDamaged = params.const_entity 
 	// is it player?
-	local victim = entityDamaged.IsPlayer() || BuildingClassNames.find(entityDamaged.GetClassname())
+	local building = BuildingClassNames.find(entityDamaged.GetClassname())
+	local victim = entityDamaged.IsPlayer() || building
 	
 	// weapon valid and did we attack a valid target?
 	if (weapon && victim) 
 	{
 		local wepClassName = weapon.GetClassname()
 		local attacker = weapon.GetOwner()
+		local attackerClass = attacker.GetPlayerClass()
 
-		// hitscan gain ammo on hit
-		if (WeaponsThatGainClipOnHit.find(wepClassName) && weapon.Clip1() <= weapon.GetMaxClip1() + 1) // + 1 for short stop. if you shoot two players at once shortstop will fill to 2. who fucking cares
-			weapon.SetClip1(weapon.Clip1() + 1)
-
-		// dragons gain ammo on bonus
-		// consider making this work for flares too?
-		local ammoCount = NetProps.GetPropIntArray(attacker, "m_iAmmo", TF_AMMO.PRIMARY)
-
-		if (DamageBonusThatGainReserveOnHit.find(params.damage_custom) != null && ammoCount < HSDM_DRAGONS_AMMO)
+		// if scout, sniper, or engie
+		if ([1,2,9].find(attackerClass))
 		{
-			NetProps.SetPropIntArray(attacker, "m_iAmmo", ammoCount + 1, TF_AMMO.PRIMARY)
-			if (ammoCount == 0) attacker.Weapon_Switch(weapon) // don't swap off dragons if we run out of ammo
-			// ^ glitchy, what if player wants to swap to flare? maybe we only swap back to dragons if the victim is still alive?
+			// hitscan gain ammo on hit
+			if (WeaponsThatGainClipOnHit.find(wepClassName) && weapon.Clip1() <= weapon.GetMaxClip1() + 1) // + 1 for short stop. if you shoot two players at once shortstop will fill to 2. who fucking cares
+				weapon.SetClip1(weapon.Clip1() + 1)
+		}
+		// if pyro
+		else if (attackerClass == 7)
+		{
+			// dragons gain ammo on bonus
+			// consider making this work for flares too?
+			local ammoCount = NetProps.GetPropIntArray(attacker, "m_iAmmo", TF_AMMO.PRIMARY)
+
+			if (DamageBonusThatGainReserveOnHit.find(params.damage_custom) != null && ammoCount < HSDM_DRAGONS_AMMO)
+			{
+				NetProps.SetPropIntArray(attacker, "m_iAmmo", ammoCount + 1, 0)
+				if (ammoCount == 0) attacker.Weapon_Switch(weapon) // don't swap off dragons if we run out of ammo
+				// ^ glitchy if player wants to swap to secondary? maybe we only swap back to dragons if the victim is still alive?
+			}
 		}
 	}
 }
