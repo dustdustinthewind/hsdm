@@ -131,10 +131,13 @@ function AddPlayerThinkScript(player)
 function OnScriptHook_OnTakeDamage(params)
 {
 	local weapon = params.weapon
-	local entityDamaged = params.const_entity
+	// what did we damage
+	local entityDamaged = params.const_entity 
+	// is it player?
 	local victim = entityDamaged.IsPlayer() || BuildingClassNames.find(entityDamaged.GetClassname())
-
-	if (weapon && victim) // weapon valid and did we attack a valid target?
+	
+	// weapon valid and did we attack a valid target?
+	if (weapon && victim) 
 	{
 		local wepClassName = weapon.GetClassname()
 		local attacker = weapon.GetOwner()
@@ -147,8 +150,7 @@ function OnScriptHook_OnTakeDamage(params)
 		// consider making this work for flares too?
 		local ammoCount = NetProps.GetPropIntArray(attacker, "m_iAmmo", TF_AMMO.PRIMARY)
 
-		// damage_bonus exists but only returns 0 now awesome
-		if (DamageBonusThatGainReserveOnHit.find(params.damage_bonus) && ammoCount < HSDM_DRAGONS_AMMO)
+		if (DamageBonusThatGainReserveOnHit.find(params.damage_custom) != null && ammoCount < HSDM_DRAGONS_AMMO)
 		{
 			NetProps.SetPropIntArray(attacker, "m_iAmmo", ammoCount + 1, TF_AMMO.PRIMARY)
 			if (ammoCount == 0) attacker.Weapon_Switch(weapon) // don't swap off dragons if we run out of ammo
@@ -260,7 +262,7 @@ function OnGameEvent_item_pickup(params)
 			// bugfix to prevent reserves from going to high
 			FixAmmoFor(hPlayer, thereIsShortstop, thereIsPrettyBoys)
 
-			LowerAmmosByOne(hPlayer, validPrimary, validSecondary || thereIsReolver)
+			LowerAmmosByOne(hPlayer, validPrimary, validSecondary || thereIsRevolver)
 
 			// caber regen on large ammo pack
 			if (thereIsCaber && overfillClip) RegenerateCaber(hPlayer)
