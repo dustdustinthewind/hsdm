@@ -382,18 +382,9 @@ function CW_Stats_Stock_Melee(weapon, player)
 	RegisterCustomWeapon("Genuine Red-Tape Recorder HsDM", "Red-Tape Recorder", true, CW_Stats_No_Change)
 	RegisterCustomWeapon("Ap-Sap HsDM", "builder_spy", true, CW_Stats_No_Change)
 	RegisterCustomWeapon("Snack Attack HsDM", "builder_spy", true, CW_Stats_No_Change)
-
-function CW_Stats_Base_Jumper_HsDM(weapon, player)
-{
-	ResetBaseJumperOnHook(weapon, player)
-}
-	RegisterCustomWeapon("B.A.S.E. Jumper Soldier HsDM", "B.A.S.E. Jumper Soldier", true, CW_Stats_Base_Jumper_HsDM)
-	RegisterCustomWeapon("B.A.S.E. Jumper Demo HsDM", "B.A.S.E. Jumper Demo", true, CW_Stats_Base_Jumper_HsDM)  
-
-function ResetBaseJumperOnHook(weapon, player)
-{
-	// todo	
-}
+	RegisterCustomWeapon("Pomson 6000 HsDM", "Pomson 6000", true, CW_Stats_No_Change, null)
+	RegisterCustomWeapon("B.A.S.E. Jumper Soldier HsDM", "B.A.S.E. Jumper Soldier", true, CW_Stats_No_Change)
+	RegisterCustomWeapon("B.A.S.E. Jumper Demo HsDM", "B.A.S.E. Jumper Demo", true, CW_Stats_No_Change)
 
 // ==========================================
 //                  scout
@@ -833,6 +824,13 @@ function CW_Stats_Widowmaker_HsDM(weapon, player)
 	weapon.AddAttribute("Repair rate increased", 1 + HSDM_WIDOWMAKER_METAL_MULTI, -1)
 }
 	RegisterCustomWeapon("Widowmaker HsDM", "Widowmaker", true, CW_Stats_Widowmaker_HsDM, null)
+
+
+/*POMSON_CRIT_DAMAGE <- 180
+function CW_Stats_Pomson_HsDM(weapon, player)
+{
+	ChangeDamageTo(weapon, 280 / POMSON_CRIT_DAMAGE)
+}*/
 
 function CW_Stats_Jag_HsDM(weapon, player)
 {
