@@ -118,28 +118,41 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 			{
 				// run class specific function for hookshot detach
 				onDetach()
-				
+					
 				// remove hookshot parent
 				//NetProps.SetPropEntity(weapon, "m_hMoveParent", null)
 
 				player.LastGrappleTarget = null
 			}
-			// on attach
-			else if (!player.LastGrappleTarget && grappleTarget)
+			// while grappling
+			if (grappleTarget)
 			{
-				// set LastGrappleTarget to what we attached to
-				player.LastGrappleTarget = grappleTarget
-
 				// direct hit airshot fix
 				// TODO: test this works
 				player.AddCond(99)
 
-				// run class specific function for hookshot attach
-				onAttach()
+				// on attach
+				if (!player.LastGrappleTarget)
+				{
+					// set LastGrappleTarget to what we attached to
+					player.LastGrappleTarget = grappleTarget
+
+					// run class specific function for hookshot attach
+					onAttach()
  				
-				// make whatever you attach to the "parent" of hookshot
-				// need to set the grapple projectile parent to this, not the weapon itself
-				//NetProps.SetPropEntity(weapon, "m_hMoveParent", grappleTarget)
+					// make whatever you attach to the "parent" of hookshot
+					// need to set the grapple projectile parent to this, not the weapon itself
+					//NetProps.SetPropEntity(weapon, "m_hMoveParent", grappleTarget)
+				}
+				//* if grappling an entity
+				else if (grappleTarget.tostring().find("func_"))
+				{
+					player.SetGrapplingHookTarget(player.LastGrappleTarget, true)
+					grappleTarget = player.LastGrappleTarget
+					player.AddCond(98)
+					player.AddCond(99)
+					player.AddCond(100)
+				}
 			}
 
 			return 0.0
