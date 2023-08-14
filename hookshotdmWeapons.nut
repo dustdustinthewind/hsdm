@@ -170,10 +170,8 @@ PANIC_ATTACK_CRIT_DAMAGE_PER_PELLET <- 14.4
 PANIC_ATTACK_PELLETS <- 15.0
 function CW_Stats_Panic_Attack_HsDM(weapon, player)
 {
-	weapon.RemoveAttribute("damage penalty")
-	local damagePerPellet = 172.8 / PANIC_ATTACK_PELLETS // 144*1.2 = 172.8 (panic attack max 216, 1.2 * shotgun max 180)
+	local damagePerPellet = 173 / PANIC_ATTACK_PELLETS
 	ChangeDamageTo(weapon, damagePerPellet / SHOTGUN_CRIT_DAMAGE_PER_PELLET)
-	//printl(damagePerPellet / PANIC_ATTACK_CRIT_DAMAGE_PER_PELLET)
 
 	weapon.AddAttribute("clip size penalty", 2 / SHOTGUN_CLIP, -1)
 
@@ -978,16 +976,20 @@ function CW_Stats_Revolver_HsDM(weapon, player)
 	RegisterCustomWeapon("Unique Revolver HsDM", "Revolver", true, CW_Stats_Revolver_HsDM, null)
 	RegisterCustomWeapon("Big Kill HsDM", "Revolver", true, CW_Stats_Revolver_HsDM, null)
 
+HSDM_AMBY_HEADSHOT_DAMAGE <- 156.0
 function CW_Stats_Ambassador_HsDM(weapon, player)
 {
 	// Removes all pre-existing stats of the weapon.
 	NetProps.SetPropInt(weapon, "m_AttributeManager.m_Item.m_bOnlyIterateItemViewAttributes", 1)
-	// ^ bug: forces default view model position, rip min viewmodel users
 	//   bug: still a maximum headshot range o// why
+	//   bug: may force non-min viewmodels
 
-	ChangeDamageTo(weapon, 156 / REVOLVER_CRIT_DAMAGE)
+	ChangeDamageTo(weapon, HSDM_AMBY_HEADSHOT_DAMAGE / REVOLVER_CRIT_DAMAGE / 3.0)
 	BaseStatsRevolver(weapon, player)
 
 	weapon.AddAttribute("revolver use hit locations", 1, -1)
+	weapon.AddAttribute("headshot damage increase", 21.6, -1) // long range headshot = 198 dmg
+	// NOTE: crit headshots still only deal 156 damage because we overrite it in OnTakeDamage
+	weapon.AddAttribute("sniper fires tracer", 1, -1)
 }
 	RegisterCustomWeapon("Ambassador HsDM", "Ambassador", true, CW_Stats_Ambassador_HsDM, null)

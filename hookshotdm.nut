@@ -81,7 +81,7 @@ function AddPlayerThinkScript(player)
 			if (demoknight)
 			{
 				local currentVelocity = player.GetVelocity().Length()
-				demoknightCrits = currentVelocity >= 666 // 700 with .6 grav, 666 with .65 grav
+				demoknightCrits = currentVelocity >= 650 // 700 with .6 grav, 650 with .65 grav
 				demoknightGrounded = player.LastDemoknightCrits && demoknightCrits
 				player.LastDemoknightCrits = demoknightCrits;
 			}
@@ -143,28 +143,28 @@ function OnScriptHook_OnTakeDamage(params)
 		local wepClassName = weapon.GetClassname()
 		local attacker = weapon.GetOwner()
 		local attackerClass = attacker.GetPlayerClass()
+		local ammoCount = NetProps.GetPropIntArray(attacker, "m_iAmmo", TF_AMMO.PRIMARY)
 
-		// if scout, sniper, or engie
-		if ([1,2,9].find(attackerClass))
-		{
-			// hitscan gain ammo on hit
-			if (WeaponsThatGainClipOnHit.find(wepClassName) && weapon.Clip1() <= weapon.GetMaxClip1() + 1) // + 1 for short stop. if you shoot two players at once shortstop will fill to 2. who fucking cares
-				weapon.SetClip1(weapon.Clip1() + 1)
-		}
-		// if pyro
-		else if (attackerClass == 7)
+		//printl(params.damage_custom)
+		
+		// hitscan gain ammo on hit
+		if (WeaponsThatGainClipOnHit.find(wepClassName) && weapon.Clip1() <= weapon.GetMaxClip1() + 1) // + 1 for short stop. if you shoot two players at once shortstop will fill to 2. who fucking cares
+			weapon.SetClip1(weapon.Clip1() + 1)
+		// if dragons pyro hit bonus
+		else if (DamageBonusThatGainReserveOnHit.find(params.damage_custom) != null && ammoCount < HSDM_DRAGONS_AMMO)
 		{
 			// dragons gain ammo on bonus
 			// consider making this work for flares too?
-			local ammoCount = NetProps.GetPropIntArray(attacker, "m_iAmmo", TF_AMMO.PRIMARY)
+			NetProps.SetPropIntArray(attacker, "m_iAmmo", ammoCount + 1, 0)
 
-			if (DamageBonusThatGainReserveOnHit.find(params.damage_custom) != null && ammoCount < HSDM_DRAGONS_AMMO)
-			{
-				NetProps.SetPropIntArray(attacker, "m_iAmmo", ammoCount + 1, 0)
-				if (ammoCount == 0) attacker.Weapon_Switch(weapon) // don't swap off dragons if we run out of ammo
-				// ^ glitchy if player wants to swap to secondary? maybe we only swap back to dragons if the victim is still alive?
-			}
+			// don't swap off dragons if we run out of ammo while hitting
+			// glitchy if player wants to swap to secondary? maybe we only swap back to dragons if the victim is still alive?
+			if (ammoCount == 0)
+				attacker.Weapon_Switch(weapon)
 		}
+		// if amby spy and get a close range headshot, only 156 damage
+		else if (attackerClass == 8 && params.damage_custom == Constants.ETFDmgCustom.TF_DMG_CUSTOM_HEADSHOT)
+			params.damage = HSDM_AMBY_HEADSHOT_DAMAGE / 3.0
 	}
 }
 	__CollectGameEventCallbacks(this) // why is this shorter?
