@@ -131,6 +131,16 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				// TODO: test this works
 				player.AddCond(99)
 
+				local grappleLocation = grappleTarget.GetOrigin()
+				local playerLocation = player.GetOrigin()
+				local heading = playerLocation - grappleLocation
+				local distance = heading.Length()
+
+				// if within 100 units of grapple, set velocity to 0
+				// hopefully to prevent a weird glitch where you go flying when you get near hook 
+				if (distance < 100.0)
+					player.SetVelocity(Vector(0,0,0))
+				
 				// on attach
 				if (!player.LastGrappleTarget)
 				{
@@ -139,20 +149,16 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 
 					// run class specific function for hookshot attach
 					onAttach()
- 				
+					
+					// a single impulse of 750
+					VanillaGrappleBehavior(player, heading)
+
 					// make whatever you attach to the "parent" of hookshot
 					// need to set the grapple projectile parent to this, not the weapon itself
 					//NetProps.SetPropEntity(weapon, "m_hMoveParent", grappleTarget)
 				}
-				//* if grappling an entity
-				else if (grappleTarget.tostring().find("func_"))
-				{
-					player.SetGrapplingHookTarget(player.LastGrappleTarget, true)
-					grappleTarget = player.LastGrappleTarget
-					player.AddCond(98)
-					player.AddCond(99)
-					player.AddCond(100)
-				}
+				else if (player.InCond(120)) // attached to player is same as vanilla
+					VanillaGrappleBehavior(player, heading, 750)
 			}
 
 			return 0.0
@@ -161,6 +167,14 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 	}
 }
 	RegisterCustomWeapon("Grappling Hook HsDM", "Grappling Hook", true, CW_Stats_Grappling_Hook_HsDM, null)
+
+function VanillaGrappleBehavior(player, heading)
+{
+	local distance = -750.0 / heading.Length()
+	local impulse = heading * distance
+	player.SetVelocity(Vector(0,0,0))
+	player.ApplyAbsVelocityImpulse(impulse)
+}
 
 SHOTGUN_PELLETS <- 10.0
 SHOTGUN_CRIT_DAMAGE_PER_PELLET <- 18.0

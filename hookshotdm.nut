@@ -404,7 +404,7 @@ function Give_HSDM_Weapon(hPlayer)
 		if (wep != null)
 		{	
 			local wepClassName = realWep.GetClassname()
-			printl(wepClassName)	
+			//printl(wepClassName)	
 			local customWeapon = hPlayer.ReturnWeaponTable(wep.itemName + " HsDM") // give_tf_weapon weapon
 			if (customWeapon)
 			{
