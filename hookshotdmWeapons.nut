@@ -202,7 +202,7 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				}
 
 				// reel in using m2
-				if (player.ReelingIn || (player.LastTimeReeled + 8.0 < Time() && (NetProps.GetPropInt(player, "m_nButtons") & Constants.FButtons.IN_ATTACK2)))
+				if (player.ReelingIn || (player.LastTimeReeled + 8.0 < Time() && (NetProps.GetPropInt(player, "m_nButtons") & Constants.FButtons.IN_ATTACK3)))
 				{
 					player.AddCond(32)
 					ReelIn(player, heading)
