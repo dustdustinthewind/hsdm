@@ -131,7 +131,7 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				// TODO: test this works
 				player.AddCond(99)
 
-				local grappleLocation = grappleTarget.GetOrigin()
+				local grappleLocation = Entities.FindByClassname(player, "tf_projectile_grapplinghook").GetOrigin()
 				local playerLocation = player.GetOrigin()
 				local heading = playerLocation - grappleLocation
 
@@ -150,14 +150,18 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 					onAttach()
 					
 					// a single impulse of 750
-					VanillaGrappleBehavior(player, heading)
+					GrappleImpulse(player, heading)
 
 					// make whatever you attach to the "parent" of hookshot
 					// need to set the grapple projectile parent to this, not the weapon itself
 					//NetProps.SetPropEntity(weapon, "m_hMoveParent", grappleTarget)
 				}
-				else if (player.InCond(120)) // attached to player is same as vanilla
-					VanillaGrappleBehavior(player, heading)
+				// attached to player or func acts similar to vanilla
+				else if (player.InCond(120) || grappleTarget.GetClassname().find("func_"))
+				{
+					ConstantGrapple(player, heading)
+					player.AddCond(120)
+				}
 			}
 
 			return 0.0
@@ -167,13 +171,18 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 }
 	RegisterCustomWeapon("Grappling Hook HsDM", "Grappling Hook", true, CW_Stats_Grappling_Hook_HsDM, null)
 
-function VanillaGrappleBehavior(player, heading)
+function GrappleImpulse(player, heading, reduceMomentum = 0.33)
 {
 	// subtract the distanceAdjustment from length, to create a higher impulse when 
 	local distance = -750.0 / heading.Length()
 	local impulse = heading * distance
-	player.SetVelocity(player.GetVelocity() * 0.33) // reduce current velocity to give hook-impulse more impact
+	player.SetVelocity(player.GetVelocity() * reduceMomentum) // reduce current velocity to give hook-impulse more impact
 	player.ApplyAbsVelocityImpulse(impulse)
+}
+
+function ConstantGrapple(player, heading)
+{
+	GrappleImpulse(player, heading, 0)
 }
 
 SHOTGUN_PELLETS <- 10.0
