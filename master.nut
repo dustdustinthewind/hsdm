@@ -8,18 +8,12 @@ Convars.SetValue("mp_respawnwavetime", -1)
 Convars.SetValue("tf_weapon_criticals", 0)
 Convars.SetValue("tf_grapplinghook_los_force_detach_time", 9999) // prevents detaching from func_ entities
 
-Convars.SetValue("tf_grapplinghook_use_acceleration", 1)
-MAX_GRAPPLE_SPEED <- 1250
-Convars.SetValue("tf_grapplinghook_move_speed", MAX_GRAPPLE_SPEED)
-Convars.SetValue("tf_grapplinghook_acceleration", 700)
-Convars.SetValue("tf_grapplinghook_dampening", 100)
-
 ::CTFPlayer.LastGrappleTarget <- null
 ::CTFPlayer.LastGrappleTargetCenter <- null
 ::CTFPlayer.LastGrappleTargetVelocity <- null
 ::CTFPlayer.ReelingIn <- false
-REEL_IN_COOLDOWN <- 8.0
-::CTFPlayer.LastTimeReeled <- -REEL_IN_COOLDOWN
+
+::CTFPlayer.LastTimeReeled <- 0
 ::CTFPlayer.ReelDinged <- true
 
 ::CTFPlayer.LastDemoknightCrits <- false

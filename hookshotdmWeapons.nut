@@ -38,6 +38,9 @@ function SelfBlastBoost(weapon, force, reduction = 0.75)
 // ==========================================
 //                multi class
 // ==========================================
+
+// class specific grapples
+// 
 function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 {
 	// remove previous scripts
@@ -202,7 +205,7 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				}
 
 				// reel in using m2
-				if (player.ReelingIn || (player.LastTimeReeled + 8.0 < Time() && (NetProps.GetPropInt(player, "m_nButtons") & Constants.FButtons.IN_ATTACK3)))
+				if (player.ReelingIn || (player.LastTimeReeled + REEL_IN_COOLDOWN < Time() && (NetProps.GetPropInt(player, "m_nButtons") & Constants.FButtons.IN_ATTACK3)))
 				{
 					player.AddCond(32)
 					ReelIn(player, heading)
@@ -217,7 +220,7 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 }
 	RegisterCustomWeapon("Grappling Hook HsDM", "Grappling Hook", true, CW_Stats_Grappling_Hook_HsDM, null)
 
-function GrappleImpulse(player, heading, initialImpulse = 650, reduceMomentum = 0.3, capSpeed = false)
+function GrappleImpulse(player, heading, initialImpulse = ON_ATTACH_IMPULSE, reduceMomentum = MOMENTUM_RETENTION, capSpeed = false)
 {
 	local distance = -initialImpulse / heading.Length()
 	local impulse = heading * distance
@@ -230,7 +233,7 @@ function GrappleImpulse(player, heading, initialImpulse = 650, reduceMomentum = 
 
 function ReelIn(player, heading)
 {
-	GrappleImpulse(player, heading, 900.0, 0.1, true)
+	GrappleImpulse(player, heading, REEL_IN_SPEED, 0.1, true)
 }
 
 SHOTGUN_PELLETS <- 10.0
