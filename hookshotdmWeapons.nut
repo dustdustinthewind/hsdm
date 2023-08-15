@@ -134,11 +134,10 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				local grappleLocation = grappleTarget.GetOrigin()
 				local playerLocation = player.GetOrigin()
 				local heading = playerLocation - grappleLocation
-				local distance = heading.Length()
 
 				// if within 100 units of grapple, set velocity to 0
 				// hopefully to prevent a weird glitch where you go flying when you get near hook 
-				if (distance < 100.0)
+				if (heading.Length() < 100.0)
 					player.SetVelocity(Vector(0,0,0))
 				
 				// on attach
@@ -158,7 +157,7 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 					//NetProps.SetPropEntity(weapon, "m_hMoveParent", grappleTarget)
 				}
 				else if (player.InCond(120)) // attached to player is same as vanilla
-					VanillaGrappleBehavior(player, heading, 750)
+					VanillaGrappleBehavior(player, heading)
 			}
 
 			return 0.0
@@ -170,9 +169,10 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 
 function VanillaGrappleBehavior(player, heading)
 {
+	// subtract the distanceAdjustment from length, to create a higher impulse when 
 	local distance = -750.0 / heading.Length()
 	local impulse = heading * distance
-	player.SetVelocity(Vector(0,0,0))
+	player.SetVelocity(player.GetVelocity() * 0.33) // reduce current velocity to give hook-impulse more impact
 	player.ApplyAbsVelocityImpulse(impulse)
 }
 

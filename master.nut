@@ -11,7 +11,7 @@ Convars.SetValue("tf_grapplinghook_los_force_detach_time", 9999) // prevents det
 Convars.SetValue("tf_grapplinghook_use_acceleration", 1)
 Convars.SetValue("tf_grapplinghook_move_speed", 1250)
 Convars.SetValue("tf_grapplinghook_acceleration", 750)
-Convars.SetValue("tf_grapplinghook_dampening", 200)
+Convars.SetValue("tf_grapplinghook_dampening", 100)
 
 ::CTFPlayer.LastGrappleTarget <- null
 ::CTFPlayer.LastDemoknightCrits <- false
