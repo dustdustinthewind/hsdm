@@ -1004,5 +1004,6 @@ function CW_Stats_Ambassador_HsDM(weapon, player)
 	weapon.AddAttribute("headshot damage increase", 21.6, -1) // long range headshot = 198 dmg
 	// NOTE: crit headshots still only deal 156 damage because we overrite it in OnTakeDamage
 	weapon.AddAttribute("sniper fires tracer", 1, -1)
+	weapon.AddAttribute("damage penalty on bodyshot", 1.6, -1)
 }
 	RegisterCustomWeapon("Ambassador HsDM", "Ambassador", true, CW_Stats_Ambassador_HsDM, null)
