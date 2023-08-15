@@ -38,7 +38,6 @@ function SelfBlastBoost(weapon, force, reduction = 0.75)
 // ==========================================
 //                multi class
 // ==========================================
-
 function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 {
 	// remove previous scripts
@@ -113,16 +112,25 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 		{
 			local grappleTarget = player.GetGrapplingHookTarget()
 			
+			if (!player.ReelDinged && Time() >= REEL_IN_COOLDOWN + player.LastTimeReeled)
+			{
+				player.ReelDinged = true
+
+			}
+
 			// on detach
 			if (player.LastGrappleTarget && !grappleTarget)
 			{
 				// run class specific function for hookshot detach
 				onDetach()
-					
-				// remove hookshot parent
-				//NetProps.SetPropEntity(weapon, "m_hMoveParent", null)
 
 				player.LastGrappleTarget = null
+
+				if (player.ReelingIn)
+					player.LastTimeReeled = Time();
+
+				player.ReelingIn = false
+				player.RemoveCond(32)
 			}
 			// while grappling
 			if (grappleTarget)
@@ -131,14 +139,28 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				// TODO: test this works
 				player.AddCond(99)
 
-				local grappleLocation = Entities.FindByClassname(player, "tf_projectile_grapplinghook").GetOrigin()
+				local grappleProjectile = null
+				
+				// find the grapple player owns
+				while (grappleProjectile = Entities.FindByClassname(player, "tf_projectile_grapplinghook"))
+					if (grappleProjectile.GetOwner() == player) break
+
+				local grapplingFunc = grappleTarget.tostring().find("func_") != null
+
+				local grappleLocation = grappleProjectile.GetOrigin()
 				local playerLocation = player.GetOrigin()
 				local heading = playerLocation - grappleLocation
+
+				local grappleTargetCenter = grappleTarget.GetCenter()
+				local grappleTargetVelocity = grappleTarget.GetVelocity()
 
 				// if within 100 units of grapple, set velocity to 0
 				// hopefully to prevent a weird glitch where you go flying when you get near hook 
 				if (heading.Length() < 100.0)
+				{
 					player.SetVelocity(Vector(0,0,0))
+					player.LastGrappleTargetVelocity = Vector(0,0,0)
+				}
 				
 				// on attach
 				if (!player.LastGrappleTarget)
@@ -149,18 +171,42 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 					// run class specific function for hookshot attach
 					onAttach()
 					
-					// a single impulse of 750
+					// a single impulse towards grapple target
 					GrappleImpulse(player, heading)
 
-					// make whatever you attach to the "parent" of hookshot
-					// need to set the grapple projectile parent to this, not the weapon itself
-					//NetProps.SetPropEntity(weapon, "m_hMoveParent", grappleTarget)
+					if (grapplingFunc)
+					{
+						player.LastGrappleTargetCenter = grappleTargetCenter
+						player.LastGrappleTargetVelocity = grappleTargetVelocity
+					}
 				}
-				// attached to player or func acts similar to vanilla
-				else if (player.InCond(120) || grappleTarget.GetClassname().find("func_"))
+				// attached to func parent code
+				else if (grappleTarget.tostring().find("func"))
 				{
-					ConstantGrapple(player, heading)
-					player.AddCond(120)
+					// TOOD: do my own dampening to stop back and forths and jittery jumps
+
+					//printl(grappleTarget.GetCenter())
+					local grappleCenter = grappleProjectile.GetOrigin()
+
+					local centerDifference = player.LastGrappleTargetCenter - grappleTargetCenter
+					grappleProjectile.SetAbsOrigin(grappleCenter + (centerDifference * -1))
+					player.SetAbsOrigin(player.GetOrigin() + (centerDifference * -1)) // change -0.5 based on how close you are to it?
+					
+					local velocity = centerDifference * (centerDifference.Length() / 0.01499)
+					local playerDistanceFromGrapple = (grappleCenter - player.GetOrigin()).Length()
+					player.ApplyAbsVelocityImpulse(velocity * -0.0005 * (playerDistanceFromGrapple > 900.0 ? 0.1 : 1.0 - (playerDistanceFromGrapple / 1000.0)))
+					/*local velocityDifference = player.LastGrappleTargetVelocity - grappleTargetVelocity
+					if (velocityDifference.Length() * -0.33 < MAX_GRAPPLE_SPEED)
+						player.ApplyAbsVelocityImpulse(velocityDifference * -0.33)*/
+					player.LastGrappleTargetCenter = grappleTargetCenter
+				}
+
+				// reel in using m2
+				if (player.ReelingIn || (player.LastTimeReeled + 8.0 < Time() && (NetProps.GetPropInt(player, "m_nButtons") & Constants.FButtons.IN_ATTACK2)))
+				{
+					player.AddCond(32)
+					ReelIn(player, heading)
+					player.ReelingIn = true
 				}
 			}
 
@@ -171,18 +217,20 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 }
 	RegisterCustomWeapon("Grappling Hook HsDM", "Grappling Hook", true, CW_Stats_Grappling_Hook_HsDM, null)
 
-function GrappleImpulse(player, heading, reduceMomentum = 0.33)
+function GrappleImpulse(player, heading, initialImpulse = 650, reduceMomentum = 0.3, capSpeed = false)
 {
-	// subtract the distanceAdjustment from length, to create a higher impulse when 
-	local distance = -750.0 / heading.Length()
+	local distance = -initialImpulse / heading.Length()
 	local impulse = heading * distance
-	player.SetVelocity(player.GetVelocity() * reduceMomentum) // reduce current velocity to give hook-impulse more impact
-	player.ApplyAbsVelocityImpulse(impulse)
+	if (!capSpeed || impulse.Length() < initialImpulse) 
+	{
+		player.SetVelocity(player.GetVelocity() * reduceMomentum) // reduce current velocity to give hook-impulse more impact
+		player.ApplyAbsVelocityImpulse(impulse)
+	}
 }
 
-function ConstantGrapple(player, heading)
+function ReelIn(player, heading)
 {
-	GrappleImpulse(player, heading, 0)
+	GrappleImpulse(player, heading, 900.0, 0.1, true)
 }
 
 SHOTGUN_PELLETS <- 10.0
