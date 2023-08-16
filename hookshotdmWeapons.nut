@@ -40,7 +40,7 @@ function SelfBlastBoost(weapon, force, reduction = 0.75)
 // ==========================================
 
 // class specific grapples
-// 
+// TODO: Clean this the fuck up
 function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 {
 	// remove previous scripts
@@ -156,14 +156,6 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 
 				local grappleTargetCenter = grappleTarget.GetCenter()
 				local grappleTargetVelocity = grappleTarget.GetVelocity()
-
-				// if within 100 units of grapple, set velocity to 0
-				// hopefully to prevent a weird glitch where you go flying when you get near hook 
-				if (heading.Length() < 100.0)
-				{
-					player.SetVelocity(Vector(0,0,0))
-					player.LastGrappleTargetVelocity = Vector(0,0,0)
-				}
 				
 				// on attach
 				if (!player.LastGrappleTarget)
@@ -195,21 +187,43 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 					grappleProjectile.SetAbsOrigin(grappleCenter + (centerDifference * -1))
 					player.SetAbsOrigin(player.GetOrigin() + (centerDifference * -1)) // change -0.5 based on how close you are to it?
 					
-					local velocity = centerDifference * (centerDifference.Length() / 0.01499)
+					local velocity = centerDifference * (centerDifference.Length() * 0.01499)
 					local playerDistanceFromGrapple = (grappleCenter - player.GetOrigin()).Length()
-					player.ApplyAbsVelocityImpulse(velocity * -0.0005 * (playerDistanceFromGrapple > 900.0 ? 0.1 : 1.0 - (playerDistanceFromGrapple / 1000.0)))
+					local dragStrengthByLength = playerDistanceFromGrapple > 900.0 ? 0.1 : 1.0 - (playerDistanceFromGrapple / 1000.0)
+					player.ApplyAbsVelocityImpulse(velocity * -SWING_STRENGTH * dragStrengthByLength)
 					/*local velocityDifference = player.LastGrappleTargetVelocity - grappleTargetVelocity
 					if (velocityDifference.Length() * -0.33 < MAX_GRAPPLE_SPEED)
 						player.ApplyAbsVelocityImpulse(velocityDifference * -0.33)*/
 					player.LastGrappleTargetCenter = grappleTargetCenter
 				}
 
+				local keys = NetProps.GetPropInt(player, "m_nButtons")
+
 				// reel in using m2
-				if (player.ReelingIn || (player.LastTimeReeled + REEL_IN_COOLDOWN < Time() && (NetProps.GetPropInt(player, "m_nButtons") & Constants.FButtons.IN_ATTACK3)))
+				if (player.ReelingIn || (player.LastTimeReeled + REEL_IN_COOLDOWN < Time() && (keys & Constants.FButtons.IN_ATTACK3)))
 				{
 					player.AddCond(32)
 					ReelIn(player, heading)
 					player.ReelingIn = true
+				}
+				else if ((keys & move[1]) || (keys & move[2]) || (keys & move[3]) || (keys & move[4]))
+				{
+					// strafing left/right, forward/back
+					local eyes = player.EyeAngles()
+					local upImpulse = keys & move[1] ? eyes.Forward() * GRAPPLE_FORWARD_VELOCITY * 0.5 : Vector(0, 0, 0)
+					local downImpulse = keys & move[2] ? eyes.Forward() * -GRAPPLE_FORWARD_VELOCITY : Vector(0, 0, 0)
+					local leftImpulse = keys & move[3] ?  eyes.Left() * -GRAPPLE_SIDE_VELOCITY : Vector(0, 0, 0)
+					local rightImpulse = keys & move[4] ? eyes.Left() * GRAPPLE_SIDE_VELOCITY : Vector(0, 0, 0)
+					
+					local impulse = upImpulse + downImpulse + leftImpulse + rightImpulse
+					player.ApplyAbsVelocityImpulse(impulse * 0.01499)
+				}
+				// if within 100 units of grapple, set velocity to 0
+				// hopefully to prevent a weird glitch where you go flying when you get near hook 
+				else if (heading.Length() < 100.0)
+				{
+					player.SetVelocity(Vector(0,0,0))
+					player.LastGrappleTargetVelocity = Vector(0,0,0)
 				}
 			}
 
@@ -219,6 +233,14 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 	}
 }
 	RegisterCustomWeapon("Grappling Hook HsDM", "Grappling Hook", true, CW_Stats_Grappling_Hook_HsDM, null)
+
+::move <- [
+	0,
+	Constants.FButtons.IN_FORWARD,
+	Constants.FButtons.IN_BACK,
+	Constants.FButtons.IN_MOVELEFT,
+	Constants.FButtons.IN_MOVERIGHT
+]
 
 function GrappleImpulse(player, heading, initialImpulse = ON_ATTACH_IMPULSE, reduceMomentum = MOMENTUM_RETENTION, capSpeed = false)
 {
