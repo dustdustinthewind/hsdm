@@ -143,19 +143,20 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				player.AddCond(99)
 
 				local grappleProjectile = null
-				
-				// find the grapple player owns
-				while (grappleProjectile = Entities.FindByClassname(player, "tf_projectile_grapplinghook"))
-					if (grappleProjectile.GetOwner() == player) break
 
 				local grapplingFunc = grappleTarget.tostring().find("func_") != null
+
+				local grappleTargetCenter = grappleTarget.GetCenter()
+				local grappleTargetVelocity = grappleTarget.GetVelocity()
+				
+				// find the grapple player owns
+				// TODO change size of bandaid to match the widest part of the bounding box of object?
+				while (grappleProjectile = Entities.FindByClassnameNearest("tf_projectile_grapplinghook", grappleTargetCenter, grapplingFunc ? 1000 : 25))
+					if (grappleProjectile.GetOwner() == player) break
 
 				local grappleLocation = grappleProjectile.GetOrigin()
 				local playerLocation = player.GetOrigin()
 				local heading = playerLocation - grappleLocation
-
-				local grappleTargetCenter = grappleTarget.GetCenter()
-				local grappleTargetVelocity = grappleTarget.GetVelocity()
 				
 				// on attach
 				if (!player.LastGrappleTarget)
