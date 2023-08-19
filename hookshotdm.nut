@@ -16,6 +16,14 @@
 }
 	__CollectEventCallbacks(this, "OnGameEvent_", "GameEventCallbacks", RegisterScriptGameEventListener)	//<-- Must be after ANY OnGameEvent!*/
 
+function OnGameEvent_player_shoot(params)
+{
+	printl("loser")
+	printl(params.weapon + " " params.mode)
+}
+	__CollectEventCallbacks(this, "OnGameEvent_", "GameEventCallbacks", RegisterScriptGameEventListener)	//<-- Must be after ANY OnGameEvent!
+
+
 function OnGameEvent_player_spawn(params)
 {
 	//printl("spawn")
@@ -49,6 +57,7 @@ function OnGameEvent_player_spawn(params)
 
 function AddPlayerThinkScript(player)
 {
+	player.GrappleProjectile = null
 	AddThinkToEnt(player, null)
 	if (player.ValidateScriptScope())
 	{
@@ -96,6 +105,15 @@ function AddPlayerThinkScript(player)
 				else
 					player.AddCond(56)
 			}
+			
+			if (!player.GrappleProjectile)
+				if (NetProps.GetPropBool(player, "m_bUsingActionSlot"))
+				{
+					local grapple = Entities.FindByClassnameNearest("tf_projectile_grapplinghook", player.EyePosition(), 100.0)
+				
+					if (grapple && grapple.GetOwner() == player) player.GrappleProjectile = grapple
+				}
+			else player.GrappleProjectile = null
 
 			return demoknightGrounded ? 0.4 : 0.0; // give demoknights a window to hit after losing velocity
 		}

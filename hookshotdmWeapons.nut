@@ -128,9 +128,11 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				onDetach()
 
 				player.LastGrappleTarget = null
+				player.GrappleProjectile = null
 
 				StartReelInCooldown(player)
 			}
+
 			// while grappling
 			if (grappleTarget)
 			{
@@ -138,20 +140,13 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				// TODO: test this works
 				player.AddCond(99)
 
-				local grappleProjectile = null
-
 				local grapplingFunc = grappleTarget.tostring().find("func_") != null
 
 				local grappleTargetCenter = grappleTarget.GetCenter()
 				//printl(grappleTargetCenter)
-				local grappleTargetVelocity = grappleTarget.GetVelocity()
-				
-				// find the grapple player owns
-				// TODO change size of bandaid to match the widest part of the bounding box of object?
-				while (grappleProjectile = Entities.FindByClassnameNearest("tf_projectile_grapplinghook", grappleTargetCenter, grapplingFunc ? 1000 : 25))
-					if (grappleProjectile.GetOwner() == player) break
 
-				local grappleLocation = grappleProjectile.GetOrigin()
+				printl(player.GrappleProjectile)
+				local grappleLocation = player.GrappleProjectile.GetOrigin()
 				local playerLocation = player.GetOrigin()
 				local playerDistanceFromGrapple = (grappleLocation - player.GetOrigin()).Length()
 				local heading = playerLocation - grappleLocation
@@ -172,24 +167,15 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 					GrappleImpulse(player, heading)
 
 					if (grapplingFunc)
-					{
-						player.LastGrappleTargetCenter = grappleTargetCenter
-						player.LastGrappleTargetVelocity = grappleTargetVelocity
-					}
+                        player.LastGrappleTargetCenter = grappleTargetCenter
 				}
+
 				// attached to func parent code
 				if (grappleTarget.tostring().find("func"))
 				{
 					local centerDifference = player.LastGrappleTargetCenter - grappleTargetCenter
-					grappleProjectile.SetAbsOrigin(grappleLocation + (centerDifference * -1))
+					player.GrappleProjectile.SetAbsOrigin(grappleLocation + (centerDifference * -1))
 					player.SetAbsOrigin(player.GetOrigin() + (centerDifference * -1)) // change -0.5 based on how close you are to it?
-					
-					local velocity = centerDifference * (centerDifference.Length() * tickRateInSec)
-					local dragStrengthByLength =
-						playerDistanceFromGrapple > SWING_INFLUENCE_DISTANCE * (1.0 - MIN_SWING_STRENGTH)
-							? MIN_SWING_STRENGTH
-							: MAX_SWING_STRENGTH - (playerDistanceFromGrapple / SWING_INFLUENCE_DISTANCE)
-					player.ApplyAbsVelocityImpulse(velocity * -SWING_STRENGTH * dragStrengthByLength)
 					player.LastGrappleTargetCenter = grappleTargetCenter
 				}
 
@@ -219,14 +205,11 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 					local impulse = upImpulse + downImpulse + leftImpulse + rightImpulse
 					player.ApplyAbsVelocityImpulse(impulse * tickRateInSec)
 				}
-				// if within 100 units of grapple, set velocity to 0
+				// if within x units of grapple, set velocity to 0
 				// hopefully to prevent a weird glitch where you go flying when you get near hook 
 				// doesn't always work but this does help. maybe make bandaid bigger idk
-				else if (heading.Length() < 100.0)
-				{
+				else if (heading.Length() < MINIMUM_OPTIMAL_ROPE_LENGTH)
 					player.SetVelocity(Vector(0,0,0))
-					player.LastGrappleTargetVelocity = Vector(0,0,0)
-				}
 				
 				
 				//printl(playerDistanceFromGrapple + " " + player.OptimalRopeLength)
@@ -238,7 +221,7 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 					local tension = playerDistanceFromGrapple - player.OptimalRopeLength
 					tension *= playerDistanceFromGrapple / player.OptimalRopeLength
 
-					GrappleImpulse(player, heading, tension, 1.0)
+					GrappleImpulse(player, heading, tension * TENSION_STRENGTH, 1.0)
 				}
 			}
 

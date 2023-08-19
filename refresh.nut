@@ -51,9 +51,11 @@ GRAPPLE_SIDE_VELOCITY // <- 350.0
 GRAPPLE_FORWARD_VELOCITY <- 50.0  
 
 // when we stop reeling in and just, sit there
-MINIMUM_OPTIMAL_ROPE_LENGTH <- 200.0
+MINIMUM_OPTIMAL_ROPE_LENGTH <- 125.0
 
 OPTIMAL_ROPE_LENGTH_DRAIN <- 50.0
+
+TENSION_STRENGTH <- 0.9
 
 // these last 3 change console commands
 // how fast you accelerate while grappling
