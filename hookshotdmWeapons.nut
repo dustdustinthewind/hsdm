@@ -147,6 +147,7 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				local grapplingFunc = grappleTarget.tostring().find("func_") != null
 
 				local grappleTargetCenter = grappleTarget.GetCenter()
+				//printl(grappleTargetCenter)
 				local grappleTargetVelocity = grappleTarget.GetVelocity()
 				
 				// find the grapple player owns
@@ -179,8 +180,6 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				// attached to func parent code
 				else if (grappleTarget.tostring().find("func"))
 				{
-					// TOOD: do my own dampening to stop back and forths and jittery jumps
-
 					//printl(grappleTarget.GetCenter())
 					local grappleCenter = grappleProjectile.GetOrigin()
 
@@ -188,7 +187,7 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 					grappleProjectile.SetAbsOrigin(grappleCenter + (centerDifference * -1))
 					player.SetAbsOrigin(player.GetOrigin() + (centerDifference * -1)) // change -0.5 based on how close you are to it?
 					
-					local velocity = centerDifference * (centerDifference.Length() * 0.01499)
+					local velocity = centerDifference * (centerDifference.Length() * tickRateInSec)
 					local playerDistanceFromGrapple = (grappleCenter - player.GetOrigin()).Length()
 					local dragStrengthByLength = playerDistanceFromGrapple > 900.0 ? 0.1 : 1.0 - (playerDistanceFromGrapple / 1000.0)
 					player.ApplyAbsVelocityImpulse(velocity * -SWING_STRENGTH * dragStrengthByLength)
@@ -217,7 +216,7 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 					local rightImpulse = keys & move[4] ? eyes.Left() * GRAPPLE_SIDE_VELOCITY : Vector(0, 0, 0)
 					
 					local impulse = upImpulse + downImpulse + leftImpulse + rightImpulse
-					player.ApplyAbsVelocityImpulse(impulse * 0.01499)
+					player.ApplyAbsVelocityImpulse(impulse * tickRateInSec)
 				}
 				// if within 100 units of grapple, set velocity to 0
 				// hopefully to prevent a weird glitch where you go flying when you get near hook 

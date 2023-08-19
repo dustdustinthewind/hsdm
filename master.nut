@@ -18,6 +18,16 @@ Convars.SetValue("tf_grapplinghook_los_force_detach_time", 9999) // prevents det
 
 ::CTFPlayer.LastDemoknightCrits <- false
 
+
+::tickRateInSec <- 0.01499
+
+// https://developer.valvesoftware.com/wiki/Team_Fortress_2/Scripting/VScript_Examples/en#Getting_the_userid_from_a_player_handle
+::PlayerManager <- Entities.FindByClassname(null, "tf_player_manager");
+::GetPlayerUserID <- function(player)
+{
+    return NetProps.GetPropIntArray(PlayerManager, "m_iUserID", player.entindex());
+}
+
 IncludeScript("hsdm/refresh.nut")
 
 // TODO
