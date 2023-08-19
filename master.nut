@@ -18,6 +18,7 @@ Convars.SetValue("tf_grapplinghook_los_force_detach_time", 9999) // prevents det
 
 ::CTFPlayer.LastDemoknightCrits <- false
 
+::CTFPlayer.OptimalRopeLength <- 0
 
 ::tickRateInSec <- 0.01499
 

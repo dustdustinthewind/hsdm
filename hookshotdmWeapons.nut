@@ -129,11 +129,7 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 
 				player.LastGrappleTarget = null
 
-				if (player.ReelingIn)
-					player.LastTimeReeled = Time();
-
-				player.ReelingIn = false
-				player.RemoveCond(32)
+				StartReelInCooldown(player)
 			}
 			// while grappling
 			if (grappleTarget)
@@ -157,13 +153,17 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 
 				local grappleLocation = grappleProjectile.GetOrigin()
 				local playerLocation = player.GetOrigin()
+				local playerDistanceFromGrapple = (grappleLocation - player.GetOrigin()).Length()
 				local heading = playerLocation - grappleLocation
+				player.OptimalRopeLength = playerDistanceFromGrapple < player.OptimalRopeLength ? playerDistanceFromGrapple : player.OptimalRopeLength
+
 				
 				// on attach
 				if (!player.LastGrappleTarget)
 				{
 					// set LastGrappleTarget to what we attached to
 					player.LastGrappleTarget = grappleTarget
+					player.OptimalRopeLength = playerDistanceFromGrapple
 
 					// run class specific function for hookshot attach
 					onAttach()
@@ -178,33 +178,34 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 					}
 				}
 				// attached to func parent code
-				else if (grappleTarget.tostring().find("func"))
+				if (grappleTarget.tostring().find("func"))
 				{
-					//printl(grappleTarget.GetCenter())
-					local grappleCenter = grappleProjectile.GetOrigin()
-
 					local centerDifference = player.LastGrappleTargetCenter - grappleTargetCenter
-					grappleProjectile.SetAbsOrigin(grappleCenter + (centerDifference * -1))
+					grappleProjectile.SetAbsOrigin(grappleLocation + (centerDifference * -1))
 					player.SetAbsOrigin(player.GetOrigin() + (centerDifference * -1)) // change -0.5 based on how close you are to it?
 					
 					local velocity = centerDifference * (centerDifference.Length() * tickRateInSec)
-					local playerDistanceFromGrapple = (grappleCenter - player.GetOrigin()).Length()
-					local dragStrengthByLength = playerDistanceFromGrapple > 900.0 ? 0.1 : 1.0 - (playerDistanceFromGrapple / 1000.0)
+					local dragStrengthByLength =
+						playerDistanceFromGrapple > SWING_INFLUENCE_DISTANCE * (1.0 - MIN_SWING_STRENGTH)
+							? MIN_SWING_STRENGTH
+							: MAX_SWING_STRENGTH - (playerDistanceFromGrapple / SWING_INFLUENCE_DISTANCE)
 					player.ApplyAbsVelocityImpulse(velocity * -SWING_STRENGTH * dragStrengthByLength)
-					/*local velocityDifference = player.LastGrappleTargetVelocity - grappleTargetVelocity
-					if (velocityDifference.Length() * -0.33 < MAX_GRAPPLE_SPEED)
-						player.ApplyAbsVelocityImpulse(velocityDifference * -0.33)*/
 					player.LastGrappleTargetCenter = grappleTargetCenter
 				}
 
 				local keys = NetProps.GetPropInt(player, "m_nButtons")
 
-				// reel in using m2
+				// already reeling in or reel in using attack 3
 				if (player.ReelingIn || (player.LastTimeReeled + REEL_IN_COOLDOWN < Time() && (keys & Constants.FButtons.IN_ATTACK3)))
 				{
-					player.AddCond(32)
-					ReelIn(player, heading)
-					player.ReelingIn = true
+					if (playerDistanceFromGrapple < MINIMUM_OPTIMAL_ROPE_LENGTH)
+						StartReelInCooldown(player)
+					else
+					{
+						player.AddCond(32)
+						ReelIn(player, heading)
+						player.ReelingIn = true
+					}
 				}
 				else if ((keys & move[1]) || (keys & move[2]) || (keys & move[3]) || (keys & move[4]))
 				{
@@ -220,10 +221,24 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				}
 				// if within 100 units of grapple, set velocity to 0
 				// hopefully to prevent a weird glitch where you go flying when you get near hook 
+				// doesn't always work but this does help. maybe make bandaid bigger idk
 				else if (heading.Length() < 100.0)
 				{
 					player.SetVelocity(Vector(0,0,0))
 					player.LastGrappleTargetVelocity = Vector(0,0,0)
+				}
+				
+				
+				//printl(playerDistanceFromGrapple + " " + player.OptimalRopeLength)
+				// else apply tension and shit
+				if (playerDistanceFromGrapple > player.OptimalRopeLength)
+				{
+					//printl(player.OptimalRopeLength)
+
+					local tension = playerDistanceFromGrapple - player.OptimalRopeLength
+					tension *= playerDistanceFromGrapple / player.OptimalRopeLength
+
+					GrappleImpulse(player, heading, tension, 1.0)
 				}
 			}
 
@@ -242,15 +257,29 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 	Constants.FButtons.IN_MOVERIGHT
 ]
 
+function StartReelInCooldown(player)
+{
+	if (player.ReelingIn)
+		player.LastTimeReeled = Time();
+
+	player.ReelingIn = false
+	player.RemoveCond(32)
+}
+
 function GrappleImpulse(player, heading, initialImpulse = ON_ATTACH_IMPULSE, reduceMomentum = MOMENTUM_RETENTION, capSpeed = false)
 {
-	local distance = -initialImpulse / heading.Length()
-	local impulse = heading * distance
+	local impulse = ImpulseInHeading(player, heading, initialImpulse)
 	if (!capSpeed || impulse.Length() < initialImpulse) 
 	{
 		player.SetVelocity(player.GetVelocity() * reduceMomentum) // reduce current velocity to give hook-impulse more impact
 		player.ApplyAbsVelocityImpulse(impulse)
 	}
+}
+
+function ImpulseInHeading(player, heading, impulse)
+{
+	local distance = -impulse / heading.Length()
+	return heading * distance
 }
 
 function ReelIn(player, heading)

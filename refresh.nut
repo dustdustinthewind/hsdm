@@ -10,35 +10,74 @@ Convars.SetValue("mp_restartgame", 1)
 SetGravityMultiplier(0.65); // default: 0.65
 
 // grapple settings (change these to change how grapple feels)
-// TODO?: Make a class of these variables so we can apply individual hookshot bullshit to individual classes
-ON_ATTACH_IMPULSE        // <- 650.0  // how much we jerk the player forward towards the grapple on an attach
-                            <- 500.0
-				         // <- 400.0
-MOMENTUM_RETENTION       // <- 0.3    // how much momentum is retained between grapples (the lower the number, the more influence ON_ATTACH_IMPULSE has)
-                            <- 0.4
-				         // <- 0.5
-REEL_IN_SPEED            // <- 900.0  // how fast does the player move during reel-in
-                            <- 800.0
-					     // <- 600.0
-REEL_IN_COOLDOWN         // <- 8.0    // how often the reel in powerup recharges (after detaching from current reel-in)
-                            <- 4.5
-					     // <- 3.0
-GRAPPLE_ACCELERATION     // <- 700    // how fast you accelerate while grappling
-                            <- 650
-				         // <- 600
-MAX_GRAPPLE_SPEED           <- 1250.0 // the maximum speed you can achieve while grappling
-GRAPPLE_DAMPEN              <- 100    // meh
-SWING_STRENGTH              <- 1      // how much player gets pulled/pushed around by swinging on func objects
-STRAFE_BOOST                <- 0.005  // how much forward boost the player gets while strafing (% of on_attach_impulse)
-GRAPPLE_SIDE_VELOCITY    // <- 350.0  // speed left and right from hook strafing
-                            <- 200.0 
-GRAPPLE_FORWARD_VELOCITY    <- 50.0  // speed forward and back from hook strafing
+// TODO?: make an object or function of these variables so we can apply individual hookshot bullshit to individual classes
+//        add these to a seperate file at least
+
+// how much we jerk the player forward towards the grapple on an attach
+ON_ATTACH_IMPULSE // <- 650.0
+                     <- 500.0
+				  // <- 400.0
+
+// how much momentum is retained between grapples (the lower the number, the more influence ON_ATTACH_IMPULSE has)
+MOMENTUM_RETENTION // <- 0.3
+                   // <- 0.4
+				      <- 0.5
+
+// how fast does the player move during reel-in
+REEL_IN_SPEED // <- 900.0
+                 <- 800.0
+			  // <- 600.0
+
+// how often the reel in powerup recharges (after detaching from current reel-in)
+REEL_IN_COOLDOWN // <- 8.0    
+                    <- 4.5
+				 // <- 3.0
+
+// how much player gets pulled/pushed around by swinging on func objects
+SWING_STRENGTH <- 1
+
+// max and minimum percentage of swing strength
+MAX_SWING_STRENGTH <- 1.0 // recommended not higher than 1.0
+MIN_SWING_STRENGTH <- 0.1 // recomended not lower than 0.0
+
+// up to how far away can the player be influenced by func_ entity they swinging on
+SWING_INFLUENCE_DISTANCE <- 1000
+
+// speed left and right from hook strafing
+GRAPPLE_SIDE_VELOCITY // <- 350.0
+                         <- 200.0 
+                         
+// speed forward and back from hook strafing
+GRAPPLE_FORWARD_VELOCITY <- 50.0  
+
+// when we stop reeling in and just, sit there
+MINIMUM_OPTIMAL_ROPE_LENGTH <- 200.0
+
+OPTIMAL_ROPE_LENGTH_DRAIN <- 50.0
+
+// these last 3 change console commands
+// how fast you accelerate while grappling
+GRAPPLE_ACCELERATION     // <- 700
+                         // <- 650
+				            <- 600
+
+// the maximum speed you can achieve while grappling
+MAX_GRAPPLE_SPEED <- 1250.0
+
+// meh
+GRAPPLE_DAMPEN <- 100
 
 Convars.SetValue("tf_grapplinghook_use_acceleration", 1)
 Convars.SetValue("tf_grapplinghook_move_speed", MAX_GRAPPLE_SPEED)
 Convars.SetValue("tf_grapplinghook_acceleration", GRAPPLE_ACCELERATION)
 Convars.SetValue("tf_grapplinghook_dampening", GRAPPLE_DAMPEN)
 
-IncludeScript("hsdm/thirdparty/give_tf_weapon/_master.nut") // https://tf2maps.net/downloads/vscript-give_tf_weapon.14897/
-IncludeScript("hsdm/hookshotdmWeapons.nut") // custom weapons for hsdm
-IncludeScript("hsdm/hookshotdm.nut") // other code
+// https://tf2maps.net/downloads/vscript-give_tf_weapon.14897/
+IncludeScript("hsdm/thirdparty/give_tf_weapon/_master.nut") 
+
+// TODO: have more files for organization, i want to put the grapple in its own file for example
+// custom weapons for hsdm
+IncludeScript("hsdm/hookshotdmWeapons.nut") 
+
+// other code
+IncludeScript("hsdm/hookshotdm.nut")
