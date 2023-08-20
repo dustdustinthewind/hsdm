@@ -9,6 +9,7 @@ Convars.SetValue("tf_use_fixed_weaponspreads", 1)
 Convars.SetValue("mp_respawnwavetime", -1)
 Convars.SetValue("tf_weapon_criticals", 0)
 Convars.SetValue("tf_grapplinghook_los_force_detach_time", 9999) // prevents detaching from func_ entities
+Convars.SetValue("tf_grapplinghook_use_acceleration", 1) // makes grapple more physical, required for enhanced grapple hook
 
 ::CTFPlayer.UsedGrappleLastTick <- false
 ::CTFPlayer.LastGrappleTarget <- null

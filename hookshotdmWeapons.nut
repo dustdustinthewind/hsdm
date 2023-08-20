@@ -91,8 +91,7 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 		{
 			// heavy jump-detach fix
 			// v note: other classes gets 375 jump detach boost
-			local heavyJumpBoost = 275
-			local jump = NetProps.GetPropInt(player, "m_nButtons") & Constants.FButtons.IN_JUMP ? heavyJumpBoost : 0
+			local jump = NetProps.GetPropInt(player, "m_nButtons") & Constants.FButtons.IN_JUMP ? HEAVY_JUMP_DETACH_SPEED : 0
 			player.SetVelocity(player.GetVelocity() + Vector(0, 0, jump))
 				
 			// heavy fix getting stuck on hookshot when no ammo
@@ -156,7 +155,7 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				local grappleTargetRotation = grappleTarget.GetAbsAngles()
 
 				local grappleLocation = player.GrappleProjectile.GetOrigin()
-				local playerLocation = player.GetOrigin()
+				local playerLocation = player.EyePosition()
 				local playerDistanceFromGrapple = (grappleLocation - playerLocation).Length()
 				local heading = playerLocation - grappleLocation
 				player.OptimalRopeLength = playerDistanceFromGrapple < player.OptimalRopeLength ? playerDistanceFromGrapple : player.OptimalRopeLength
@@ -193,7 +192,7 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				// already reeling in or reel in using attack 3
 				if (player.ReelingIn || (player.LastTimeReeled + REEL_IN_COOLDOWN < Time() && (keys & Constants.FButtons.IN_ATTACK3)))
 				{
-					if (playerDistanceFromGrapple < MINIMUM_OPTIMAL_ROPE_LENGTH)
+					if (playerDistanceFromGrapple < ROPE_SAFETY_RADIUS)
 						StartReelInCooldown(player)
 					else
 					{
@@ -217,8 +216,8 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				// if within x units of grapple, set velocity to 0
 				// hopefully to prevent a weird glitch where you go flying when you get near hook 
 				// doesn't always work but this does help. maybe make bandaid bigger idk
-				else if (heading.Length() < MINIMUM_OPTIMAL_ROPE_LENGTH)
-					GrappleImpulse(player, Vector(0,0,0), 1, 0.998)
+				else if (heading.Length() < ROPE_SAFETY_RADIUS)
+					GrappleImpulse(player, heading, 1, 0.998)
 				
 				
 				//printl(playerDistanceFromGrapple + " " + player.OptimalRopeLength)
