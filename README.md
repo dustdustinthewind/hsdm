@@ -1,6 +1,6 @@
 hsdm
 
-tf2 vscript combat mod with low grav, low ammo, high damage, and hookshots
+tf2 vscript combat mod with low grav, low ammo, high damage, and improved hookshots
 
 discord: https://discord.gg/pURj4aY7GU
 
