@@ -89,9 +89,9 @@ Convars.SetValue("tf_grapplinghook_move_speed", MAX_GRAPPLE_SPEED)
 Convars.SetValue("tf_grapplinghook_acceleration", GRAPPLE_ACCELERATION)
 Convars.SetValue("tf_grapplinghook_dampening", GRAPPLE_DAMPEN)
 Convars.SetValue("tf_grapplinghook_fire_delay", GRAPPLE_COOLDOWN)
-Convers.SetValue("tf_grapplinghook_jump_up_speed", GRAPPLE_JUMP_DETACH_SPEED)
+Convars.SetValue("tf_grapplinghook_jump_up_speed", GRAPPLE_JUMP_DETACH_SPEED)
 Convars.SetValue("tf_grapplinghook_max_distance", GRAPPLE_MAX_DISTANCE)
-Convars.Setvalue("tf_grapplinghook_prevent_fall_damage", GRAPPLES_PREVENT_FALL_DAMAGE)
+Convars.SetValue("tf_grapplinghook_prevent_fall_damage", GRAPPLES_PREVENT_FALL_DAMAGE)
 Convars.SetValue("tf_grapplinghook_projectile_speed", GRAPPLE_HOOK_PROJECTILE_SPEED)
 
 // TODO: have more files for organization, i want to put the grapple in its own file for example

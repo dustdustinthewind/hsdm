@@ -152,10 +152,9 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				local grapplingFunc = grappleTarget.tostring().find("func_") != null
 
 				local grappleTargetCenter = grappleTarget.GetCenter()
-				local grappleTargetRotation = grappleTarget.GetAbsAngles()
 
 				local grappleLocation = player.GrappleProjectile.GetOrigin()
-				local playerLocation = player.EyePosition()
+				local playerLocation = player.GetOrigin()
 				local playerDistanceFromGrapple = (grappleLocation - playerLocation).Length()
 				local heading = playerLocation - grappleLocation
 				player.OptimalRopeLength = playerDistanceFromGrapple < player.OptimalRopeLength ? playerDistanceFromGrapple : player.OptimalRopeLength
