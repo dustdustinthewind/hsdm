@@ -74,9 +74,6 @@ Convars.SetValue("tf_grapplinghook_move_speed", MAX_GRAPPLE_SPEED)
 Convars.SetValue("tf_grapplinghook_acceleration", GRAPPLE_ACCELERATION)
 Convars.SetValue("tf_grapplinghook_dampening", GRAPPLE_DAMPEN)
 
-// https://tf2maps.net/downloads/vscript-give_tf_weapon.14897/
-IncludeScript("hsdm/thirdparty/give_tf_weapon/_master.nut") 
-
 // TODO: have more files for organization, i want to put the grapple in its own file for example
 // custom weapons for hsdm
 IncludeScript("hsdm/hookshotdmWeapons.nut") 

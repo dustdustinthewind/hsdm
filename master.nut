@@ -1,4 +1,6 @@
 // run this to init script, use refresh.nut after making changes
+// https://tf2maps.net/downloads/vscript-give_tf_weapon.14897/
+IncludeScript("hsdm/thirdparty/give_tf_weapon/_master.nut") 
 
 // Init	
 
@@ -8,6 +10,7 @@ Convars.SetValue("mp_respawnwavetime", -1)
 Convars.SetValue("tf_weapon_criticals", 0)
 Convars.SetValue("tf_grapplinghook_los_force_detach_time", 9999) // prevents detaching from func_ entities
 
+::CTFPlayer.UsedGrappleLastTick <- false
 ::CTFPlayer.LastGrappleTarget <- null
 ::CTFPlayer.LastGrappleTargetCenter <- null
 ::CTFPlayer.ReelingIn <- false

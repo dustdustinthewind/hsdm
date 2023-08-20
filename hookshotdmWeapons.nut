@@ -113,14 +113,29 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 		local entityscript = weapon.GetScriptScope()
 		entityscript["think_hookshotThinkScript"] <- function()
 		{
-			local grappleTarget = player.GetGrapplingHookTarget()
-			
+			local usingGrappleThisTick = NetProps.GetPropBool(player, "m_bUsingActionSlot")
+			// shooting grapple
+			if (!player.GrappleProjectile && usingGrappleThisTick)
+			{
+				local grapple = Entities.FindByClassnameNearest("tf_projectile_grapplinghook", player.EyePosition(), 100.0)
+				
+				if (grapple && grapple.GetOwner() == player)
+					player.GrappleProjectile = grapple
+			}
+			// stopped shooting grapple
+			else if (!usingGrappleThisTick && player.UsedGrappleLastTick)
+				player.GrappleProjectile = null
+
+			player.UsedGrappleLastTick = usingGrappleThisTick
+
 			if (!player.ReelDinged && Time() >= REEL_IN_COOLDOWN + player.LastTimeReeled)
 			{
 				player.ReelDinged = true
 
 			}
 
+			local grappleTarget = player.GetGrapplingHookTarget()
+			
 			// on detach
 			if (player.LastGrappleTarget && !grappleTarget)
 			{
@@ -128,7 +143,6 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				onDetach()
 
 				player.LastGrappleTarget = null
-				player.GrappleProjectile = null
 
 				StartReelInCooldown(player)
 			}
@@ -136,19 +150,14 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 			// while grappling
 			if (grappleTarget)
 			{
-				// direct hit airshot fix
-				// TODO: test this works
-				player.AddCond(99)
-
 				local grapplingFunc = grappleTarget.tostring().find("func_") != null
 
 				local grappleTargetCenter = grappleTarget.GetCenter()
-				//printl(grappleTargetCenter)
+				local grappleTargetRotation = grappleTarget.GetAbsAngles()
 
-				printl(player.GrappleProjectile)
 				local grappleLocation = player.GrappleProjectile.GetOrigin()
 				local playerLocation = player.GetOrigin()
-				local playerDistanceFromGrapple = (grappleLocation - player.GetOrigin()).Length()
+				local playerDistanceFromGrapple = (grappleLocation - playerLocation).Length()
 				local heading = playerLocation - grappleLocation
 				player.OptimalRopeLength = playerDistanceFromGrapple < player.OptimalRopeLength ? playerDistanceFromGrapple : player.OptimalRopeLength
 
@@ -175,7 +184,7 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				{
 					local centerDifference = player.LastGrappleTargetCenter - grappleTargetCenter
 					player.GrappleProjectile.SetAbsOrigin(grappleLocation + (centerDifference * -1))
-					player.SetAbsOrigin(player.GetOrigin() + (centerDifference * -1)) // change -0.5 based on how close you are to it?
+					player.SetAbsOrigin(playerLocation + (centerDifference * -1)) // change -0.5 based on how close you are to it?
 					player.LastGrappleTargetCenter = grappleTargetCenter
 				}
 
@@ -209,7 +218,7 @@ function CW_Stats_Grappling_Hook_HsDM(weapon, player)
 				// hopefully to prevent a weird glitch where you go flying when you get near hook 
 				// doesn't always work but this does help. maybe make bandaid bigger idk
 				else if (heading.Length() < MINIMUM_OPTIMAL_ROPE_LENGTH)
-					player.SetVelocity(Vector(0,0,0))
+					GrappleImpulse(player, Vector(0,0,0), 1, 0.998)
 				
 				
 				//printl(playerDistanceFromGrapple + " " + player.OptimalRopeLength)

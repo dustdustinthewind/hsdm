@@ -105,15 +105,6 @@ function AddPlayerThinkScript(player)
 				else
 					player.AddCond(56)
 			}
-			
-			if (!player.GrappleProjectile)
-				if (NetProps.GetPropBool(player, "m_bUsingActionSlot"))
-				{
-					local grapple = Entities.FindByClassnameNearest("tf_projectile_grapplinghook", player.EyePosition(), 100.0)
-				
-					if (grapple && grapple.GetOwner() == player) player.GrappleProjectile = grapple
-				}
-			else player.GrappleProjectile = null
 
 			return demoknightGrounded ? 0.4 : 0.0; // give demoknights a window to hit after losing velocity
 		}
