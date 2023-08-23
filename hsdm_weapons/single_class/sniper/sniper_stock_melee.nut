@@ -7,7 +7,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 		if (!player_class_is(TF_CLASS_SNIPER)) return
 
 		foreach(name in sniper_stock_melee_list)
-			if (kukri = find_wep_in_slot(player, name, 2, true))
+			if (kukri = find_wep_in_slot(player, name, 2))
 				return true
 		return false
 	}

@@ -10,7 +10,10 @@ characterTraitsClasses.push(class extends hsdm_trait
 	function OnApply()
 	{
 		change_weapon_damage(panic_attack, 173.0 / 216.0)
-		change_weapon_clip(panic_attack, 2.0 / 6.0)
+		change_weapon_clip(panic_attack, (2 + 1)  / 6.0)
 		change_shotgun_reserve(player, panic_attack)
 	}
 })
+
+overfill_primaries.push("panic_attack")
+overfill_secondaries.push("panic_attack")

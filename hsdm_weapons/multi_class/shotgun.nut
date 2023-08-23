@@ -28,5 +28,8 @@ function change_shotgun_reserve(player, weapon)
 		weapon,
 		// if engie, modify primary ammo, if anyone else, secondary
 		player.GetPlayerClass() == TF_CLASS_ENGINEER ? TF_AMMO.PRIMARY : TF_AMMO.SECONDARY,
-		2.0 / 32.0)
+		(2 + 1)  / 32.0)
 }
+
+overfill_primaries.push("shotgun")
+overfill_secondaries.push("shotgun")

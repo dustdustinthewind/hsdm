@@ -16,7 +16,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 	}
 })
 
-regain_ammo_on_hit_weapons.push("pistol")
+gain_clip_on_hit_weapons.push("pistol")
 
 function base_pistol(player, weapon)
 {

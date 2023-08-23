@@ -2,7 +2,8 @@ weapons_and_traits <- [
 	"hsdm_traits/hsdm_trait.nut",
 	"hsdm_traits/weapon_crit_manager.nut",
 	"hsdm_traits/blast_jumping_debuff_hack.nut"
-	"hsdm_traits/regain_ammo_on_hit.nut",
+	"hsdm_traits/gain_clip_on_hit.nut",
+	"hsdm_traits/overfill_on_ammo_pickup.nut"
 
 	"hsdm_traits/scout_on_attach_detach.nut",
 	"hsdm_traits/sniper_on_attach_detach.nut",
@@ -20,6 +21,7 @@ weapons_and_traits <- [
 
 	"hsdm_weapons/single_class/scout/scout_stock_melee.nut",
 	"hsdm_weapons/single_class/scout/scattergun.nut",
+	"hsdm_weapons/single_class/scout/shortstop.nut",
 
 	"hsdm_weapons/single_class/soldier/soldier_stock_melee.nut",
 

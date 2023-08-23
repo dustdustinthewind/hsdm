@@ -57,7 +57,7 @@ spellbook
  ignore
 
 
-// WORKS?
+// SHOULD ALL WORK I FUCKING HOPE SO
 // SEEMS THAT THEY BORROW THE CLASS OF THE STOCK WEAPON THEYRE ON (i.e tf_weapon_bat for scout) SHIT
 saxxy (all class melee)
  Frying Pan

@@ -12,6 +12,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 	{
 		change_weapon_damage(family_business, 126.0 / 180.0)
 		change_weapon_clip(family_business, 3.0 / 8.0)
-		change_weapon_reserve(family_business, TF_AMMO.SECONDARY, 2.0 / 32.0)
+		change_weapon_reserve(family_business, TF_AMMO.SECONDARY, (2 + 1) / 32.0)
 	}
 })
+overfill_secondaries.push("family_business")
