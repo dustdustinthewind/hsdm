@@ -89,10 +89,6 @@ AddListener("post_inventory", -1, function(player, params)
             newTrait.TryApply.call(newTrait, player);
         }
         catch(e) { throw e; }
-})
-
-AddListener("class_change", -1, function(player, params)
-{
 	EntFireByHandle(player, "RunScriptCode", "self.ForceRegenerateAndRespawn()", 0.0, null, null)
 })
 

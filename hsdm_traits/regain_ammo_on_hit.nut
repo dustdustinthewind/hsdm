@@ -13,9 +13,9 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 	function OnDamageDealt(victim, params)
 	{
-		if (params.weapon != weapon) return
+		if (params.weapon != weapon || !IsValidPlayerOrBuilding(victim)) return
 
-		// i believe maxclip +1 is a fix for shortstop, but gives it ability to go to 2, if you hit 2 players at once who cares
+		// i think maxclip +1 is a fix for shortstop, but gives it ability to go to 2 clip if you hit 2 players at once who cares
 		if (weapon.Clip1() <= weapon.GetMaxClip1() + 1)
 			weapon.SetClip1(weapon.Clip1() + 1)
 	}

@@ -53,18 +53,18 @@
 		= GetModelIndex("models/workshop/weapons/c_models/c_candy_cane/c_candy_cane.mdl"),
 
 	boston_basher
-		= GetModelIndex("models/weapons/c_models/c_boston_basher/c_boston_basher.mdl"),
+		= 606,
 	three_rune_blade
-		= GetModelIndex("models/weapons/c_models/c_scout_sword/c_scout_sword.mdl"),
+		= 662,
 
 	sun_on_a_stick
-		= GetModelIndex("models.weapons.c_models.c_rift_fire_mace.c_rift_fire_mace.mdl"),
+		= 615,
 
     fan_o_war
-		= GetModelIndex("models/workshop_partner/weapons/c_models/c_shogun_warfan/c_shogun_warfan.mdl"),
+		= 620,
 
 	atomizer
-		= GetModelIndex("models/weapons/c_models/c_bonk_bat/c_bonk_bat.mdl"),
+		= 661,
 
 	// tf_weapon_rocketlauncher
 	black_box
@@ -107,10 +107,10 @@
 
 	// tf_weapon_shovel
 	equalizer
-		= GetModelIndex("models/weapons/c_models/c_pickaxe/c_pickaxe2.mdl"),
+		= 534,
 
 	pain_train
-		= GetModelIndex("models/weapons/c_models/c_paintrain/c_paintrain.mdl"),
+		= 544,
 
 	market_gardener
 		= GetModelIndex("models/workshop/weapons/c_models/c_market_gardener/c_market_gardener.mdl"),
@@ -141,27 +141,29 @@
 		= GetModelIndex("models/weapons/c_models/c_scorch_shot/c_scorch_shot.mdl"),
 
 	// tf_weapon_fireaxe
-	fire_axe
-		= GetModelIndex("models/weapons/w_models/w_fireaxe.mdl"),
-	lollichop
-		= GetModelIndex("models/weapons/c_models/c_lollichop/c_lollichop.mdl"),
+	axtinguisher
+		= GetModelIndex("models/weapons/c_models/c_axtinguisher/c_axtinguisher_pyro.mdl"),
+	axtinguisher_xmas
+		= GetModelIndex("models/weapons/c_models/c_fireaxe_pyro/c_fireaxe_pyro_xmas.mdl"),
+	postal_pummeler
+		= 663,
 
 	homewrecker
-		= GetModelIndex("models/weapons/c_models/c_sledgehammer/c_sledgehammer.mdl")
+		= 543,
 	maul
-		= GetModelIndex("models/weapons/c_models/c_rfa_hammer/c_rfa_hammer.mdl")
+		= 666,
 
 	powerjack
-		= GetModelIndex("models/weapons/c_models/c_powerjack/c_powerjack.mdl"),
+		= 569,
 
 	back_scratcher
-		= GetModelIndex("models/weapons/c_models/c_back_scratcher/c_back_scratcher.mdl"),
+		= 607,
 
 	sharpened_volcano_fragment
-		= GetModelIndex("models/weapons/c_models/c_rift_fire_axe/c_rift_fire_axe.mdl"),
+		= 614,
 
 	third_degree
-		= GetModelIndex("models/weapons/c_models/c_drg_thirddegree/c_drg_thirddegree.mdl"),
+		= 681,
 
 	// tf_weapon_grenadelauncher
 	loch_n_load
@@ -175,7 +177,7 @@
 		= GetModelIndex("models/weapons/c_models/c_scottish_resistance/c_scottish_resistance.mdl"),
 
 	sticky_jumper
-		= GetModelIndex("models/weapons/c_models/c_sticky_jumper.mdl"),
+		= 590,
 	/* vsh
     sticky_jumper
 		= GetModelIndex("models/weapons/c_models/c_sticky_jumper/c_sticky_jumper.mdl"),*/
@@ -194,13 +196,13 @@
 
 	// tf_weapon_sword
 	scotsmans_skullcutter
-		= GetModelIndex("models/weapons/c_models/c_battleaxe/c_battleaxe.mdl"),
+		= 550,
 
 	claidheamh_mor
 		= GetModelIndex("models/weapons/c_models/c_claidheamohmor/c_claidheamohmor.mdl")
 
 	persian_persuader
-		= GetModelIndex("models/weapons/c_models/c_demo_sultan_sword/c_demo_sultan_sword.mdl")
+		= 628
 
 	// tf_weapon_minigun
 	natascha
@@ -235,7 +237,7 @@
 	gru
 		= GetModelIndex("models/weapons/c_models/c_boxing_gloves/c_boxing_gloves.mdl"),
 	gru_xmas
-		= GetModelIndex("models/weapons/cmodels/c_boxing_gloves/c_boxing_gloves_xmas.mdl"),
+		= GetModelIndex("models/weapons/c_models/c_boxing_gloves/c_boxing_gloves_xmas.mdl"),
 	bread_bite
 		= GetModelIndex("models/weapons/c_models/c_breadmonster_gloves/c_breadmonster_gloves.mdl"),
 
@@ -243,7 +245,7 @@
 		= GetModelIndex("models/workshop/weapons/c_models/c_bear_claw/c_bear_claw.mdl"),
 
 	fists_of_steel
-		= GetModelIndex("models/weapons/c_models/c_fists_of_steel/c_fists_of_steel.mdl"),
+		= 613,
 
     eviction_notice
 		= GetModelIndex("models/workshop/weapons/c_models/c_eviction_notice/c_eviction_notice.mdl"),
@@ -253,13 +255,13 @@
 
 	// tf_weapon_wrench
 	jag
-		= GetModelIndex("models.weapons.c_models.c_jag.c_jag.mdl"),
+		= 611,
 
 	eureka_effect
-		= GetModelIndex("models/weapons/c_models/c_drg_wrenchmotron.c_drg_wrenchmotron.mdl"),
+		= 680,
 
 	southern_hospitality
-		= GetModelIndex("models/weapons/c_models/c_spikewrench/c_spikewrench.mdl"),
+		= 545,
 
 	// tf_weapon_builder
 	toolbox // check if possible, we may not care about this
@@ -292,17 +294,17 @@
 		= GetModelIndex("models/weapons/c_models/c_medigun_defense/c_medigun_defense.mdl"),
 
 	// tf_weapon_bonesaw
-	bonesaw
-		= GetModelIndex("models/weapons/c_models/c_bonesaw/c_bonesaw.mdl"),
+	ubersaw
+		= GetModelIndex("models/weapons/c_models/c_ubersaw/c_ubersaw.mdl"),
 
-	bonesaw_xmas
+	ubersaw_xmas
 		= GetModelIndex("models/weapons/c_models/c_bonesaw/c_bonesaw_xmas.mdl"),
 
 	vita_saw
-		= GetModelIndex("models/weapons/c_models/c_uberneedle/c_uberneedle.mdl"),
+		= 552,
 
 	amputator
-		= GetModelIndex("models/weapons/c_models/c_amputator/c_amputator.mdl"),
+		= 594,
 
 	solemn_vow
 		= GetModelIndex("models/weapons/c_models/c_hippocrates_bust/c_hippocrates_bust.mdl"),
@@ -321,13 +323,13 @@
 
 	// tf_weapon_club
 	tribalmans_shiv
-		= GetModelIndex("models/weapons/c_models/c_wood_machete/c_wood_machete.mdl"),
+		= 549,
 
 	bushwacka
-		= GetModelIndex("models/weapons/c_models/c_croc_knife/c_croc_knife.mdl"),
+		= 587,
 
 	shahanshah
-		= GetModelIndex("models/weapons/c_models/c_scimitar/c_scimitar.mdl"),
+		= 624,
 
 	// tf_weapon_revolver
 	ambassador
@@ -361,7 +363,7 @@
 		= GetModelIndex("models/workshop/weapons/c_models/c_switchblade/c_switchblade.mdl"),
 
 	spycicle
-		= GetModelIndex("models/weapons/c_models/c_xms_cold_shoulder/c_xms_cold_shoulder.mdl")
+		= 689
 
 	// tf_weapon_invis
     dead_ringer
@@ -434,9 +436,12 @@
 	// DOOOOOO NOOOOTTTT FORGETTT
 	//  to double check all the shit here. check weapon classes.txt for status of each part
 	// dust: DO NOT BLINDLY ASSUME VSCRIPT IS BROKEN CHECK HERE AND IN weaponModels FOR SPELLING ERRORS - dust
-	// todo: prolly want to add the other weapons in here for other uses like weapon_crit_manager
 	switch (name)
 	{
+		case "any":
+		case "any_weapon":
+			return true
+
 		// confirmed working
 		case "parachute":
 		case "base_jumper":
@@ -474,21 +479,58 @@
 			return class_name == "tf_weapon_scattergun"
 				&& !find_models(weapon, ["force_a_nature", "force_a_nature_xmas", "back_scatter"])
 
+		case "shortstop":
+			return class_name == "tf_weapon_hadngun_scout_primary"
+
+		case "soda_popper":
+			return class_name == "tf_weapon_soda_popper"
+
+		case "baby_faces_blaster":
+			return class_name == "tf_weapon_pep_brawler_blaster"
+
 		case "bonk":
 		case "bonk_atomic_punch":
 			return class_name == "tf_weapon_lunchbox_drink"
 				&& !find_model(weapon, "crit_a_cola")
 
+		case "milk":
+		case "mad_milk":
+			return class_name == "tf_weapon_jar_milk"
+
+		case "flying_guillotine":
+		case "cleaver":
+			return class_name == "tf_weapon_cleaver"
+
 		case "bat":
 		case "unarmed combat":
 		case "batsaber":
-			return class_name == "tf_weapon_bat"
-				&& !find_models(weapon, ["candy_cane", "boston_basher", "three_rune_blade", "sun_on_a_stick", "fan_o_war"])
+			return (class_name == "tf_weapon_bat" || class_name == "tf_weapon_bat_fish")
+				&& !find_models(weapon, ["candy_cane", "boston_basher", "three_rune_blade", "sun_on_a_stick", "fan_o_war", "atomizer"])
+
+		case "bat_wood":
+		case "sandman":
+			return class_name == "tf_weapon_bat_wood"
+
+		case "wrap_assassin":
+			return class_name == "tf_weapon_bat_giftwrap"
 
 		case "rocket_launcher":
 		case "original":
 			return class_name == "tf_weapon_rocketlauncher"
 				&& !find_models(weapon, ["black_box", "black_box_xmas", "rocket_jumper", "liberty_launcher", "beggars_bazooka"])
+
+
+		case "directhit":
+		case "direct_hit":
+			return class_name == "tf_weapon_rocketlauncher_directhit"
+
+		case "cow_mangler":
+		case "cow_mangler_5000":
+			return class_name == "tf_weapon_particle_cannon"
+
+		case "airstrike":
+		case "air_strike":
+			return class_name == "tf_weapon_rocketlauncher_airstrike"
 
 		case "buff_banner":
 			return class_name == "tf_weapon_buff_item"
@@ -500,27 +542,57 @@
 			return class_name == "tf_weapon_tf_wearable" // double check class name
 				&& !find_models(weapon, ["gunboats", "mantreads", "darwins_danger_shield", "cozy_camper"])
 
+		case "righteous_bison":
+			return class_name = "tf_weapon_raygun"
+
 		case "shovel":
 			return class_name == "tf_weapon_shovel"
 				&& !find_models(weapon, ["equalizer", "pain_train", "market_gardener", "disciplinary_action", "escape_plan"])
 
+		case "katana":
+		case "half_zatoichi":
+			return class_name == "tf_weapon_katana"
+
 		case "flamethrower":
 			return class_name == "tf_weapon_flamethrower"
 				&& !find_models(weapon, ["backburner", "backburner_xmas", "degreaser", "phlogistinator"])
+
+		case "dragons_fury":
+			return class_name == "tf_weapon_rocketlauncher_fireball"
 
 		case "flare_gun":
 		case "flaregun":
 			return class_name == "tf_weapon_flaregun"
 				&& !find_models(weapon, ["detonator", "scorch_shot"])
 
-		case "axtinguisher":
-		case "postal_pummeler":
+		case "manmelter":
+			return class_name == "tf_weapon_flaregun_revenge"
+
+		case "jetpack":
+		case "thermal_thruster":
+			return class_name == "tf_weapon_rocketpack"
+
+		case "gas_passer":
+			return class_name == "tf_weapon_jar_gas"
+
+		case "fireaxe":
+		case "fire_axe":
 			return class_name == "tf_weapon_fireaxe"
-				&& !find_models(weapon, ["fire_axe", "lollichop", "homewrecker", "maul", "powerjack", "back_scratcher", "sharpened_volcano_fragment", "third_degree"])
+				&& !find_models(weapon, ["axtinguisher", "axtinguisher_xmas", "postal_pummeler", "lollichop", "homewrecker", "maul", "powerjack", "back_scratcher", "sharpened_volcano_fragment", "third_degree"])
+
+		case "neon_annihilator":
+		case "pyroshark":
+			return class_name == "tf_weapon_breakable_sign"
+
+		case "hot_hand":
+			return class_name == "tf_weapon_slap"
 
 		case "grenade_launcher":
 			return class_name == "tf_weapon_grenadelauncher"
 				&& !find_models(weapon, ["loch_n_load", "iron_bomber"])
+
+		case "loose_cannon":
+			return class_name == "tf_weapon_cannon"
 
 		case "stickybomb_launcher":
 			return class_name == "tf_weapon_pipebomblauncher"
@@ -530,9 +602,19 @@
 			return class_name == "tf_weapon_demoshield"
 				&& !find_models(weapon, ["splendid_screen", "tide_turner"])
 
+		case "bottle":
+			return class_name == "tf_weapon_bottle"
+
 		case "eyelander":
 			return class_name == "tf_weapon_sword"
 				&& !find_models(weapon, ["scotsmans_skullcutter", "claidheamh_mor", "persian_persuader"])
+
+		case "any_sword":
+			return class_name == "tf_weapon_sword" || class_name == "tf_weapon_katana"
+
+		case "caber":
+		case "ullapool_caber":
+			return class_name == "tf_weapon_stickbomb"
 
 		case "minigun":
 			return class_name == "tf_weapon_minigun"
@@ -546,25 +628,79 @@
 			return class_name == "tf_weapon_fists"
 				&& !find_models(weapon, ["kgb", "gru", "gru_xmas", "bread_bite", "warriors_spirit", "fists_of_steel", "eviction_notice", "holiday_punch"])
 
+		case "frontier_justice":
+			return class_name == "tf_weapon_sentry_revenge"
+
+		case "pomson":
+			return class_name == "tf_weapon_drg_pomson"
+
+		case "rescue_ranger":
+			return class_name == "tf_weapon_shotgun_building_rescue"
+
+		case "wrangler":
+			return class_name == "tf_weapon_laser_pointer"
+
+		case "short_circuit":
+			return class_name == "tf_weapon_mechanic_arm"
+
 		case "wrench":
 			return class_name == "tf_weapon_wrench"
-				&& !find_models(weapon, ["southern_hospitality", "jag", "eureka effect"])
+				&& !find_models(weapon, ["southern_hospitality", "jag", "eureka_effect"])
+
+		case "gunslinger":
+			return class_name == "tf_weapon_robot_arm"
+
+		case "build_pda":
+		case "construction_pda":
+			return class_name == "tf_weapon_engineer_build"
+
+		case "destroy_pda":
+		case "destruction_pda":
+			return class_name == "tf_weapon_engineer_destroy"
 
 		case "syringegun_medic":
 			return class_name == "tf_weapon_syringegun_medic"
 				&& !find_models(weapon, ["blutsauger", "overdose"])
 
+		case "crossbow":
+		case "crusaders_crossbow":
+			return class_name == "tf_weapon_crossbow"
+
 		case "medigun":
 			return class_name == "tf_weapon_medigun"
 				&& !find_models(weapon, ["krtizkrieg", "quick_fix", "vaccinator"])
 
-		case "ubersaw":
+		case "bonesaw":
+		case "bone_saw":
 			return class_name == "tf_weapon_bonesaw"
-				&& !find_models(weapon, ["bonesaw", "bonesaw_xmas", "vita_saw", "amputator", "solemn_vow"])
+				&& !find_models(weapon, ["ubersaw", "ubersaw_xmas", "vita_saw", "amputator", "solemn_vow"])
 
 		case "sniper_rifle":
 			return class_name == "tf_weapon_sniperrifle"
 				&& !find_models(weapon, ["sydney_sleeper", "machina", "shooting_star", "hitmans_heatmaker"])
+
+		case "huntsman":
+		case "foritifed_compound":
+			return class_name == "tf_weapon_compound_bow"
+
+		case "bazaar_bargain":
+			return class_name == "tf_weapon_sniperrfile_decap"
+
+		case "classic":
+			return class_name == "tf_weapon_sniperrfile_classic"
+
+		case "smg":
+			return class_name == "tf_weapon_smg"
+
+		case "razorback":
+			return class_name == "tf_weapon_razorback"
+
+		case "jarate":
+		case "piss":
+			return class_Name == "tf_weapon_jar"
+
+		case "cleaners_carbine":
+			return class_name == "tf_weapon_charged_smg"
 
 		case "kukri":
 			return class_name == "tf_weapon_club"
@@ -581,6 +717,11 @@
 		case "knife":
 			return class_name == "tf_weapon_knife"
 				&& !find_models(weapon, ["your_eternal_reward", "wanga_prick", "kunai", "big_earner", "spycicle"])
+
+		case "disguise_kit":
+		case "disguise_pda":
+		case "spy_pda":
+			return class_name == "tf_weapon_pda_spy"
 
 		case "invis_watch":
 		case "invis":

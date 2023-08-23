@@ -111,7 +111,8 @@
 
 ::CTFBot.Yeet <- CTFPlayer.Yeet;
 
-::CTFBot.SwitchTeam <- function(team)
+// dont think i want these
+/*::CTFBot.SwitchTeam <- function(team)
 {
     this.ForceChangeTeam(team, true);
     SetPropInt(this, "m_iTeamNum", team);
@@ -141,4 +142,4 @@
                 }
         }
     }
-}
+}*/

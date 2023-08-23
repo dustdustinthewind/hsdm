@@ -9,6 +9,7 @@ weapons_and_traits <- [
 	"hsdm_traits/heavy_on_attach_detach.nut",
 
 	"hsdm_weapons/weapon_helpers.nut",
+	"hsdm_weapons/melee_helpers.nut",
 
 	"hsdm_weapons/multi_class/grapplehook.nut",
 	"hsdm_weapons/multi_class/base_jumper.nut",
@@ -17,11 +18,26 @@ weapons_and_traits <- [
 	"hsdm_weapons/multi_class/reserve_shooter.nut",
 	"hsdm_weapons/multi_class/pistol.nut",
 
+	"hsdm_weapons/single_class/scout/scout_stock_melee.nut",
 	"hsdm_weapons/single_class/scout/scattergun.nut",
 
+	"hsdm_weapons/single_class/soldier/soldier_stock_melee.nut",
+
+	"hsdm_weapons/single_class/pyro/pyro_stock_melee.nut",
+
+	"hsdm_weapons/single_class/engie/engie_stock_melee.nut",
 	"hsdm_weapons/single_class/engie/widowmaker.nut",
 
+	"hsdm_weapons/single_class/demo/demo_stock_melee.nut",
+
+	"hsdm_weapons/single_class/heavy/heavy_stock_melee.nut",
 	"hsdm_weapons/single_class/heavy/family_business.nut",
+
+	"hsdm_weapons/single_class/medic/medic_stock_melee.nut",
+
+	"hsdm_weapons/single_class/sniper/sniper_stock_melee.nut",
+
+	"hsdm_weapons/single_class/spy/spy_stock_melee.nut",
 ]
 
 foreach (file in weapons_and_traits)

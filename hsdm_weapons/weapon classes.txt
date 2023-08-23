@@ -57,7 +57,8 @@ spellbook
  ignore
 
 
-// DOUBLE CHECK
+// WORKS?
+// SEEMS THAT THEY BORROW THE CLASS OF THE STOCK WEAPON THEYRE ON (i.e tf_weapon_bat for scout) SHIT
 saxxy (all class melee)
  Frying Pan
  Saxxy
@@ -75,7 +76,7 @@ saxxy (all class melee)
 grapplinghook
  Grappling Hook
 
-// DOUBLE CHECK F-A-N AND BACK SCATTER
+// ALL WORK
 scattergun
  Scattergun
  Scatter Gun
@@ -90,17 +91,20 @@ scattergun
  Back Scatter
   // ^ in weaponModels now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 handgun_scout_primary
  Shortstop
+ // ^ in switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 soda_popper
  Soda Popper
+ // ^ in switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 pep_brawler_blaster
  Baby Face's Blaster
+ // ^ in switch-case now
 
 // DOUBLE CHECK
 lunchbox_drink
@@ -111,7 +115,7 @@ lunchbox_drink
  Crit-a-Cola
  // in weaponModels now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 jar_milk
  Mad Milk
  Mutated Milk
@@ -125,12 +129,13 @@ handgun_scout_secondary
  Pretty Boy's Pocket Pistol
  // in weapon models now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 cleaver
  Flying Guillotine
  Genuine Flying Guillotine
+ // in switch-case now
 
-// DOUBLE CHECK
+// ALL WORK
 bat
  Bat
  Unique Bat
@@ -156,18 +161,20 @@ bat
  Atomizer
  // in weaponModels now
 
-// ADD CHECK TO WEAPON TRAIT
+// WORKS
 bat_wood
  Sandman
+ // in switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// WORKS
 bat_fish
  Holy Mackerel
- Festive Holy Mackerel
+ // in switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// WORKS
 bat_giftwrap
  Wrap Assassin
+ // in switch-case now
 
 // DOUBLE CHECK
 rocketlauncher
@@ -191,17 +198,20 @@ rocketlauncher
  // double check beggar's bazooka i think it has a different clasname than tf_weapon_rocketlauncher
  // in weaponModels now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 rocketlauncher_directhit
  Direct Hit
+ // in switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 particle_cannon
  Cow Mangler 5000
+ // in switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 rocketlauncher_airstrike
  Air Strike
+ // in switch-case now
 
 // DOUBLE CHECK
 buff_item
@@ -233,12 +243,12 @@ tf_wearable
  Cozy Camper
  // in weaponModels now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 raygun
  Righteous Bison
  // in switch-case now
 
-// DOUBLE CHECK
+// ALL WORKS
 shovel
  Shovel
  Unique Shovel
@@ -259,9 +269,10 @@ shovel
  Escape Plan
  // in weaponModels
 
-// ADD CHECK TO WEAPON TRAIT
+// WORKS
 katana
  Half-Zatoichi
+ // in switch-case now
 
 // DOUBLE CHECK
 flamethrower
@@ -282,9 +293,10 @@ flamethrower
  Phlogistinator
  // in weaponModels now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 rocketlauncher_fireball
  Dragon's Fury
+ // in switch-case now
 
 // DOUBLE CHECK
 flaregun
@@ -298,19 +310,22 @@ flaregun
  Scorch Shot
  // in weaponModels now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 flaregun_revenge
  Manmelter
-
-// ADD CHECK TO WEAPON TRAIT
-rocketpack
- Thermal Thruster
-
-// ADD CHECK TO WEAPON TRAIT
-jar_gas
- Gas Passer
+ // in switch-case now
 
 // DOUBLE CHECK
+rocketpack
+ Thermal Thruster
+ // in switch-case now
+
+// DOUBLE CHECK
+jar_gas
+ Gas Passer
+ // in switch-case now
+
+// ALL WORK
 fireaxe
  Fire Axe
  Unique Fire Axe
@@ -338,14 +353,16 @@ fireaxe
  Third-Degree
  // in weaponModels now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 breakable_sign
  Neon Annihilator
  Genuine Neon Annihilator
+ // in-switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 slap
  Hot Hand
+ // in-switch-case now
 
 // DOUBLE CHECK
 grenadelauncher
@@ -360,9 +377,10 @@ grenadelauncher
  Iron Bomber
  // in weaponModels now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 cannon
  Loose Cannon
+ // in-switch-case now
 
 // DOUBLE CHECK
 pipebomblauncher
@@ -394,11 +412,12 @@ demoshield
  Tide Turner
  // in weaponModels now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 bottle
  Bottle
  Unique Bottle
  Scottish Handshake
+ // in-switch-case now
 
 // DOUBLE CHECK
 sword
@@ -417,9 +436,10 @@ sword
  Persian Persuader
  // in weaponModels now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 stickbomb
  Ullapool Caber
+ // in switch-case now
 
 // DOUBLE CHECK
 minigun
@@ -459,6 +479,7 @@ lunchbox
  Second Banana
  // in weaponModels now
 
+// SHOULD WORK
 // DOUBLE CHECK
 fists
  Fists
@@ -485,29 +506,34 @@ fists
  Holiday Punch
  // in weaponModels
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 sentry_revenge
  Frontier Justice
  Festive Frontier Justice
+ // in switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 drg_pomson
  Pomson
+ // in switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 shotgun_building_rescue
  Rescue Ranger
+ // in switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 laser_pointer
  Wrangler
  Festive Wrangler
-
-// ADD CHECK TO WEAPON TRAIT
-mechanic_arm
- Short Circuit
+ // in switch-case now
 
 // DOUBLE CHECK
+mechanic_arm
+ Short Circuit
+ // in switch-case now
+
+// ALL WORK
 wrench
  Wrench
  Unique Wrench
@@ -524,19 +550,22 @@ wrench
  Eureka Effect
  // in weaponModels now
 
-// ADD CHECK TO WEAPON TRAIT
+// WORKS
 // give_tf_weapon has a method specifically for this, may want to double check why
 robot_arm
  Gunslinger
+ // in switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 pda_engineer_build
  Build PDA
  Unique Build PDA
+ // in switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 pda_engineer_destroy
  Destruction PDA
+ // in switch-case now
 
 // DOUBLE CHECK
 builder
@@ -559,10 +588,11 @@ syringegun_medic
  Overdose
  // in weaponModels now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 crossbow
  Crusader's Crossbow
  Festive Crusader's Crossbow
+ // in switch-case now
 
 // DOUBLE CHECK
 medigun
@@ -580,15 +610,16 @@ medigun
  Vaccinator
  // in weaponModels now
 
+// ALL WORKS
 // DOUBLE CHECK
 bonesaw
  Bonesaw
  Festive Bonesaw
- // in weaponModels now
+ // in switch-case now
 
  Ubersaw
  Festive Ubersaw
- // in switch-case now
+ // in weaponModels now
 
  Vita-Saw
  // in weaponModels now
@@ -616,39 +647,46 @@ sniperrifle
  Hitman's Heatmaker
  // in weaponModels now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 compound_bow
  Huntsman
  Festive Huntsman
  Fortified Compound
+ // in switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 sniperrifle_decap
  Bazaar Bargain
+ // in switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 sniperrifle_classic
  Classic
+ // in switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 smg
  SMG
  Unique SMG
  Festive SMG
+ // in switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 razorback
  Razorback
+ // in switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 jar
  Jarate
  Festive Jarate
  Self-Aware Beauty Mark
+ // in switch-case now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 charged_smg
  Cleaner's Carbine
+ // in switch-case now
 
 // DOUBLE CHECK
 club
@@ -695,7 +733,8 @@ Sapper
  Snack Attack
  // in switch-case now
 
-// DOUBLE CHECK
+// ALL SHOULD WORK
+// IDFS ABOUT WANGA PRICK but i'm 90% confident it works
 knife
  Knife
  Festive Knife
@@ -716,9 +755,10 @@ knife
  Spy-cicle
  // in weaponModels now
 
-// ADD CHECK TO WEAPON TRAIT
+// DOUBLE CHECK
 pda_spy
  Disguise Kit PDA
+ // in switch-case now
 
 // DOUBLE CHECK
 invis

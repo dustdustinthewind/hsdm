@@ -34,6 +34,9 @@ Convars.SetValue("tf_grapplinghook_use_acceleration", 1) // makes grapple more p
 GAME_GRAVITY <- 0.65 // perecentage
 NORMAL_GRAVITY_FOR_PROJECTILES <- true // set to true so projectiles behave similarly to vanilla tf2's gravity, pills especially effected by gravity
 
+// velocity needed to trigger demoknight crits
+DEMOKNIGHT_CRIT_SPEED_TRIGGER <- 700.0
+
 // how much we jerk the player forward towards the grapple on an attach
 ON_ATTACH_IMPULSE // <- 650.0
                      <- 600.0
