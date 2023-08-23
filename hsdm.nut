@@ -15,5 +15,4 @@ Include("weapons_and_traits.nut")
 //  fix need to rerun script twice to work
 //  fix need to manually swap loadouts, touch resupply, or change character for weapon trait applications to work
 //   maybe switch to nother class then back xd
-//  fix grappling other players is funky
 //  the character trait system is cool but i have a feeling it may be performance heavy in current implementation

@@ -171,6 +171,7 @@ function OnGameEvent_player_disconnect(params)
 function OnGameEvent_item_pickup(params)
 {
 	local player = GetPlayerFromParams(params)
+	if (!IsValidClient(player)) return
 	FireListeners("item_pickup", player, params)
 }
 

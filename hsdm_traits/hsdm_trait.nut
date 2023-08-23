@@ -19,7 +19,7 @@ class hsdm_trait extends CharacterTrait
 	}
 }
 
-AddListener("item_pickup", -1, function(params)
+AddListener("item_pickup", -1, function(player, params)
 {
 	foreach (characterTrait in characterTraits[player])
 		try { characterTrait.OnItemPickup.call(characterTrait, player, params) }

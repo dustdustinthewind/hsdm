@@ -57,6 +57,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 			FireListeners("on_detach", player)
 
 			last_grapple_target = null
+			grapple_projectile = null
 
 			StartReelInCooldown()
 		}
@@ -68,7 +69,8 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 			local grappleTargetCenter = grappleTarget.GetCenter()
 
-			local grappleLocation = grapple_projectile.GetOrigin()
+
+			local grappleLocation = grapple_projectile ? grapple_projectile.GetOrigin() : grappleTarget.GetOrigin()
 			local playerLocation = player.GetOrigin()
 			local playerDistanceFromGrapple = (grappleLocation - playerLocation).Length()
 			local heading = playerLocation - grappleLocation
