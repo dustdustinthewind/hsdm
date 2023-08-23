@@ -480,7 +480,7 @@
 				&& !find_models(weapon, ["force_a_nature", "force_a_nature_xmas", "back_scatter"])
 
 		case "shortstop":
-			return class_name == "tf_weapon_hadngun_scout_primary"
+			return class_name == "tf_weapon_handgun_scout_primary"
 
 		case "soda_popper":
 			return class_name == "tf_weapon_soda_popper"

@@ -11,17 +11,17 @@ characterTraitsClasses.push(class extends hsdm_trait
 	function OnApply()
 	{
 		change_weapon_damage(pistol, 38.0 / 45.0)
-		change_weapon_clip(pistol, 4.0 / 12.0)
-		base_pistol(player, pistol)
+		change_weapon_clip(pistol, 4, 12.0)
+		base_pistol(pistol)
 	}
 })
 
 gain_clip_on_hit_weapons.push("pistol")
 
-function base_pistol(player, weapon)
+function base_pistol(weapon)
 {
 	if (player_class_is(TF_CLASS_ENGINEER))
-		weapon.AddAttribute("maxammo secondary reduced", 40.0 / 200.0, -1) // embrace large pool meme, i will not regret this
+		change_weapon_reserve(weapon, TF_AMMO.SECONDARY, 40.0, 200.0) // embrace large pool meme, i will not regret this
 	else
-		weapon.AddAttribute("maxammo secondary reduced", 6.0 / 36.0, -1)
+		change_weapon_reserve(weapon, TF_AMMO.SECONDARY, 6, 36.0)
 }

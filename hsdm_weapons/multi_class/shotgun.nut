@@ -17,7 +17,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 function base_shotgun(player, weapon, change_reserve = true)
 {
 	change_weapon_damage(weapon, 144.0 / 180.0)
-	change_weapon_clip(weapon, 2.0 / 6.0)
+	change_weapon_clip(weapon, 2, 6.0)
 	if (change_reserve)
 		change_shotgun_reserve(player, weapon)
 }
@@ -28,7 +28,7 @@ function change_shotgun_reserve(player, weapon)
 		weapon,
 		// if engie, modify primary ammo, if anyone else, secondary
 		player.GetPlayerClass() == TF_CLASS_ENGINEER ? TF_AMMO.PRIMARY : TF_AMMO.SECONDARY,
-		(2 + 1)  / 32.0)
+		2, 32.0, true)
 }
 
 overfill_primaries.push("shotgun")

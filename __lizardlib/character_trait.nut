@@ -89,7 +89,6 @@ AddListener("post_inventory", -1, function(player, params)
             newTrait.TryApply.call(newTrait, player);
         }
         catch(e) { throw e; }
-	EntFireByHandle(player, "RunScriptCode", "self.ForceRegenerateAndRespawn()", 0.0, null, null)
 })
 
 AddListener("tick_only_valid", 2, function (timeDelta)

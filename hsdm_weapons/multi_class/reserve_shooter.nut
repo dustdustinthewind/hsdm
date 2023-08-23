@@ -11,8 +11,8 @@ characterTraitsClasses.push(class extends hsdm_trait
 	function OnApply()
 	{
 		change_weapon_damage(reserve_shooter, 130.5 / 90.0) // max minicrit = 175.5
-		change_weapon_clip(reserve_shooter, 1 / 6.0)
-		change_weapon_reserve(reserve_shooter, TF_AMMO.SECONDARY, (2 + 1) / 32.0)
+		change_weapon_clip(reserve_shooter, 1, 6.0)
+		change_weapon_reserve(reserve_shooter, TF_AMMO.SECONDARY, 2, 32.0, true)
 	}
 })
 

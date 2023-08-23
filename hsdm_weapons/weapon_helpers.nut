@@ -1,13 +1,15 @@
 // for OnApply()
-function change_weapon_clip(weapon, clip)
+function change_weapon_clip(weapon, hsdm_clip, tf2_clip)
 {
+	local clip = hsdm_clip / tf2_clip
 	local attr = "clip size " + (clip > 1.0 ? "bonus" : "penalty")
 
 	weapon.AddAttribute(attr, clip, -1)
+	weapon.SetClip1(hsdm_clip)
 }
 
 // for OnApply()
-function change_weapon_reserve(weapon, slot, reserve)
+function change_weapon_reserve(weapon, slot, hsdm_reserve, tf2_reserve, overfill = false)
 {
 	local prim_sec_met = ""
 	switch (slot)
@@ -23,8 +25,11 @@ function change_weapon_reserve(weapon, slot, reserve)
 			break;
 	}
 
+	local reserve = (hsdm_reserve + (overfill ? 1 : 0)) / tf2_reserve
+
 	local attr = "maxammo " + prim_sec_met + (reserve > 1 ? " increased" : " reduced")
 	weapon.AddAttribute(attr, reserve, -1)
+	SetPropIntArray(weapon.GetOwner(), "m_iAmmo", hsdm_reserve, slot)
 }
 
 // for OnApply()

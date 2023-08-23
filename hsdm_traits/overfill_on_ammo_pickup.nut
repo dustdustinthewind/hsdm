@@ -25,7 +25,10 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 		increase_clip(params.item == "ammopack_large")
 
-		lower_reserve_by_one()
+		if (primary)
+			lower_reserve_by_one(player, TF_AMMO.PRIMARY)
+		if (secondary)
+			lower_reserve_by_one(player, TF_AMMO.SECONDARY)
 
 		picked_up_this_frame = true
 	}
@@ -44,16 +47,13 @@ characterTraitsClasses.push(class extends hsdm_trait
 		if (secondary && primary != secondary && secondary.Clip1() < secondary.GetMaxClip1() + (overfill ? bonus : 0))
 			secondary.SetClip1(secondary.Clip1() + 1)
 	}
-
-	function lower_reserve_by_one()
-	{
-		if (primary)
-			SetPropIntArray(player, "m_iAmmo", GetPropIntArray(player, "m_iAmmo", TF_AMMO.PRIMARY) - 1, TF_AMMO.PRIMARY)
-
-		if (secondary)
-			SetPropIntArray(player, "m_iAmmo", GetPropIntArray(player, "m_iAmmo", TF_AMMO.SECONDARY) - 1, TF_AMMO.SECONDARY)
-	}
 })
+
+function lower_reserve_by_one(player, ammo)
+{
+	printl("called")
+	SetPropIntArray(player, "m_iAmmo", GetPropIntArray(player, "m_iAmmo", ammo) - 1, ammo)
+}
 
 overfill_primaries <- [""]
 overfill_secondaries <- [""]
