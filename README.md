@@ -10,4 +10,4 @@ how to install
 - rename `hsdm-main` folder to `hsdm`
 
 how to run
-- `script_execute hsdm/master` in tf2 console
+- `script_execute hsdm/hsdm` in tf2 console

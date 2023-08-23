@@ -12,6 +12,7 @@ weapons_and_traits <- [
 	"hsdm_weapons/multi_class/base_jumper.nut",
 	"hsdm_weapons/multi_class/shotgun.nut",
 	"hsdm_weapons/multi_class/panic_attack.nut",
+	"hsdm_weapons/multi_class/reserve_shooter.nut",
 
 	"hsdm_weapons/single_class/scout/scattergun.nut",
 	"hsdm_weapons/single_class/heavy/family_business.nut",
