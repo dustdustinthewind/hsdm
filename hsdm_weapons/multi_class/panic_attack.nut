@@ -4,7 +4,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 	function CanApply()
 	{
-		return panic_attack = has_wep_in_slots(player, "panic_attack", 0, 1)
+		return panic_attack = find_wep_in_slots(player, "panic_attack", 0, 1)
 	}
 
 	function OnApply()

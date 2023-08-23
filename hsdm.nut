@@ -1,5 +1,5 @@
 hsdm <- "hsdm/"
-debug <- true
+debug <- false
 
 // basically llzard lib from vsh
 IncludeScript(hsdm + "__lizardlib/util.nut")
@@ -14,3 +14,4 @@ Include("weapons_and_traits.nut")
 // TODO
 //  fix need to rerun script twice to work
 //  fix need to manually swap loadouts, touch resupply, or change character for weapon trait applications to work
+//  fix grappling other players is funky

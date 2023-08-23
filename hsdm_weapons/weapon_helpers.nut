@@ -55,30 +55,30 @@ function change_weapon_damage(weapon, damage, shotgunMod = 1.0, changeBuildingDa
 // unsure if needed ^
 
 // for finding a weapon out of a player's loadout through IsWeapon
-function has_wep_in_slots(player, name, min, max)
+function find_wep_in_slots(player, name, min, max, debugging = debug)
 {
 	for (local i = min; i <= max; i++)
 	{
 		local out = player.ReturnWeaponBySlot(i)
-		if (WeaponIs(out, name))
+		if (WeaponIs(out, name, debugging))
 		{
-			if (debug)
+			if (debugging)
 				printl("found " + name + ": " + out + " in slot " + i)
 			return out
 		}
 	}
 
-	if (debug)
+	if (debugging)
 		printl("did not find " + name + " in slots " + min + "-" + max)
 	return null
 }
 
-function has_wep_in_slot(player, classname, slot)
+function find_wep_in_slot(player, classname, slot, debugging = debug)
 {
-	return has_wep_in_slots(player, classname, slot, slot)
+	return find_wep_in_slots(player, classname, slot, slot, debugging)
 }
 
-function has_wep(player, classname)
+function find_wep(player, classname, debugging = debug)
 {
-	return has_wep_in_slots(player, classname, 0, GLOBAL_WEAPON_COUNT)
+	return find_wep_in_slots(player, classname, 0, GLOBAL_WEAPON_COUNT, debugging)
 }

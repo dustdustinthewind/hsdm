@@ -4,8 +4,8 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 	function CanApply()
 	{
-		return player.GetPlayerClass() == TF_CLASS_HEAVYWEAPONS
-			&& (family_business = has_wep_in_slot(player, "family_business", 1))
+		return player_class_is(TF_CLASS_HEAVYWEAPONS)
+			&& (family_business = find_wep_in_slot(player, "family_business", 1))
 	}
 
 	function OnApply()

@@ -10,10 +10,7 @@ parachute_primary
  B.A.S.E. Jumper Primary
  // ^ in switch-case now
 
-// SHOTGUN WORKS
-// PANIC ATTACK WORKS
-// FAMILY BUSINESS WORKS
-// RESERVE SHOOTER _____
+// ALL WORKS
 shotgun
  Shotgun
  Festive Shotgun

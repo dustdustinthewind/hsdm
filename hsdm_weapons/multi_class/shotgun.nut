@@ -5,7 +5,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 	function CanApply()
 	{
 		// check primary/secondary slots for shotgun
-		return shotgun = has_wep_in_slots(player, "shotgun", 0, 1)
+		return shotgun = find_wep_in_slots(player, "shotgun", 0, 1)
 	}
 
 	function OnApply()

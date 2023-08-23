@@ -5,8 +5,8 @@ characterTraitsClasses.push(class extends hsdm_trait
 	// todo scattergun unique and skins
 	function CanApply()
 	{
-		return player.GetPlayerClass() == TF_CLASS_SCOUT
-			&& (scattergun = has_wep_in_slot(player, "scattergun", 0))
+		return player_class_is(TF_CLASS_SCOUT)
+			&& (scattergun = find_wep_in_slot(player, "scattergun", 0))
 	}
 
 	function OnApply()

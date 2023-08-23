@@ -19,16 +19,22 @@
 	// tf_weapon_shotgun
 	reserve_shooter
 		= GetModelIndex("models/workshop/weapons/c_models/c_reserve_shooter/c_reserve_shooter.mdl"),
-    panic_attack
+
+	panic_attack
 		= GetModelIndex("models/workshop/weapons/c_models/c_trenchgun/c_trenchgun.mdl"),
+
 	family_business
 		= 647,
+
+	widowmaker
+		= 672,
 
 	// tf_weapon_scattergun
 	force_a_nature
 		= GetModelIndex("models/weapons/c_models/c_double_barrel.mdl"),
 	force_a_nature_xmas
 		= GetModelIndex("models/weapons/c_models/c_xms_double_barrel.mdl"),
+
 	back_scatter
 		= GetModelIndex("models/workshop/weapons/c_models/c_scatterdrum/c_scatterdrum.mdl"),
 
@@ -245,10 +251,6 @@
 	holiday_punch
 		= GetModelIndex("models/workshop/weapons/c_models/c_xms_gloves/c_xms_gloves.mdl"),
 
-	// tf_weapon_shotgun_primary
-	widowmaker
-		= GetModelIndex("models/weapons/c_models/c_dex_shotgun/c_dex_shotgun.mdl"),
-
 	// tf_weapon_wrench
 	jag
 		= GetModelIndex("models.weapons.c_models.c_jag.c_jag.mdl"),
@@ -396,19 +398,19 @@
 
 // use this for weapons with conflicting classes (check weapon classes.txt)
 // otherwise use weapon.GetClassname() == class in CanApply()
-::WeaponIs <- function(weapon, name)
+::WeaponIs <- function(weapon, name, debugging = debug)
 {
     if (weapon == null) return false
 
 	local find_model = function(weapon, name)
 	{
-		if (debug)
+		if (debugging)
 		{
 			printl(weapon + " index: " + GetPropInt(weapon, "m_iWorldModelIndex"))
 			printl("   " + GetPropInt(weapon, "m_iWorldModelIndex"))
 		}
 
-		if (debug && name in weaponModels)
+		if (debugging && name in weaponModels)
 			printl(name + " index: " + weaponModels[name])
 
 		return (name in weaponModels ? weaponModels[name] : null) == GetPropInt(weapon, "m_iWorldModelIndex")
@@ -419,7 +421,7 @@
 		foreach (name in names)
 			if (find_model(weapon, name))
 			{
-				if (debug)
+				if (debugging)
 					printl("found " + name)
 				return true
 			}

@@ -4,6 +4,19 @@ class hsdm_trait extends CharacterTrait
 	function OnSwapWeapon(player, weapon) { }
 	function OnDetach(player) { }
 	function OnAttach(player) { }
+
+	function player_class_is(class_num)
+	{
+		return player.GetPlayerClass() == class_num
+	}
+
+	function player_class_is_one_of(class_nums)
+	{
+		foreach(num in class_nums)
+			if (player_class_is(num))
+				return true
+		return false
+	}
 }
 
 AddListener("item_pickup", -1, function(params)
