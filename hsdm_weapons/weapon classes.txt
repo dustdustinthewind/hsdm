@@ -1,0 +1,738 @@
+// TOOD: put single-class/weapon pairs into each weapon-traits CanApply()
+//        rather than relying on weapons.Weaponis() for *everything*
+
+// WORKING
+parachute
+ B.A.S.E. Jumper
+parchute_secondary
+ B.A.S.E. Jumper Secondary
+parachute_primary
+ B.A.S.E. Jumper Primary
+ // ^ in switch-case now
+
+// SHOTGUN WORKS
+// PANIC ATTACK WORKS
+// FAMILY BUSINESS WORKS
+// RESERVE SHOOTER _____
+shotgun
+ Shotgun
+ Festive Shotgun
+ // ^ tf_weapon_shotgun in switch-case now
+
+ Reserve Shooter
+  // in weaponModels
+
+ Panic Attack
+  // now in weaponModels
+
+ Family Business
+  // now in weaponModels
+shotgun_soldier
+ Soldier Shotgun
+ // now in switch-case
+shotgun_pyro
+ Pyro Shotgun
+ // now in switch-case
+shotgun_hwg
+ Heavy Shotgun
+ // now in switch-case
+shotgun_primary
+ Shotgun Primary
+ Engineer Shotgun
+ // now in switch-case
+
+ Widowmaker
+  // now in weaponModels
+
+// DOUBLE CHECK
+pistol	// can go to engie or scout
+ Pistol
+ Unique Pistol
+ C.A.P.P.E.R.
+ Lugermorph
+pistol_scout	// stock varients i believe
+ Scout Pistol
+ Engineer Pistol
+ // ^ in switch-case now
+
+// IGNORE
+spellbook
+ ignore
+
+
+// DOUBLE CHECK
+saxxy (all class melee)
+ Frying Pan
+ Saxxy
+ Conscientious Objector
+ Freedom Staff
+ Bat Outta Hell
+ Memory Maker
+ Ham Shank
+ Gold Frying Pan
+ Crossing Guard
+ Necro Smasher
+ Prinny Machete
+
+// handled by grapplehook.CanApply()
+grapplinghook
+ Grappling Hook
+
+// DOUBLE CHECK F-A-N AND BACK SCATTER
+scattergun
+ Scattergun
+ Scatter Gun
+ Unique Scattergun
+ Festive Scattergun
+ // ^ in switch-case now
+
+ Force-A-Nature
+ Festive Force-A-Nature
+  // ^ both in weaponModels
+
+ Back Scatter
+  // ^ in weaponModels now
+
+// ADD CHECK TO WEAPON TRAIT
+handgun_scout_primary
+ Shortstop
+
+// ADD CHECK TO WEAPON TRAIT
+soda_popper
+ Soda Popper
+
+// ADD CHECK TO WEAPON TRAIT
+pep_brawler_blaster
+ Baby Face's Blaster
+
+// DOUBLE CHECK
+lunchbox_drink
+ Bonk! Atomic Punch
+ Festive Bonk! Atomic Punch
+ // in switch-case now
+
+ Crit-a-Cola
+ // in weaponModels now
+
+// ADD CHECK TO WEAPON TRAIT
+jar_milk
+ Mad Milk
+ Mutated Milk
+ // in switch-case
+
+// DOUBLE CHECK
+handgun_scout_secondary
+ Winger
+ // in weaponModels now
+
+ Pretty Boy's Pocket Pistol
+ // in weapon models now
+
+// ADD CHECK TO WEAPON TRAIT
+cleaver
+ Flying Guillotine
+ Genuine Flying Guillotine
+
+// DOUBLE CHECK
+bat
+ Bat
+ Unique Bat
+ Festive Bat
+ Unarmed Combat
+ BatSaber
+ // in switch-case now
+
+ Candy Cane
+ // in weaponModels
+
+ Boston Basher
+ Three-Rune Blade
+ // todo: remember to search for both when making hsdm boston basher trait
+ // in weaponModels now
+
+ Sun-on-a-Stick
+ // in weaponModels now
+
+ Fan O'War
+ // in weaponModels
+
+ Atomizer
+ // in weaponModels now
+
+// ADD CHECK TO WEAPON TRAIT
+bat_wood
+ Sandman
+
+// ADD CHECK TO WEAPON TRAIT
+bat_fish
+ Holy Mackerel
+ Festive Holy Mackerel
+
+// ADD CHECK TO WEAPON TRAIT
+bat_giftwrap
+ Wrap Assassin
+
+// DOUBLE CHECK
+rocketlauncher
+ Rocket Launcher
+ Unique Rocket Launcher
+ Festive Rocket Launcher
+ Original
+ // in switch-case now
+
+ Black Box
+ Festive Black Box
+ // in weaponModels now
+
+ Rocket Jumper
+ // in weaponModels now
+
+ Liberty Launcher
+ // in weaponModels now
+
+ Beggar's Bazooka
+ // double check beggar's bazooka i think it has a different clasname than tf_weapon_rocketlauncher
+ // in weaponModels now
+
+// ADD CHECK TO WEAPON TRAIT
+rocketlauncher_directhit
+ Direct Hit
+
+// ADD CHECK TO WEAPON TRAIT
+particle_cannon
+ Cow Mangler 5000
+
+// ADD CHECK TO WEAPON TRAIT
+rocketlauncher_airstrike
+ Air Strike
+
+// DOUBLE CHECK
+buff_item
+ Buff Banner
+ Festive Buff Banner
+ // in switch-case now
+
+ Battalion's Backup
+ // in weaponModels now
+
+ Concheror
+ // in weaponModels now
+
+// DOUBLE CHECK
+tf_wearable
+ Gunboats
+ // in weaponModels now
+
+ Mantreads
+ // in weaponModels now
+
+ Ali Bab's Wee Booties
+ Bootlegger
+ // in switch-case
+
+ Darwin's Danger Shield
+ // in weaponModels now
+
+ Cozy Camper
+ // in weaponModels now
+
+// ADD CHECK TO WEAPON TRAIT
+raygun
+ Righteous Bison
+ // in switch-case now
+
+// DOUBLE CHECK
+shovel
+ Shovel
+ Unique Shovel
+ // in switch-case now
+
+ Equalizer
+ // in weaponModels now
+
+ Pain Train
+ // in weaponmodels now
+
+ Market Gardener
+ // in weaponModels
+
+ Disciplinary Action
+ // in weaponModels
+
+ Escape Plan
+ // in weaponModels
+
+// ADD CHECK TO WEAPON TRAIT
+katana
+ Half-Zatoichi
+
+// DOUBLE CHECK
+flamethrower
+ Flamethrower
+ Unique Flamethrower
+ Festive Flamethrower
+ Nostromo Napalmer
+ Rainblower
+ // in switch-case now
+
+ Backburner
+ Festive Backbruner
+ // in weaponModels now
+
+ Degreaser
+ // in weaponModels now
+
+ Phlogistinator
+ // in weaponModels now
+
+// ADD CHECK TO WEAPON TRAIT
+rocketlauncher_fireball
+ Dragon's Fury
+
+// DOUBLE CHECK
+flaregun
+ Flare Gun
+ Festive Flare Gun
+ // in switch-case now
+
+ Detonator
+ // in weaponModels now
+
+ Scorch Shot
+ // in weaponModels now
+
+// ADD CHECK TO WEAPON TRAIT
+flaregun_revenge
+ Manmelter
+
+// ADD CHECK TO WEAPON TRAIT
+rocketpack
+ Thermal Thruster
+
+// ADD CHECK TO WEAPON TRAIT
+jar_gas
+ Gas Passer
+
+// DOUBLE CHECK
+fireaxe
+ Fire Axe
+ Unique Fire Axe
+ Lollichop
+ // in weaponModels now
+
+ Axtinguisher
+ Festive Anxtinguisher
+ Postal Pummeler
+ // in-switch-case now
+
+ Homewrecker
+ Maul
+ // in weaponModels now
+
+ Powerjack
+ // in weaponModels now
+
+ Back Scratcher
+ // in weaponModels now
+
+ Sharpened Volcano Fragment
+ // in weaponModels now
+
+ Third-Degree
+ // in weaponModels now
+
+// ADD CHECK TO WEAPON TRAIT
+breakable_sign
+ Neon Annihilator
+ Genuine Neon Annihilator
+
+// ADD CHECK TO WEAPON TRAIT
+slap
+ Hot Hand
+
+// DOUBLE CHECK
+grenadelauncher
+ Grenade Launcher
+ Unique Grenade Launcher
+ Festive Grenade Launcher
+ // in-switch-case now
+
+ Loch-n-Load
+ // in weaponModels now
+
+ Iron Bomber
+ // in weaponModels now
+
+// ADD CHECK TO WEAPON TRAIT
+cannon
+ Loose Cannon
+
+// DOUBLE CHECK
+pipebomblauncher
+ Stickybomb Launcher
+ Unique Stickybomb Launcher
+ Festive Stickybomb Launcher
+ // in-switch-case now
+
+ Scottish Resistance
+ // in weaponModels now
+
+// double check me specifically, and others with smaller model strings
+ Sticky Jumper
+ // in weaponModels now
+
+ Quickiebomb Launcher
+ // in weaponModels now
+
+// DOUBLE CHECK
+demoshield
+ Chargin' Targe
+ Festive Chargin' Targe
+ // in-switch-case now
+
+ Splendid Screen
+ // in weaponModels now
+ // double check the styles see if they break this
+
+ Tide Turner
+ // in weaponModels now
+
+// ADD CHECK TO WEAPON TRAIT
+bottle
+ Bottle
+ Unique Bottle
+ Scottish Handshake
+
+// DOUBLE CHECK
+sword
+ Eyelander
+ Festive Eyelander
+ Horseless Headless Horseman's Headtaker
+ Nessie's Nine Iron
+ // in switch-case now
+
+ Scotsman' Skullcutter
+ // in weaponModels now
+
+ Claidheamh Mor
+ // in weaponModels now
+
+ Persian Persuader
+ // in weaponModels now
+
+// ADD CHECK TO WEAPON TRAIT
+stickbomb
+ Ullapool Caber
+
+// DOUBLE CHECK
+minigun
+ Minigun
+ Unique Minigun
+ Festive Minigun
+ Iron Curtain
+ // in switch-case now
+
+ Natascha
+ // in weaponModels
+
+ Brass Beast
+ // in weaponModels now
+
+ Tomislav
+ // in weaponModels now
+
+ Huo-Long Heater
+ Genuine Huo-Long Heater
+ // in weaponModels now
+
+// DOUBLE CHECK
+lunchbox
+ Sandvich
+ Festive Sandvich
+ Robo-Sandvich
+ // in switch-case now
+
+ Dalokohs Bar
+ Fishcake
+ // in weaponModels now
+
+ Buffalo Steak Sandvich
+ // in weaponModels now
+
+ Second Banana
+ // in weaponModels now
+
+// DOUBLE CHECK
+fists
+ Fists
+ Apoco-Fists
+ // in switch-case now
+
+ Killing Gloves of Boxing
+ // in weaponModels now
+
+ Gloves of Running Urgently
+ Festive Gloves of Running Urgently
+ Bread Bite
+ // in weaponModels now
+
+ Warrior's Spirit
+ // in weaponModels
+
+ Fists of Steel
+ // in weaponModels now
+
+ Eviction Notice
+ // in weaponModels
+
+ Holiday Punch
+ // in weaponModels
+
+// ADD CHECK TO WEAPON TRAIT
+sentry_revenge
+ Frontier Justice
+ Festive Frontier Justice
+
+// ADD CHECK TO WEAPON TRAIT
+drg_pomson
+ Pomson
+
+// ADD CHECK TO WEAPON TRAIT
+shotgun_building_rescue
+ Rescue Ranger
+
+// ADD CHECK TO WEAPON TRAIT
+laser_pointer
+ Wrangler
+ Festive Wrangler
+
+// ADD CHECK TO WEAPON TRAIT
+mechanic_arm
+ Short Circuit
+
+// DOUBLE CHECK
+wrench
+ Wrench
+ Unique Wrench
+ Festive Wrench
+ Golden Wrench
+ // in switch-case now
+
+ Southern Hospitality
+ // in weaponModels now
+
+ Jag
+ // in weaponModels now
+
+ Eureka Effect
+ // in weaponModels now
+
+// ADD CHECK TO WEAPON TRAIT
+// give_tf_weapon has a method specifically for this, may want to double check why
+robot_arm
+ Gunslinger
+
+// ADD CHECK TO WEAPON TRAIT
+pda_engineer_build
+ Build PDA
+ Unique Build PDA
+
+// ADD CHECK TO WEAPON TRAIT
+pda_engineer_destroy
+ Destruction PDA
+
+// DOUBLE CHECK
+builder
+ Toolbox
+ // in weaponModels now
+
+ Sapper
+ Festive Sapper
+ // in switch-case now
+
+// DOUBLE CHECK
+syringegun_medic
+ Syringe Gun
+ Unique Syringe Gun
+ // in switch-case now
+
+ Blutsauger
+ // in weaponModels now
+
+ Overdose
+ // in weaponModels now
+
+// ADD CHECK TO WEAPON TRAIT
+crossbow
+ Crusader's Crossbow
+ Festive Crusader's Crossbow
+
+// DOUBLE CHECK
+medigun
+ Medigun
+ Unique Medigun
+ Festive Medigun
+ // in switch-case now
+
+ Kritzkrieg
+ // in weaponModels now
+
+ Quick-Fix
+ // in weaponModels now
+
+ Vaccinator
+ // in weaponModels now
+
+// DOUBLE CHECK
+bonesaw
+ Bonesaw
+ Festive Bonesaw
+ // in weaponModels now
+
+ Ubersaw
+ Festive Ubersaw
+ // in switch-case now
+
+ Vita-Saw
+ // in weaponModels now
+
+ Amputator
+ // in weaponModels now
+
+ Solemn Vow
+ // in weaponModels now
+
+// DOUBLE CHECK
+sniperrifle
+ Sniper Rifle
+ Festive Sniper Rifle
+ AWPer Hand
+ // in switch-case now
+
+ Sydney Sleeper
+ // in weaponModels now
+
+ Machina
+ Shooting Star
+ // in weaponModels now
+
+ Hitman's Heatmaker
+ // in weaponModels now
+
+// ADD CHECK TO WEAPON TRAIT
+compound_bow
+ Huntsman
+ Festive Huntsman
+ Fortified Compound
+
+// ADD CHECK TO WEAPON TRAIT
+sniperrifle_decap
+ Bazaar Bargain
+
+// ADD CHECK TO WEAPON TRAIT
+sniperrifle_classic
+ Classic
+
+// ADD CHECK TO WEAPON TRAIT
+smg
+ SMG
+ Unique SMG
+ Festive SMG
+
+// ADD CHECK TO WEAPON TRAIT
+razorback
+ Razorback
+
+// ADD CHECK TO WEAPON TRAIT
+jar
+ Jarate
+ Festive Jarate
+ Self-Aware Beauty Mark
+
+// ADD CHECK TO WEAPON TRAIT
+charged_smg
+ Cleaner's Carbine
+
+// DOUBLE CHECK
+club
+ Kukri
+ Unique Kukri
+ // in switch-case now
+
+ Tribalman's Shiv
+ // in weaponModels now
+
+ Bushwacka
+ // in weaponModels now
+
+ Shahanshah
+ // in weaponModels now
+
+// DOUBLE CHECK
+revolver
+ Revolver
+ Unique Revolver
+ Big Kill
+ Festive Revolver
+ // in switch-case now
+
+ Ambassador
+ Festive Ambassador
+ // in weaponModels now
+
+ L'Etranger
+ // in weaponModels now
+
+ Enforcer
+ // in weaponModels now
+
+ Diamondback
+ // in weaponModels
+
+// DOUBLE CHECK
+Sapper
+ Red-Tape Recorder
+ // in weaponModels now
+
+ Ap-Sapper
+ Snack Attack
+ // in switch-case now
+
+// DOUBLE CHECK
+knife
+ Knife
+ Festive Knife
+ Sharp Dresser
+ Black Rose
+ // in switch-case now
+
+ Your Eternal Reward
+ Wanga Prick
+ // in weaponModels
+
+ Conniver's Kunai
+ // in weaponModels
+
+ Big Earner
+ // in weaponModels
+
+ Spy-cicle
+ // in weaponModels now
+
+// ADD CHECK TO WEAPON TRAIT
+pda_spy
+ Disguise Kit PDA
+
+// DOUBLE CHECK
+invis
+ Invisibility Watch
+ Unique Invisibility Watch
+ Enthusiast's Timepiece
+ Quackenbirdt
+ // in switch-case now
+
+ Dead Ringer
+ // in weaponModels
+
+ Cloak and Dagger
+ // in weaponModels now
