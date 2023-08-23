@@ -444,8 +444,8 @@
 
 		// confirmed stock/unique shotgun works
 		case "shotgun":
-			return class_name == "tf_weapon_shotgun_soldier"
-				|| (class_name == "tf_weapon_shotgun_pyro" && !find_model(wepaon, "reserve_shooter"))
+			return (class_name == "tf_weapon_shotgun_soldier" && !find_model(weapon, "reserve_shooter"))
+				|| (class_name == "tf_weapon_shotgun_pyro" && !find_model(weapon, "reserve_shooter"))
 				|| (class_name == "tf_weapon_shotgun_hwg" && !find_model(weapon, "family_business"))
 				|| (class_name == "tf_weapon_shotgun_primary" && !find_model(weapon, "widowmaker"))
 				|| (class_name == "tf_weapon_shotgun" && !find_models(weapon, ["reserve_shooter", "panic_attack"]))

@@ -13,8 +13,6 @@ characterTraitsClasses.push(class extends hsdm_trait
 	{
 		//change_weapon_damage(scattergun, 180.0 / 180.0) //same as stock for now
 		change_weapon_clip(scattergun, 2.0 / 6.0)
-		change_weapon_reserve(scattergun, TF_AMMO.PRIMARY, 2.0 / 36.0)
-
-		fix_wep(player, scattergun)
+		change_weapon_reserve(scattergun, TF_AMMO.PRIMARY, 2.0 / 32.0)
 	}
 })

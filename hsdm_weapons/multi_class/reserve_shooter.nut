@@ -4,18 +4,14 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 	function CanApply()
 	{
-		printl("hellloo???")
-		printl("")
-		printl("")
-		return reserve_shooter = has_wep_in_slot(player, "reserve_shooter", 1, true)
+		return reserve_shooter = has_wep_in_slot(player, "reserve_shooter", 1)
 	}
 
 	function OnApply()
 	{
-		base_shotgun(player, shotgun)
+		change_weapon_clip(reserve_shooter, 1.0 / 6.0)
+		change_weapon_reserve(reserve_shooter, TF_AMMO.SECONDARY, 2.0 / 32.0)
 	}
 })
 
 non_crit_weapons.push("reserve_shooter")
-foreach (bs in non_crit_weapons)
-	printl(bs)
