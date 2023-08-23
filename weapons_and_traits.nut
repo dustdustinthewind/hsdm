@@ -2,6 +2,8 @@ weapons_and_traits <- [
 	"hsdm_traits/hsdm_trait.nut",
 	"hsdm_traits/weapon_crit_manager.nut",
 	"hsdm_traits/blast_jumping_debuff_hack.nut"
+	"hsdm_traits/regain_ammo_on_hit.nut",
+
 	"hsdm_traits/scout_on_attach_detach.nut",
 	"hsdm_traits/sniper_on_attach_detach.nut",
 	"hsdm_traits/heavy_on_attach_detach.nut",
@@ -13,6 +15,7 @@ weapons_and_traits <- [
 	"hsdm_weapons/multi_class/shotgun.nut",
 	"hsdm_weapons/multi_class/panic_attack.nut",
 	"hsdm_weapons/multi_class/reserve_shooter.nut",
+	"hsdm_weapons/multi_class/pistol.nut",
 
 	"hsdm_weapons/single_class/scout/scattergun.nut",
 

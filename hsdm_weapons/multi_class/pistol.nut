@@ -1,0 +1,27 @@
+characterTraitsClasses.push(class extends hsdm_trait
+{
+	pistol = null
+
+	function CanApply()
+	{
+		return player_class_is_one_of([TF_CLASS_SCOUT, TF_CLASS_ENGINEER])
+			&& (pistol = find_wep_in_slot(player, "pistol", 1))
+	}
+
+	function OnApply()
+	{
+		change_weapon_damage(pistol, 38.0 / 45.0)
+		change_weapon_clip(pistol, 4.0 / 12.0)
+		base_pistol(player, pistol)
+	}
+})
+
+regain_ammo_on_hit_weapons.push("pistol")
+
+function base_pistol(player, weapon)
+{
+	if (player_class_is(TF_CLASS_ENGINEER))
+		weapon.AddAttribute("maxammo secondary reduced", 40.0 / 200.0, -1) // embrace large pool meme, i will not regret this
+	else
+		weapon.AddAttribute("maxammo secondary reduced", 6.0 / 36.0, -1)
+}

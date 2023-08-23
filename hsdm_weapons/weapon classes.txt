@@ -41,7 +41,7 @@ shotgun_primary
  Widowmaker
   // now in weaponModels
 
-// DOUBLE CHECK
+// ALL WORKS
 pistol	// can go to engie or scout
  Pistol
  Unique Pistol

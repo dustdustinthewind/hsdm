@@ -60,7 +60,10 @@ function find_wep_in_slots(player, name, min, max, debugging = debug)
 	for (local i = min; i <= max; i++)
 	{
 		local out = player.ReturnWeaponBySlot(i)
-		if (WeaponIs(out, name, debugging))
+
+		// when we run into our first null, just break we dont need to search more (what about grappling hook?)
+		if (!out) break
+		else if (WeaponIs(out, name, debugging))
 		{
 			if (debugging)
 				printl("found " + name + ": " + out + " in slot " + i)
