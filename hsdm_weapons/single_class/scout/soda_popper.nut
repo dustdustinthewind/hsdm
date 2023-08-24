@@ -1,3 +1,4 @@
+// todo add sounds and maybe visuals to sell the oomph of the double or triple shot
 characterTraitsClasses.push(class extends hsdm_trait
 {
 	soda_popper = null

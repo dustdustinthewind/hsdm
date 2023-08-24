@@ -26,6 +26,10 @@ weapons_and_traits <- [
 	"hsdm_weapons/single_class/scout/force_a_nature.nut"
 	"hsdm_weapons/single_class/scout/back_scatter.nut"
 	"hsdm_weapons/single_class/scout/baby_faces_blaster.nut"
+	"hsdm_weapons/single_class/scout/bonk_atomic_punch.nut",
+	"hsdm_weapons/single_class/scout/crit_a_cola.nut",
+	"hsdm_weapons/single_class/scout/mad_milk.nut",
+	"hsdm_weapons/single_class/scout/winger.nut",
 
 	"hsdm_weapons/single_class/soldier/soldier_stock_melee.nut",
 
@@ -42,6 +46,7 @@ weapons_and_traits <- [
 	"hsdm_weapons/single_class/medic/medic_stock_melee.nut",
 
 	"hsdm_weapons/single_class/sniper/sniper_stock_melee.nut",
+	"hsdm_weapons/single_class/sniper/shahanshah.nut",
 
 	"hsdm_weapons/single_class/spy/spy_stock_melee.nut",
 ]
