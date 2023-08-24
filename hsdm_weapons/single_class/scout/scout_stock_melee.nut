@@ -19,17 +19,4 @@ characterTraitsClasses.push(class extends hsdm_trait
 })
 
 // todo: have individual weapons add themselves
-scout_stock_melee_list <- [
-	"",
-	"saxxy", // all class items
-	"bat", // all bat skins (including mackerel)
-	"sandman",
-	"candy_cane",
-	"boston_basher",
-	"three_rune_blade", // need both boston and three rune with current methods
-	// these will need to have their own damage set
-	/*"sun_on_a_stick",
-	"atomizer",
-	"wrap_assassin",
-	"fan_o_war"*/
-]
+scout_stock_melee_list <- ["",]

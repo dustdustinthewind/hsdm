@@ -1,0 +1,1 @@
+scout_stock_melee_list.push("candy_cane")

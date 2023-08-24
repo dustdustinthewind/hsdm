@@ -31,6 +31,14 @@ weapons_and_traits <- [
 	"hsdm_weapons/single_class/scout/mad_milk.nut",
 	"hsdm_weapons/single_class/scout/winger.nut",
 	"hsdm_weapons/single_class/scout/pretty_boys_pocket_pistol.nut",
+	"hsdm_weapons/single_class/scout/flying_guillotine.nut",
+	"hsdm_weapons/single_class/scout/bat.nut",
+	"hsdm_weapons/single_class/scout/candy_cane.nut",
+	"hsdm_weapons/single_class/scout/boston_basher.nut",
+	"hsdm_weapons/single_class/scout/sandman.nut",
+	"hsdm_weapons/single_class/scout/sun_on_a_stick.nut",
+	"hsdm_weapons/single_class/scout/fan_o_war.nut",
+	"hsdm_weapons/single_class/scout/atomizer.nut",
 
 	"hsdm_weapons/single_class/soldier/soldier_stock_melee.nut",
 

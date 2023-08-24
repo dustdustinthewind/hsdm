@@ -129,7 +129,7 @@ handgun_scout_secondary
  Pretty Boy's Pocket Pistol
  // in weapon models now
 
-// DOUBLE CHECK
+// WORKS
 cleaver
  Flying Guillotine
  Genuine Flying Guillotine
