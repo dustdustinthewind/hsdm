@@ -234,7 +234,7 @@ raygun
  Righteous Bison
  // in switch-case now
 
-// ALL WORKS
+// ALL WORK
 shovel
  Shovel
  Unique Shovel
@@ -255,7 +255,7 @@ shovel
  Escape Plan
  // in weaponModels
 
-// WORKS
+// ITS FECKIN RAW
 katana
  Half-Zatoichi
  // in switch-case now
