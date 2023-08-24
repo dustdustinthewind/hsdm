@@ -121,7 +121,7 @@ jar_milk
  Mutated Milk
  // in switch-case
 
-// DOUBLE CHECK
+// ALL WORKS
 handgun_scout_secondary
  Winger
  // in weaponModels now

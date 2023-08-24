@@ -30,6 +30,7 @@ weapons_and_traits <- [
 	"hsdm_weapons/single_class/scout/crit_a_cola.nut",
 	"hsdm_weapons/single_class/scout/mad_milk.nut",
 	"hsdm_weapons/single_class/scout/winger.nut",
+	"hsdm_weapons/single_class/scout/pretty_boys_pocket_pistol.nut",
 
 	"hsdm_weapons/single_class/soldier/soldier_stock_melee.nut",
 

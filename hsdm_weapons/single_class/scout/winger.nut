@@ -5,7 +5,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 	function CanApply()
 	{
 		return player_class_is(TF_CLASS_SCOUT)
-			&& (winger = find_wep_in_slot(player, "winger", 1, true))
+			&& (winger = find_wep_in_slot(player, "winger", 1))
 	}
 
 	function OnApply()
