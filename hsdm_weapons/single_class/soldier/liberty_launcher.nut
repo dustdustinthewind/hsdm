@@ -17,4 +17,4 @@ characterTraitsClasses.push(class extends hsdm_trait
 		change_weapon_reserve(liberty_launcher, TF_AMMO.PRIMARY, 2, 20.0, true)
 	}
 })
-overfill_primaries.push("liberty_launcher")
+overfill_weapons.push("liberty_launcher")

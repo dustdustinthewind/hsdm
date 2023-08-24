@@ -18,5 +18,5 @@ characterTraitsClasses.push(class extends hsdm_trait
 	}
 })
 
-overfill_primaries.push("black_box")
-overfill_primaries.push("black_box_xmas")
+overfill_weapons.push("black_box")
+overfill_weapons.push("black_box_xmas")

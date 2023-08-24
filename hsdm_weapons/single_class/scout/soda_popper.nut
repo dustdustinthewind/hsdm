@@ -26,4 +26,4 @@ characterTraitsClasses.push(class extends hsdm_trait
 	}
 })
 
-overfill_primaries.push("soda_popper")
+overfill_weapons.push("soda_popper")

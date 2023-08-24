@@ -17,5 +17,5 @@ characterTraitsClasses.push(class extends hsdm_trait
 		}
 	})
 
-overfill_primaries.push("back_scatter")
+overfill_weapons.push("back_scatter")
 non_crit_weapons.push("back_scatter")

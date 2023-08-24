@@ -16,4 +16,4 @@ characterTraitsClasses.push(class extends hsdm_trait
 		}
 	})
 
-overfill_primaries.push("force_a_nature")
+overfill_weapons.push("force_a_nature")

@@ -15,5 +15,4 @@ characterTraitsClasses.push(class extends hsdm_trait
 	}
 })
 
-overfill_primaries.push("panic_attack")
-overfill_secondaries.push("panic_attack")
+overfill_weapons.push("panic_attack")

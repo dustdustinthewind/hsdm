@@ -31,4 +31,4 @@ characterTraitsClasses.push(class extends hsdm_trait
 		}
 	})
 
-overfill_primaries.push("baby_faces_blaster")
+overfill_weapons.push("baby_faces_blaster")

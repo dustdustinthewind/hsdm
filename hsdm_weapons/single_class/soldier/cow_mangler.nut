@@ -11,29 +11,34 @@ characterTraitsClasses.push(class extends hsdm_trait
 	function OnApply()
 	{
 		base_rocket_launcher(cow_mangler)
-		change_weapon_damage(cow_mangler, 245 / 270.0)
+		change_weapon_damage(cow_mangler, 225 / 270.0)
+
 		cow_mangler.AddAttribute("minicrits become crits", 1, -1)
 		cow_mangler.AddAttribute("crits_become_minicrits" 0, -1)
 	}
 
-	/*
+	last_frame_energy = 20
+
 	function OnFrameTickAlive()
 	{
-		if (GetPropInt(player, "m_nButtons") & IN_RELOAD)
-		{
-			if (cow_mangler.Clip1() == 5)
-				cow_mangler.SetClip1(10)
-			if (cow_mangler.Clip1() == 15)
-				cow_mangler.SetClip1(20)
-		}
-		if (cow_mangler.Clip1() == 15)
-			cow_mangler.SetClip1(10)
-		if (cow_mangler.Clip1() == 5)
-			cow_mangler.SetClip1(0)
+		local energy = GetPropFloat(cow_mangler, "m_flEnergy")
 
-		printl(player.GetRageMeter())
-		cow_mangler.SetClip1(10)
-	}*/
+		local reloading = last_frame_energy < energy
+
+		if (reloading)
+			if (energy == 15)
+				SetPropFloat(cow_mangler, "m_flEnergy", 20)
+			else if (energy == 5)
+				SetPropFloat(cow_mangler, "m_flEnergy", 10)
+			else ;
+		else
+			if (energy == 15)
+				SetPropFloat(cow_mangler, "m_flEnergy", 10)
+			else if (energy == 5)
+				SetPropFloat(cow_mangler, "m_flEnergy", 0)
+
+		last_frame_energy = energy
+	}
 })
 
 non_crit_weapons.push("cow_mangler")

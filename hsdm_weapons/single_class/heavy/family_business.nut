@@ -15,4 +15,4 @@ characterTraitsClasses.push(class extends hsdm_trait
 		change_weapon_reserve(family_business, TF_AMMO.SECONDARY, 2, 32.0, true)
 	}
 })
-overfill_secondaries.push("family_business")
+overfill_weapons.push("family_business")

@@ -27,7 +27,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 })
 
 gain_clip_on_hit_weapons.push("shortstop")
-overfill_primaries.push("shortstop")
+overfill_weapons.push("shortstop")
 
 function fix_shortstop(player, shortstop)
 {

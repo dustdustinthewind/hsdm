@@ -16,4 +16,4 @@ characterTraitsClasses.push(class extends hsdm_trait
 	}
 })
 
-overfill_primaries.push("scattergun")
+overfill_weapons.push("scattergun")

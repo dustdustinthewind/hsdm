@@ -49,6 +49,18 @@ weapons_and_traits <- [
 	"hsdm_weapons/single_class/soldier/cow_mangler.nut",
 	"hsdm_weapons/single_class/soldier/direct_hit.nut",
 	"hsdm_weapons/single_class/soldier/air_strike.nut",
+	/*"hsdm/weapons/single_class/soldier/buff_banner.nut",
+	"hsdm/weapons/single_class/soldier/battalions_backup.nut",
+	"hsdm/weapons/single_class/soldier/concheror.nut",
+	"hsdm/weapons/single_class/soldier/gunboats.nut",
+	"hsdm/weapons/single_class/soldier/mantreads.nut",*/
+	// throwing errors, they dont have code anyways, fuck it
+	"hsdm_weapons/single_class/soldier/buff_banner.nut",
+	"hsdm_weapons/single_class/soldier/battalions_backup.nut",
+	"hsdm_weapons/single_class/soldier/concheror.nut",
+	"hsdm_weapons/single_class/soldier/gunboats.nut",
+	"hsdm_weapons/single_class/soldier/mantreads.nut",
+	"hsdm_weapons/single_class/soldier/righteous_bison.nut",
 
 	"hsdm_weapons/single_class/pyro/pyro_stock_melee.nut",
 

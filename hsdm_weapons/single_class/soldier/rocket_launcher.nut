@@ -16,7 +16,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 	}
 })
 
-overfill_primaries.push("rocket_launcher")
+overfill_weapons.push("rocket_launcher")
 
 function base_rocket_launcher(weapon)
 {

@@ -107,6 +107,7 @@ pep_brawler_blaster
  // ^ in switch-case now
 
 // DOUBLE CHECK
+// CURRENTLY RAW
 lunchbox_drink
  Bonk! Atomic Punch
  Festive Bonk! Atomic Punch
@@ -116,6 +117,7 @@ lunchbox_drink
  // in weaponModels now
 
 // DOUBLE CHECK
+// CURRENTLY RAW
 jar_milk
  Mad Milk
  Mutated Milk
@@ -215,6 +217,7 @@ rocketlauncher_airstrike
  // in switch-case now
 
 // DOUBLE CHECK
+// CURRENTLY RAW
 buff_item
  Buff Banner
  Festive Buff Banner
@@ -226,25 +229,7 @@ buff_item
  Concheror
  // in weaponModels now
 
-// DOUBLE CHECK
-tf_wearable
- Gunboats
- // in weaponModels now
-
- Mantreads
- // in weaponModels now
-
- Ali Bab's Wee Booties
- Bootlegger
- // in switch-case
-
- Darwin's Danger Shield
- // in weaponModels now
-
- Cozy Camper
- // in weaponModels now
-
-// DOUBLE CHECK
+// WORKS
 raygun
  Righteous Bison
  // in switch-case now
@@ -382,6 +367,25 @@ grenadelauncher
 cannon
  Loose Cannon
  // in-switch-case now
+
+// DOUBLE CHECK
+// GUNBOATS AND MANTREADS RAW
+tf_wearable
+ Gunboats
+ // in weaponModels now
+
+ Mantreads
+ // in weaponModels now
+
+ Ali Bab's Wee Booties
+ Bootlegger
+ // in switch-case
+
+ Darwin's Danger Shield
+ // in weaponModels now
+
+ Cozy Camper
+ // in weaponModels now
 
 // DOUBLE CHECK
 pipebomblauncher

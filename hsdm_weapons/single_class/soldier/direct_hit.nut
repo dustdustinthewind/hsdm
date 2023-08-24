@@ -19,4 +19,4 @@ characterTraitsClasses.push(class extends hsdm_trait
 	}
 })
 non_crit_weapons.push("direct_hit")
-overfill_primaries.push("direct_hit")
+overfill_weapons.push("direct_hit")

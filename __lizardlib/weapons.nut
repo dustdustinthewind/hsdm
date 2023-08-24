@@ -542,6 +542,7 @@
 			return class_name == "tf_weapon_tf_wearable" // double check class name
 				&& !find_models(weapon, ["gunboats", "mantreads", "darwins_danger_shield", "cozy_camper"])
 
+		case "bison":
 		case "righteous_bison":
 			return class_name = "tf_weapon_raygun"
 
