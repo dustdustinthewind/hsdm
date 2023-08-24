@@ -31,5 +31,4 @@ function change_shotgun_reserve(player, weapon)
 		2, 32.0, true)
 }
 
-overfill_primaries.push("shotgun")
 overfill_secondaries.push("shotgun")

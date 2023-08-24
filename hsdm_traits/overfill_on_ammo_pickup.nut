@@ -54,6 +54,7 @@ function lower_reserve_by_one(player, ammo)
 	SetPropIntArray(player, "m_iAmmo", GetPropIntArray(player, "m_iAmmo", ammo) - 1, ammo)
 }
 
+// todo just make primarys and secondaries in to a single list similar to gain_clip_on_hit
 overfill_primaries <- [""]
 overfill_secondaries <- [""]
 overfill_melee_hack <- [""]

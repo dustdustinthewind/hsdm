@@ -176,7 +176,7 @@ bat_giftwrap
  Wrap Assassin
  // in switch-case now
 
-// DOUBLE CHECK
+// ALL WORK
 rocketlauncher
  Rocket Launcher
  Unique Rocket Launcher
@@ -198,17 +198,18 @@ rocketlauncher
  // double check beggar's bazooka i think it has a different clasname than tf_weapon_rocketlauncher
  // in weaponModels now
 
-// DOUBLE CHECK
+// WORKS
 rocketlauncher_directhit
  Direct Hit
  // in switch-case now
 
-// DOUBLE CHECK
+// NEED TO FIGURE OUT HOW TO MANIPULATE AMMO
+// WORKS
 particle_cannon
  Cow Mangler 5000
  // in switch-case now
 
-// DOUBLE CHECK
+// WORKS
 rocketlauncher_airstrike
  Air Strike
  // in switch-case now

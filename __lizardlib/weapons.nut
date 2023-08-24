@@ -68,19 +68,18 @@
 
 	// tf_weapon_rocketlauncher
 	black_box
-		= GetModelIndex("models/weapons/c_models/c_blackbox/c_blackbox.mdl"),
+		= 583,
 	black_box_xmas
-		= GetModelIndex("models/weapons/c_models/c_blackbox/c_blackbox_xmas.mdl"),
+		= 784,
 
     rocket_jumper
 		= GetModelIndex("models/weapons/c_models/c_rocketjumper/c_rocketjumper.mdl"),
 
 	liberty_launcher
-		= GetModelIndex("models/weapons/c_models/c_liberty_launcher/c_liberty_launcher.mdl"),
+		= 640,
 
 	beggars_bazooka
-		= GetModelIndex("models/weapons/c_models/c_dumpster_device/c_dumpster_device.mdl"),
-		// double check this one i think it's rocketlauncher_dumpsterdevice but i could be wrong
+		= 703,
 
 
 	// tf_weapon_buff_item
@@ -514,6 +513,7 @@
 		case "wrap_assassin":
 			return class_name == "tf_weapon_bat_giftwrap"
 
+		case "rocketlauncher":
 		case "rocket_launcher":
 		case "original":
 			return class_name == "tf_weapon_rocketlauncher"

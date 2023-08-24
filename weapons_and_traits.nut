@@ -41,6 +41,14 @@ weapons_and_traits <- [
 	"hsdm_weapons/single_class/scout/atomizer.nut",
 
 	"hsdm_weapons/single_class/soldier/soldier_stock_melee.nut",
+	"hsdm_weapons/single_class/soldier/rocket_launcher.nut",
+	"hsdm_weapons/single_class/soldier/black_box.nut",
+	"hsdm_weapons/single_class/soldier/rocket_jumper.nut",
+	"hsdm_weapons/single_class/soldier/liberty_launcher.nut",
+	"hsdm_weapons/single_class/soldier/beggars_bazooka.nut",
+	"hsdm_weapons/single_class/soldier/cow_mangler.nut",
+	"hsdm_weapons/single_class/soldier/direct_hit.nut",
+	"hsdm_weapons/single_class/soldier/air_strike.nut",
 
 	"hsdm_weapons/single_class/pyro/pyro_stock_melee.nut",
 

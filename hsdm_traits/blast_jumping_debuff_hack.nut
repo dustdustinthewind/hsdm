@@ -6,7 +6,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 	{
 		// heavy and soldier get resistance to minicrits (soldier so he still has to rocket jump for mg, heavy cause heavy)
 		if (!player_class_is_one_of([TF_CLASS_SOLDIER, TF_CLASS_HEAVYWEAPONS]))
-			player.AddCond(81) // blast jumping when attach
+			player.AddCond(81) // blast jumping when attach (doesn't seem to work)
 	}
 
 	/*
