@@ -19,11 +19,4 @@ characterTraitsClasses.push(class extends hsdm_trait
 })
 
 // todo: have individual weapons add themselves
-pyro_stock_melee_list <- [
-	"",
-	"saxxy", // all class items
-	"fire_axe",
-	"lollichop", // have to do both fire_axe and lollichop due to way things set up
-	"powerjack",
-	"third_degree",
-]
+pyro_stock_melee_list <- [""]

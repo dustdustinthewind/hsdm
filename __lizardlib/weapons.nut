@@ -134,10 +134,10 @@
 
 	// tf_weapon_flaregun
 	detonator
-		= GetModelIndex("models/weapons/c_models/c_detonator/c_detonator.mdl"),
+		= 616,
 
 	scorch_shot
-		= GetModelIndex("models/weapons/c_models/c_scorch_shot/c_scorch_shot.mdl"),
+		= 705,
 
 	// tf_weapon_fireaxe
 	axtinguisher

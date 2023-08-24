@@ -34,7 +34,4 @@ characterTraitsClasses.push(class extends hsdm_trait
 })
 
 // these weapons never crit
-non_crit_weapons <- [
-	"",
-	"market_gardener"
-	]
+non_crit_weapons <- [""]

@@ -260,7 +260,7 @@ katana
  Half-Zatoichi
  // in switch-case now
 
-// DOUBLE CHECK
+// ALL WORK
 flamethrower
  Flamethrower
  Unique Flamethrower
@@ -279,12 +279,12 @@ flamethrower
  Phlogistinator
  // in weaponModels now
 
-// DOUBLE CHECK
+// WORKS
 rocketlauncher_fireball
  Dragon's Fury
  // in switch-case now
 
-// DOUBLE CHECK
+// ALL WORK
 flaregun
  Flare Gun
  Festive Flare Gun
@@ -296,17 +296,17 @@ flaregun
  Scorch Shot
  // in weaponModels now
 
-// DOUBLE CHECK
+// WORKS
 flaregun_revenge
  Manmelter
  // in switch-case now
 
-// DOUBLE CHECK
+// RAW
 rocketpack
  Thermal Thruster
  // in switch-case now
 
-// DOUBLE CHECK
+// RAW
 jar_gas
  Gas Passer
  // in switch-case now
@@ -339,13 +339,13 @@ fireaxe
  Third-Degree
  // in weaponModels now
 
-// DOUBLE CHECK
+// WORKS
 breakable_sign
  Neon Annihilator
  Genuine Neon Annihilator
  // in-switch-case now
 
-// DOUBLE CHECK
+// WORKS
 slap
  Hot Hand
  // in-switch-case now

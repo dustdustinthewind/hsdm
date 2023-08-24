@@ -1,0 +1,1 @@
+non_crit_weapons.push("thermal_thruster")

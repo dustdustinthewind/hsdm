@@ -12,14 +12,6 @@ weapons_and_traits <- [
 	"hsdm_weapons/weapon_helpers.nut",
 	"hsdm_weapons/melee_helpers.nut",
 
-	"hsdm_weapons/multi_class/grapplehook.nut",
-	"hsdm_weapons/multi_class/base_jumper.nut",
-	"hsdm_weapons/multi_class/shotgun.nut",
-	"hsdm_weapons/multi_class/panic_attack.nut",
-	"hsdm_weapons/multi_class/reserve_shooter.nut",
-	"hsdm_weapons/multi_class/pistol.nut",
-	"hsdm_weapons/multi_class/half_zatoichi.nut",
-
 	"hsdm_weapons/single_class/scout/scout_stock_melee.nut",
 	"hsdm_weapons/single_class/scout/scattergun.nut",
 	"hsdm_weapons/single_class/scout/shortstop.nut",
@@ -64,6 +56,25 @@ weapons_and_traits <- [
 	"hsdm_weapons/single_class/soldier/escape_plan.nut",
 
 	"hsdm_weapons/single_class/pyro/pyro_stock_melee.nut",
+	"hsdm_weapons/single_class/pyro/flamethrower.nut",
+	"hsdm_weapons/single_class/pyro/backburner.nut",
+	"hsdm_weapons/single_class/pyro/degreaser.nut",
+	"hsdm_weapons/single_class/pyro/phlogistinator.nut",
+	"hsdm_weapons/single_class/pyro/dragons_fury.nut",
+	"hsdm_weapons/single_class/pyro/flaregun.nut",
+	"hsdm_weapons/single_class/pyro/detonator.nut",
+	"hsdm_weapons/single_class/pyro/scorch_shot.nut",
+	"hsdm_weapons/single_class/pyro/manmelter.nut",
+	"hsdm_weapons/single_class/pyro/thermal_thruster.nut",
+	"hsdm_weapons/single_class/pyro/fireaxe.nut",
+	"hsdm_weapons/single_class/pyro/axtinguisher.nut",
+	"hsdm_weapons/single_class/pyro/homewrecker.nut",
+	"hsdm_weapons/single_class/pyro/powerjack.nut",
+	"hsdm_weapons/single_class/pyro/back_scratcher.nut",
+	"hsdm_weapons/single_class/pyro/sharpened_volcano_fragment.nut",
+	"hsdm_weapons/single_class/pyro/third_degree.nut",
+	"hsdm_weapons/single_class/pyro/neon_annihilator.nut",
+	"hsdm_weapons/single_class/pyro/hot_hand.nut",
 
 	"hsdm_weapons/single_class/engie/engie_stock_melee.nut",
 	"hsdm_weapons/single_class/engie/widowmaker.nut",
@@ -79,6 +90,14 @@ weapons_and_traits <- [
 	"hsdm_weapons/single_class/sniper/shahanshah.nut",
 
 	"hsdm_weapons/single_class/spy/spy_stock_melee.nut",
+
+	"hsdm_weapons/multi_class/grapplehook.nut",
+	"hsdm_weapons/multi_class/base_jumper.nut",
+	"hsdm_weapons/multi_class/shotgun.nut",
+	"hsdm_weapons/multi_class/panic_attack.nut",
+	"hsdm_weapons/multi_class/reserve_shooter.nut",
+	"hsdm_weapons/multi_class/pistol.nut",
+	"hsdm_weapons/multi_class/half_zatoichi.nut",
 ]
 
 foreach (file in weapons_and_traits)
