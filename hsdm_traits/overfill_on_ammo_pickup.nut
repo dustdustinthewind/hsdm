@@ -8,7 +8,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 	function CanApply()
 	{
 		foreach (overfill_primary in overfill_primaries)
-			if (primary = find_wep(player, overfill_primary)) // tried using in_slot but it didn't work
+			if (primary = find_wep(player, overfill_primary)) // tried using in_slot but it didn't work on at least shortstop
 				break
 		foreach (overfill_secondary in overfill_secondaries)
 			if (secondary = find_wep(player, overfill_secondary))
@@ -51,7 +51,6 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 function lower_reserve_by_one(player, ammo)
 {
-	printl("called")
 	SetPropIntArray(player, "m_iAmmo", GetPropIntArray(player, "m_iAmmo", ammo) - 1, ammo)
 }
 

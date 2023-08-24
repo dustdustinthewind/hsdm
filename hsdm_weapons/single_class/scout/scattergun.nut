@@ -2,7 +2,6 @@ characterTraitsClasses.push(class extends hsdm_trait
 {
 	scattergun = null
 
-	// todo scattergun unique and skins
 	function CanApply()
 	{
 		return player_class_is(TF_CLASS_SCOUT)

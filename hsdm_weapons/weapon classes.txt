@@ -96,12 +96,12 @@ handgun_scout_primary
  Shortstop
  // ^ in switch-case now
 
-// DOUBLE CHECK
+// WORKS
 soda_popper
  Soda Popper
  // ^ in switch-case now
 
-// DOUBLE CHECK
+// WORKS
 pep_brawler_blaster
  Baby Face's Blaster
  // ^ in switch-case now

@@ -22,6 +22,10 @@ weapons_and_traits <- [
 	"hsdm_weapons/single_class/scout/scout_stock_melee.nut",
 	"hsdm_weapons/single_class/scout/scattergun.nut",
 	"hsdm_weapons/single_class/scout/shortstop.nut",
+	"hsdm_weapons/single_class/scout/soda_popper.nut"
+	"hsdm_weapons/single_class/scout/force_a_nature.nut"
+	"hsdm_weapons/single_class/scout/back_scatter.nut"
+	"hsdm_weapons/single_class/scout/baby_faces_blaster.nut"
 
 	"hsdm_weapons/single_class/soldier/soldier_stock_melee.nut",
 
