@@ -18,16 +18,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 	}
 })
 
-// todo: have individual weapons add themselves
 heavy_stock_melee_list <- [
 	"",
-	"saxxy", // all class items
-	"fireaxe", // frying pan, sign, all classes xd
-	"fists",
-	"kgb",
-	"gru",
-	"gru_xmas",
-	"bread_bite",
-	"fists_of_steel",
 	"holiday_punch",
 ]

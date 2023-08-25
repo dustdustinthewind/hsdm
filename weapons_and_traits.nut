@@ -100,7 +100,23 @@ weapons_and_traits <- [
 	"hsdm_weapons/single_class/demo/ullapool_caber.nut",
 
 	"hsdm_weapons/single_class/heavy/heavy_stock_melee.nut",
+	"hsdm_weapons/single_class/heavy/minigun.nut",
+	"hsdm_weapons/single_class/heavy/natascha.nut",
+	"hsdm_weapons/single_class/heavy/brass_beast.nut",
+	"hsdm_weapons/single_class/heavy/tomislav.nut",
+	"hsdm_weapons/single_class/heavy/huo_long_heater.nut",
 	"hsdm_weapons/single_class/heavy/family_business.nut",
+	"hsdm_weapons/single_class/heavy/sandvich.nut",
+	"hsdm_weapons/single_class/heavy/dalokohs_bar.nut",
+	"hsdm_weapons/single_class/heavy/buffalo_steak_sandvich.nut",
+	"hsdm_weapons/single_class/heavy/second_banana.nut",
+	"hsdm_weapons/single_class/heavy/fists.nut",
+	"hsdm_weapons/single_class/heavy/kgb.nut",
+	"hsdm_weapons/single_class/heavy/gru.nut",
+	"hsdm_weapons/single_class/heavy/warriors_spirit.nut",
+	"hsdm_weapons/single_class/heavy/fists_of_steel.nut",
+	"hsdm_weapons/single_class/heavy/eviction_notice.nut",
+	"hsdm_weapons/single_class/heavy/holiday_punch.nut",
 
 	"hsdm_weapons/single_class/medic/medic_stock_melee.nut",
 

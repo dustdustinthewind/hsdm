@@ -12,21 +12,38 @@ characterTraitsClasses.push(class extends hsdm_trait
 			change_stock_melee_damage(player.ReturnWeaponBySlot(2))
 	}
 
+	demoknight = null
+
 	function is_demoknight()
 	{
-		local knight_primary = false
-		foreach(primary in demoknight_primaries)
-			if (find_wep_in_slot(player, primary, 0))
-			{
-				knight_primary = true
-				break
-			}
+		if (demoknight != null) return demoknight
+
+		demoknight = false
+		local knight_primary = player.GetPassiveWeaponBySlot(0)
+		if (!knight_primary)
+			foreach(primary in demoknight_primaries)
+				if (find_wep_in_slot(player, primary, 0))
+				{
+					knight_primary = true
+					break
+				}
 		if (!knight_primary) return false
 
-		foreach(secondary in demoknight_secondaries)
-			if (find_wep_in_slot(player, secondary, 1))
-				return true
-		return false
+		local knight_secondary = player.GetPassiveWeaponBySlot(1)
+		printl(knight_secondary)
+		if (!knight_secondary)
+		{
+			foreach(secondary in demoknight_secondaries)
+				if (find_wep_in_slot(player, secondary, 1, true))
+				{
+					demoknight = true
+					break
+				}
+		}
+		else
+			demoknight = true
+
+		return demoknight
 	}
 
 	function OnFrameTickAlive()
@@ -55,6 +72,5 @@ characterTraitsClasses.push(class extends hsdm_trait
 	}
 })
 
-// todo: have individual weapon.nuts add themselves
 demoknight_primaries <- [""]
-demoknight_secondaries <- [""]
+demoknight_secondaries <- ["","any_shield"]

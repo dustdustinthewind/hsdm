@@ -18,6 +18,8 @@ Convars.SetValue("tf_weapon_criticals", 0)
 //        add these to a seperate file at least
 // todo: expose the below to maps maybe? similar to how vsh does it
 
+// currently values tweaked for estroballs
+
 GAME_GRAVITY <- 0.65 // perecentage
 NORMAL_GRAVITY_FOR_PROJECTILES <- true // set to true so projectiles behave similarly to vanilla tf2's gravity, pills especially effected by gravity
 
@@ -26,14 +28,14 @@ DEMOKNIGHT_CRIT_SPEED_TRIGGER <- 700.0
 
 // how much we jerk the player forward towards the grapple on an attach
 ON_ATTACH_IMPULSE // <- 650.0
-                     <- 600.0
+                     <- 625.0
                   // <- 500.0
 				  // <- 400.0
 
 // how much momentum is retained between grapples (the lower the number, the more influence ON_ATTACH_IMPULSE has on grapple movement)
 MOMENTUM_RETENTION // <- 0.3
-                   // <- 0.4
-				      <- 0.5
+                      <- 0.4
+				   // <- 0.5
 
 // how fast does the player move during reel-in
 REEL_IN_SPEED // <- 900.0
@@ -44,9 +46,6 @@ REEL_IN_SPEED // <- 900.0
 REEL_IN_COOLDOWN // <- 8.0
                     <- 4.5
 				 // <- 3.0
-
-// how much player gets pulled/pushed around by swinging on func objects
-SWING_STRENGTH <- 1
 
 // speed left and right from hook strafing
 GRAPPLE_SIDE_VELOCITY // <- 350.0
@@ -60,13 +59,14 @@ GRAPPLE_FORWARD_VELOCITY <- 150.0
 ROPE_SAFETY_RADIUS <- 100.0
 
 // how "tight" the rope is
-TENSION_STRENGTH <- 0.9
+TENSION_STRENGTH <- 0.92
 
 // these last ones change console commands
 // how fast you accelerate while grappling
 GRAPPLE_ACCELERATION     // <- 700 // tf2 default: 3500 (too much ew ew)
                          // <- 650
-				            <- 500
+						    <- 600
+				         // <- 500
 
 // the maximum speed you can achieve while grappling
 // NOTE: seems to hard cap even other forms of momentum, as long as you're grappling, this is your max, good to know
@@ -79,8 +79,8 @@ GRAPPLE_DAMPEN <- 100 // tf2 default: 500 (too high, makes grapple feel like sli
 GRAPPLE_COOLDOWN <- 0.66 // tf2 default 0.5
 
 // the speeds of jump detaching from a grappl
-GRAPPLE_JUMP_DETACH_SPEED <- 375 // tf2 default: 375
-HEAVY_JUMP_DETACH_SPEED <- 275 // heavy is fat
+GRAPPLE_JUMP_DETACH_SPEED <- 350 // tf2 default: 375
+HEAVY_JUMP_DETACH_SPEED <- 200 // heavy is fat
 
 // max distance that will allow the grapple to shoot
 GRAPPLE_MAX_DISTANCE <- 2000 // tf2 default: 2000

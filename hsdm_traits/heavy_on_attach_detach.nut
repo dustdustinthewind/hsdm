@@ -8,7 +8,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 	function OnDetach(player)
 	{
 		// heavy jump-detach fix (allow heavy to jump detach like the rest of the cast)
-		local jump = GetPropInt(player, "m_nButtons") & Constants.FButtons.IN_JUMP ? HEAVY_JUMP_DETACH_SPEED : 0
+		local jump = GetPropInt(player, "m_nButtons") & IN_JUMP ? HEAVY_JUMP_DETACH_SPEED : 0
 		player.Yeet(Vector(0, 0, jump))
 
 		// heavy fix getting stuck on hookshot when no ammo

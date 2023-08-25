@@ -261,6 +261,7 @@ katana
  // in switch-case now
 
 // ALL WORK
+// NOW THEY DO
 flamethrower
  Flamethrower
  Unique Flamethrower
@@ -427,7 +428,7 @@ stickbomb
  Ullapool Caber
  // in switch-case now
 
-// DOUBLE CHECK
+// ALL WORKING
 minigun
  Minigun
  Unique Minigun
@@ -448,7 +449,7 @@ minigun
  Genuine Huo-Long Heater
  // in weaponModels now
 
-// DOUBLE CHECK
+// ALL WORK
 lunchbox
  Sandvich
  Festive Sandvich
@@ -465,12 +466,12 @@ lunchbox
  Second Banana
  // in weaponModels now
 
-// SHOULD WORK
-// DOUBLE CHECK
+// ALL WORK BUT
+// WARRIORS AND HOLIDAY PUNCH RAW
 fists
  Fists
  Apoco-Fists
- // in switch-case now
+ // in weaponModels now
 
  Killing Gloves of Boxing
  // in weaponModels now
@@ -478,7 +479,7 @@ fists
  Gloves of Running Urgently
  Festive Gloves of Running Urgently
  Bread Bite
- // in weaponModels now
+ // in switch-case now
 
  Warrior's Spirit
  // in weaponModels

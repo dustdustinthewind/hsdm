@@ -14,9 +14,11 @@ function change_weapon_reserve(weapon, slot, hsdm_reserve, tf2_reserve, overfill
 	local prim_sec_met = ""
 	switch (slot)
 	{
+		case 0:
 		case TF_AMMO.PRIMARY:
 			prim_sec_met = "primary"
 			break;
+		case 1:
 		case TF_AMMO.SECONDARY:
 			prim_sec_met = "secondary"
 			break;
@@ -72,6 +74,8 @@ function find_wep_in_slots(player, name, min, max, debugging = debug)
 	for (local i = min; i <= max; i++)
 	{
 		local out = player.ReturnWeaponBySlot(i)
+		if (out == null)
+			out = player.GetPassiveWeaponBySlot(i)
 
 		// when we run into our first null, just break we dont need to search more (what about grappling hook?)
 		if (!out) break

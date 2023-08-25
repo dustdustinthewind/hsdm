@@ -24,7 +24,7 @@
 		= GetModelIndex("models/workshop/weapons/c_models/c_trenchgun/c_trenchgun.mdl"),
 
 	family_business
-		= 647,
+		= 216,
 
 	widowmaker
 		= 672,
@@ -89,21 +89,6 @@
 	concheror
 		= GetModelIndex("models/weapons/c_models/c_shogun_warhorn/c_shogun_warhorn.mdl"),
 
-	// tf_weapon_tf_wearable
-	// double check classname
-	// double check wearables work the same way as weapons :|
-	gunboats
-		= GetModelIndex("models/weapons/c_models/c_rocketboots_soldier.mdl"),
-
-	mantreads
-		= GetModelIndex("models/player/items/soldier/tankerboots.mdl"),
-
-	darwins_danger_shield
-		= GetModelIndex("models/player/items/sniper/croc_shield.mdl"),
-
-	cozy_camper
-		= GetModelIndex("models/player/items/sniper/xms_sniper_commandobackpack.mdl"),
-
 	// tf_weapon_shovel
 	equalizer
 		= 534,
@@ -123,14 +108,14 @@
 	// tf_weapon_flamethrower
 	backburner
 		= GetModelIndex("models/weapons/c_models/c_flamethrower/c_backburner.mdl"),
-	backbruner_xmas
+	backbruner_xmas // assuming this works
 		= GetModelIndex("models/weapons/c_models/c_flamethrower/c_backburner_xmas.mdl"),
 
 	degreaser
-		= GetModelIndex("models/weapons/c_models/c_degreaser/c_degreaser.mdl")
+		= 571
 
 	phlogistinator
-		= GetModelIndex("models/weapons/c_models/c_drg_phlogistinator/c_drg_phlogistinator.mdl"),
+		= 682,
 
 	// tf_weapon_flaregun
 	detonator
@@ -142,7 +127,7 @@
 	// tf_weapon_fireaxe
 	axtinguisher
 		= GetModelIndex("models/weapons/c_models/c_axtinguisher/c_axtinguisher_pyro.mdl"),
-	axtinguisher_xmas
+	axtinguisher_xmas // assuming works
 		= GetModelIndex("models/weapons/c_models/c_fireaxe_pyro/c_fireaxe_pyro_xmas.mdl"),
 	postal_pummeler
 		= 663,
@@ -208,37 +193,32 @@
 		= GetModelIndex("models/weapons/c_models/c_minigun/c_minigun_natascha.mdl"),
 
 	brass_beast
-		= GetModelIndex("models/weapons/c_models/c_gatling_gun/c_gatling_gun.mdl"),
+		= 172,
 
 	tomislav
-		= GetModelIndex("models/weapons/c_models/c_tomislav/c_tomislav.mdl"),
+		= 214,
 
 	huo_long_heater
-		= GetModelIndex("models/weapons/c_models/c_canton.c_canton.mdl"),
+		= 293,
 
 	// tf_weapon_lunchbox
 	dalokohs_bar
-		= GetModelIndex("models/weapons/c_models/c_chocolate/c_chocolate.mdl"),
+		= 115,
 
 	fishcake
-		= GetModelIndex("models/weapons/c_models/c_fishcake/c_fishcake.mdl"),
+		= 219,
 
 	buffalo_steak_sandvich
-		= GetModelIndex("models/weapons/c_models/c_buffalo_steak/c_buffalo_steak.mdl"),
+		= 602,
 
 	second_banana
-		= GetModelIndex("models/weapons/c_models/c_banana/c_banana.mdl"),
+		= 834,
 
 	// tf_weapon_fists
-	kgb
-		= GetModelIndex("models/weapons/c_models/c_boxing_gloves/c_boxing_gloves.mdl"),
-
-	gru
-		= GetModelIndex("models/weapons/c_models/c_boxing_gloves/c_boxing_gloves.mdl"),
-	gru_xmas
-		= GetModelIndex("models/weapons/c_models/c_boxing_gloves/c_boxing_gloves_xmas.mdl"),
-	bread_bite
-		= GetModelIndex("models/weapons/c_models/c_breadmonster_gloves/c_breadmonster_gloves.mdl"),
+	fists
+		= 0 // uh, that just means there's nothing, well as long as this is the only 0 i guess (wearables have 0 or -1 but we aren't looking for fists :3)
+	apoco_fists
+		= 678
 
 	warriors_spirit
 		= GetModelIndex("models/workshop/weapons/c_models/c_bear_claw/c_bear_claw.mdl"),
@@ -536,12 +516,6 @@
 			return class_name == "tf_weapon_buff_item"
 				&& !find_models(weapon, ["battalions_backup", "concheror"])
 
-		case "booties":
-		case "ali_babas_wee_booties":
-		case "bootlegger":
-			return class_name == "tf_weapon_tf_wearable" // double check class name
-				&& !find_models(weapon, ["gunboats", "mantreads", "darwins_danger_shield", "cozy_camper"])
-
 		case "bison":
 		case "righteous_bison":
 			return class_name = "tf_weapon_raygun"
@@ -600,9 +574,9 @@
 			return class_name == "tf_weapon_pipebomblauncher"
 				&& !find_models(weapon, ["scottish_resistance","sticky_jumper","quickiebomb_launcher"])
 
-		case "chargin_targe":
-			return class_name == "tf_weapon_demoshield"
-				&& !find_models(weapon, ["splendid_screen", "tide_turner"])
+		case "any_shield":
+			printl((player.GetPassiveWeaponBySlot(1)) != null ? player.GetPassiveWeaponBySlot(1).GetClassname() : "false")
+			return player.GetPassiveWeaponBySlot(1) != null && player.GetPassiveWeaponBySlot(1).GetClassname() == "tf_wearable_demoshield"
 
 		case "bottle":
 			return class_name == "tf_weapon_bottle"
@@ -626,9 +600,14 @@
 			return class_name == "tf_weapon_lunchbox"
 				&& !find_models(weapon, ["dalokohs_bar", "fishcake", "buffalo_steak_sandvich", "second_banana"])
 
-		case "fists":
+		case "kgb":
+			return GetPropInt(weapon, "m_AttributeManager.m_Item.m_iItemDefinitionIndex") == 43;
+
+		case "gru":
+		case "gloves_of_running_urgently":
 			return class_name == "tf_weapon_fists"
-				&& !find_models(weapon, ["kgb", "gru", "gru_xmas", "bread_bite", "warriors_spirit", "fists_of_steel", "eviction_notice", "holiday_punch"])
+				&& GetPropInt(weapon, "m_AttributeManager.m_Item.m_iItemDefinitionIndex") != 43
+				&& !find_models(weapon, ["fists", "apoco_fists", "warriors_spirit", "fists_of_steel", "eviction_notice", "holiday_punch"])
 
 		case "frontier_justice":
 			return class_name == "tf_weapon_sentry_revenge"

@@ -1,1 +1,1 @@
-demoknight_secondaries.push("splendid_screen")
+// keep in mind to use give_tf_weapon's GetPassiveWeaponBySlot(int slot) for wearables
