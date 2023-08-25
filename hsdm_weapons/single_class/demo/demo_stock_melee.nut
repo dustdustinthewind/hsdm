@@ -9,7 +9,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 	{
 		// if not demoknight, nerf the melees, otherwise, stick with stock melee
 		if (!is_demoknight())
-			change_stock_melee_damage(find_wep_in_slot(player, "any", 2))
+			change_stock_melee_damage(player.ReturnWeaponBySlot(2))
 	}
 
 	function is_demoknight()
@@ -37,7 +37,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 	last_frame_had_crits = false
 	time_lost_crits = 0.0
-	extra_time_window = 0.4
+	extra_time_window = 0.3
 
 	function demoknight_speed_crits()
 	{
@@ -55,19 +55,6 @@ characterTraitsClasses.push(class extends hsdm_trait
 	}
 })
 
-
 // todo: have individual weapon.nuts add themselves
-demoknight_primaries <- [
-	"",
-	"booties",
-	"base_jumper"
-]
-
-// todo: have individual weapon.nuts add themselves
-demoknight_secondaries <- [
-	"",
-	"chargin_targe",
-	"splendid_screen",
-	"tide_turner",
-	"sticky_jumper"
-]
+demoknight_primaries <- [""]
+demoknight_secondaries <- [""]

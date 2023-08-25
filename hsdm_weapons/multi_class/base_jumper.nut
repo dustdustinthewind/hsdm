@@ -12,3 +12,4 @@ characterTraitsClasses.push(class extends hsdm_trait
 			player.RemoveCond(TF_COND_PARACHUTE_DEPLOYED)
 	}
 })
+demoknight_primaries.push("base_jumper")

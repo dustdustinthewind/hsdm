@@ -1,27 +1,14 @@
-function SpawnEntities()
-{
-	// timer that calls tick every frame i think
-	team_round_timer = SpawnEntityFromTable("team_round_timer", {
-		StartDisabled = 0
-	}) // todo mess with values?
-	team_round_timer.ValidateScriptScope()
-	team_round_timer.GetScriptScope().Tick <- function()
-	{
-		hsdm_vscript.FireListeners("tick_frame")
-		return 0
-	}
-	AddThinkToEnt(team_round_timer, "Tick")
-}
-SpawnEntities()
-
+// DONT CHANGE THESE
 Convars.SetValue("tf_grapplinghook_enable", 1)
+Convars.SetValue("tf_grapplinghook_los_force_detach_time", 9999) // prevents detaching from func_ entities
+Convars.SetValue("tf_grapplinghook_use_acceleration", 1) // makes grapple more physical, required for enhanced grapple hook
+
+
+// you can change everything below
+
 Convars.SetValue("tf_use_fixed_weaponspreads", 1)
 Convars.SetValue("mp_respawnwavetime", -1)
 Convars.SetValue("tf_weapon_criticals", 0)
-Convars.SetValue("tf_grapplinghook_los_force_detach_time", 9999) // prevents detaching from func_ entities
-// note ^ i think this was used to detach if you're like, in a weird spot up against a wall you weren't grappled on, we could prolly fix, i fixed funcs_ by themselves before noticing this command
-Convars.SetValue("tf_grapplinghook_use_acceleration", 1) // makes grapple more physical, required for enhanced grapple hook
-
 
 // bugs: melee damage (specifically demoknight) can get stuck at 145 or 195 instead of swapping as required
 //        may be fixed with how we do things now
@@ -29,7 +16,7 @@ Convars.SetValue("tf_grapplinghook_use_acceleration", 1) // makes grapple more p
 // settings (change these as you see fit feels)
 // TODO?: make an object or function of these variables so we can apply individual hookshot bullshit to individual classes
 //        add these to a seperate file at least
-// todo: expose the below similar to how vsh does it
+// todo: expose the below to maps maybe? similar to how vsh does it
 
 GAME_GRAVITY <- 0.65 // perecentage
 NORMAL_GRAVITY_FOR_PROJECTILES <- true // set to true so projectiles behave similarly to vanilla tf2's gravity, pills especially effected by gravity
@@ -104,10 +91,14 @@ GRAPPLES_PREVENT_FALL_DAMAGE <- false // tf2 default: false
 // how fast the hook projectile moves
 GRAPPLE_HOOK_PROJECTILE_SPEED <- 1500 // tf2 default: 1500
 
+
+// v dont mess with these, they use the values you set above v
+// todo: put in different file? xd
+
 // projectiles keep the gravity of game start, even if the gravity changes half way through the match.
 //  so that means if we set the gravity *after* the game starts, we can have low grav for players but
 //  normal grav for projectiles
-//  i love how hacky source is
+//  i ~~love~~ hate how hacky source is
 // NOTE: unsure if changing NORMAL_GRAVITY_FOR_PROJECTILES will work on script refresh
 if (NORMAL_GRAVITY_FOR_PROJECTILES)
 	SetGravityMultiplier(1.0)

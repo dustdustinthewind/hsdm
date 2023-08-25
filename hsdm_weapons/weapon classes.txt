@@ -350,7 +350,7 @@ slap
  Hot Hand
  // in-switch-case now
 
-// DOUBLE CHECK
+// ALL WORK
 grenadelauncher
  Grenade Launcher
  Unique Grenade Launcher
@@ -363,31 +363,12 @@ grenadelauncher
  Iron Bomber
  // in weaponModels now
 
-// DOUBLE CHECK
+// WORKS
 cannon
  Loose Cannon
  // in-switch-case now
 
-// DOUBLE CHECK
-// GUNBOATS AND MANTREADS RAW
-tf_wearable
- Gunboats
- // in weaponModels now
-
- Mantreads
- // in weaponModels now
-
- Ali Bab's Wee Booties
- Bootlegger
- // in switch-case
-
- Darwin's Danger Shield
- // in weaponModels now
-
- Cozy Camper
- // in weaponModels now
-
-// DOUBLE CHECK
+// WORKS
 pipebomblauncher
  Stickybomb Launcher
  Unique Stickybomb Launcher
@@ -404,7 +385,7 @@ pipebomblauncher
  Quickiebomb Launcher
  // in weaponModels now
 
-// DOUBLE CHECK
+// GOING RAW
 demoshield
  Chargin' Targe
  Festive Chargin' Targe
@@ -417,14 +398,14 @@ demoshield
  Tide Turner
  // in weaponModels now
 
-// DOUBLE CHECK
+// RAW
 bottle
  Bottle
  Unique Bottle
  Scottish Handshake
  // in-switch-case now
 
-// DOUBLE CHECK
+// RAW
 sword
  Eyelander
  Festive Eyelander
@@ -441,7 +422,7 @@ sword
  Persian Persuader
  // in weaponModels now
 
-// DOUBLE CHECK
+// RAAAAAAAAAWWW
 stickbomb
  Ullapool Caber
  // in switch-case now
@@ -650,6 +631,26 @@ sniperrifle
  // in weaponModels now
 
  Hitman's Heatmaker
+ // in weaponModels now
+
+ // DOUBLE CHECK
+// GUNBOATS AND MANTREADS RAW
+// BOOTIES RAW
+tf_wearable
+ Gunboats
+ // in weaponModels now
+
+ Mantreads
+ // in weaponModels now
+
+ Ali Bab's Wee Booties
+ Bootlegger
+ // in switch-case
+
+ Darwin's Danger Shield
+ // in weaponModels now
+
+ Cozy Camper
  // in weaponModels now
 
 // DOUBLE CHECK

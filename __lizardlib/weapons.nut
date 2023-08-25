@@ -166,10 +166,10 @@
 
 	// tf_weapon_grenadelauncher
 	loch_n_load
-		= GetModelIndex("models/weapons/c_models/c_lochnload/c_lochnload.mdl"),
+		= 599,
 
 	iron_bomber
-		= GetModelIndex("models/workshop/weapons/c_models/c_quadball/c_quadball.mdl"),
+		= 817,
 
 	// tf_weapon_pipebomblauncher
 	scottish_resistance
@@ -595,6 +595,7 @@
 		case "loose_cannon":
 			return class_name == "tf_weapon_cannon"
 
+		case "sticky_launcher":
 		case "stickybomb_launcher":
 			return class_name == "tf_weapon_pipebomblauncher"
 				&& !find_models(weapon, ["scottish_resistance","sticky_jumper","quickiebomb_launcher"])

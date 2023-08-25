@@ -1,13 +1,13 @@
 hsdm <- "hsdm/"
 debug <- false
 
-// basically llzard lib from vsh
+// basically llzard lib from vsh (todo: add url)
 IncludeScript(hsdm + "__lizardlib/util.nut")
 // https://tf2maps.net/downloads/vscript-give_tf_weapon.14897/
 Include("give_tf_weapon/_master.nut")
 
 Include("/util/entities.nut");
-Include("roundsetup.nut")
+Include("game_setup.nut")
 //Include("tables.nut")
 Include("weapons_and_traits.nut")
 
