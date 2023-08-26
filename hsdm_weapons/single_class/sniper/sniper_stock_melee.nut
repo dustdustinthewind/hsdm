@@ -19,9 +19,4 @@ characterTraitsClasses.push(class extends hsdm_trait
 })
 
 // todo: have individual weapons add themselves
-sniper_stock_melee_list <- [
-	"",
-	"saxxy", // all class items
-	"kukri",
-	"bushwacka",
-]
+sniper_stock_melee_list <- [""]

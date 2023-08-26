@@ -4,7 +4,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 	function CanApply()
 	{
-		return player_class_is_one_of([TF_CLASS_SOLDIER, TF_CLASS_PYRO])
+		return player_class_is(TF_CLASS_PYRO)
 			&& (third_degree = find_wep_in_slot(player, "third_degree", 2))
 	}
 

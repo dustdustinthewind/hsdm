@@ -18,7 +18,4 @@ characterTraitsClasses.push(class extends hsdm_trait
 	}
 })
 
-heavy_stock_melee_list <- [
-	"",
-	"holiday_punch",
-]
+heavy_stock_melee_list <- [""]

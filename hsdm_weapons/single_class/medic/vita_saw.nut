@@ -1,0 +1,1 @@
+medic_stock_melee_list.push("vita_saw")

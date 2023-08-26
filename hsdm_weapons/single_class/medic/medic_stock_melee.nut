@@ -18,13 +18,4 @@ characterTraitsClasses.push(class extends hsdm_trait
 	}
 })
 
-// todo: have individual weapons add themselves
-medic_stock_melee_list <- [
-	"",
-	"saxxy", // all class items
-	"bonesaw",
-	"ubersaw",
-	"ubersaw_xmas",
-	"vita_saw",
-	"solemn_vow",
-]
+medic_stock_melee_list <- [""]

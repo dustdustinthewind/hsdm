@@ -293,12 +293,12 @@
 		= GetModelIndex("models/workshop/weapons/c_models/c_sydney_sleeper/c_sydney_sleeper.mdl"),
 
 	machina
-		= GetModelIndex("models/weapons/c_models/c_dex_sniperrifle/c_dex_sniperrifle.mdl"),
+		= 671,
 	shooting_star
 		= GetModelIndex("models/workshop/weapons/c_models/c_invasion_sniperrifle/c_invasion_sniperrifle.mdl")
 
 	hitmans_heatmaker
-		= GetModelIndex("models/weapons/c_models/c_pro_rifle/c_pro_rifle.mdl"),
+		= 709,
 
 	// tf_weapon_club
 	tribalmans_shiv
@@ -575,7 +575,6 @@
 				&& !find_models(weapon, ["scottish_resistance","sticky_jumper","quickiebomb_launcher"])
 
 		case "any_shield":
-			printl((player.GetPassiveWeaponBySlot(1)) != null ? player.GetPassiveWeaponBySlot(1).GetClassname() : "false")
 			return player.GetPassiveWeaponBySlot(1) != null && player.GetPassiveWeaponBySlot(1).GetClassname() == "tf_wearable_demoshield"
 
 		case "bottle":
@@ -639,7 +638,8 @@
 		case "destruction_pda":
 			return class_name == "tf_weapon_engineer_destroy"
 
-		case "syringegun_medic":
+		case "syringegun":
+		case "syringe_gun":
 			return class_name == "tf_weapon_syringegun_medic"
 				&& !find_models(weapon, ["blutsauger", "overdose"])
 
@@ -665,10 +665,14 @@
 			return class_name == "tf_weapon_compound_bow"
 
 		case "bazaar_bargain":
-			return class_name == "tf_weapon_sniperrfile_decap"
+			return class_name == "tf_weapon_sniperrifle_decap"
 
 		case "classic":
-			return class_name == "tf_weapon_sniperrfile_classic"
+			return class_name == "tf_weapon_sniperrifle_classic"
+
+		case "dds":
+		case "darwins_danger_shield":
+			return GetItemID(player.GetPassiveWeaponBySlot(1),ForceNotCustom) == 231
 
 		case "smg":
 			return class_name == "tf_weapon_smg"
@@ -678,7 +682,7 @@
 
 		case "jarate":
 		case "piss":
-			return class_Name == "tf_weapon_jar"
+			return class_name == "tf_weapon_jar"
 
 		case "cleaners_carbine":
 			return class_name == "tf_weapon_charged_smg"

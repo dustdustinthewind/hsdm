@@ -563,7 +563,7 @@ builder
  Festive Sapper
  // in switch-case now
 
-// DOUBLE CHECK
+// WORKS
 syringegun_medic
  Syringe Gun
  Unique Syringe Gun
@@ -575,13 +575,13 @@ syringegun_medic
  Overdose
  // in weaponModels now
 
-// DOUBLE CHECK
+// WORKS
 crossbow
  Crusader's Crossbow
  Festive Crusader's Crossbow
  // in switch-case now
 
-// DOUBLE CHECK
+// WE'RE RAW DOGGING IT
 medigun
  Medigun
  Unique Medigun
@@ -599,6 +599,7 @@ medigun
 
 // ALL WORKS
 // DOUBLE CHECK
+// RAW DOGGGING ALL
 bonesaw
  Bonesaw
  Festive Bonesaw
@@ -617,7 +618,7 @@ bonesaw
  Solemn Vow
  // in weaponModels now
 
-// DOUBLE CHECK
+// ALL WORK
 sniperrifle
  Sniper Rifle
  Festive Sniper Rifle
@@ -634,9 +635,28 @@ sniperrifle
  Hitman's Heatmaker
  // in weaponModels now
 
+// WORKS
+compound_bow
+ Huntsman
+ Festive Huntsman
+ Fortified Compound
+ // in switch-case now
+
+// WORKS
+sniperrifle_decap
+ Bazaar Bargain
+ // in switch-case now
+
+// WORKS
+sniperrifle_classic
+ Classic
+ // in switch-case now
+
  // DOUBLE CHECK
 // GUNBOATS AND MANTREADS RAW
 // BOOTIES RAW
+// COZY CAMPER RAW
+// DARWINS DANGER SHIELD WORKS
 tf_wearable
  Gunboats
  // in weaponModels now
@@ -655,47 +675,33 @@ tf_wearable
  // in weaponModels now
 
 // DOUBLE CHECK
-compound_bow
- Huntsman
- Festive Huntsman
- Fortified Compound
- // in switch-case now
-
-// DOUBLE CHECK
-sniperrifle_decap
- Bazaar Bargain
- // in switch-case now
-
-// DOUBLE CHECK
-sniperrifle_classic
- Classic
- // in switch-case now
-
-// DOUBLE CHECK
 smg
  SMG
  Unique SMG
  Festive SMG
  // in switch-case now
 
-// DOUBLE CHECK
+// RAW
+// may want to double check this one at some point
 razorback
  Razorback
  // in switch-case now
 
-// DOUBLE CHECK
+// RAW
 jar
  Jarate
  Festive Jarate
  Self-Aware Beauty Mark
  // in switch-case now
 
-// DOUBLE CHECK
+// WORKS
 charged_smg
  Cleaner's Carbine
  // in switch-case now
 
-// DOUBLE CHECK
+// TRIBAL RAW
+// KUKRI RAW
+// SHAHANSHA RAW
 club
  Kukri
  Unique Kukri

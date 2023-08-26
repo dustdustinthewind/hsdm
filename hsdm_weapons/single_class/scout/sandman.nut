@@ -21,7 +21,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 		victim.SetVelocity(Vector(0,0,0))
 		// freezes player for 3 seconds hopefully
 		// todo: test works
-		victim.AddCondEx(87, 3.0, params.attacker)
+		victim.AddCondEx(87, 1.0, params.attacker)
 		// should remove all grapplings
 		// todo: test this works
 		victim.RemoveCond(98)
