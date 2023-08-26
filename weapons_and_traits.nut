@@ -1,5 +1,6 @@
 weapons_and_traits <- [
 	"hsdm_traits/hsdm_trait.nut",
+	"hsdm_traits/apply_weapons.nut"
 	"hsdm_traits/weapon_crit_manager.nut",
 	"hsdm_traits/blast_jumping_debuff_hack.nut"
 	"hsdm_traits/gain_clip_on_hit.nut",
@@ -119,6 +120,10 @@ weapons_and_traits <- [
 
 	"hsdm_weapons/single_class/engie/engie_stock_melee.nut",
 	"hsdm_weapons/single_class/engie/widowmaker.nut",
+	"hsdm_weapons/single_class/engie/pomson.nut",
+	"hsdm_weapons/single_class/engie/rescue_ranger.nut",
+	"hsdm_weapons/single_class/engie/frontier_justice.nut",
+	"hsdm_weapons/single_class/engie/wheres_the_rest_of_engies_weapons.nut",
 
 	"hsdm_weapons/single_class/medic/medic_stock_melee.nut",
 	"hsdm_weapons/single_class/medic/syringe_gun.nut",
@@ -155,6 +160,12 @@ weapons_and_traits <- [
 	"hsdm_weapons/single_class/sniper/shahanshah.nut",
 
 	"hsdm_weapons/single_class/spy/spy_stock_melee.nut",
+	"hsdm_weapons/single_class/spy/revolver.nut",
+	"hsdm_weapons/single_class/spy/ambassador.nut",
+	"hsdm_weapons/single_class/spy/letranger.nut",
+	"hsdm_weapons/single_class/spy/enforcer.nut",
+	"hsdm_weapons/single_class/spy/diamondback.nut",
+	"hsdm_weapons/single_class/spy/where_the_fuck_is_rest_of_spy.nut",
 
 	"hsdm_weapons/multi_class/grapplehook.nut",
 	"hsdm_weapons/multi_class/base_jumper.nut",

@@ -30,7 +30,6 @@ characterTraitsClasses.push(class extends hsdm_trait
 		if (!knight_primary) return false
 
 		local knight_secondary = player.GetPassiveWeaponBySlot(1)
-		printl(knight_secondary)
 		if (!knight_secondary)
 		{
 			foreach(secondary in demoknight_secondaries)

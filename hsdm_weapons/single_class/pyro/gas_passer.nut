@@ -7,7 +7,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 	function CanApply()
 	{
 		return player_class_is(TF_CLASS_PYRO)
-			&& (gas_passer = find_wep_in_slot(player, "gas_passer", 1, true))
+			&& (gas_passer = find_wep_in_slot(player, "gas_passer", 1))
 	}
 
 	function OnApply()

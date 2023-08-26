@@ -80,7 +80,7 @@ GRAPPLE_COOLDOWN <- 0.66 // tf2 default 0.5
 
 // the speeds of jump detaching from a grappl
 GRAPPLE_JUMP_DETACH_SPEED <- 350 // tf2 default: 375
-HEAVY_JUMP_DETACH_SPEED <- 200 // heavy is fat
+HEAVY_JUMP_DETACH_SPEED <- 250 // heavy is fat
 
 // max distance that will allow the grapple to shoot
 GRAPPLE_MAX_DISTANCE <- 2000 // tf2 default: 2000

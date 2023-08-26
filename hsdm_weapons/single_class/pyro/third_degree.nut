@@ -16,12 +16,14 @@ characterTraitsClasses.push(class extends hsdm_trait
 	{
 		local velocity = player.GetVelocity().Length()
 		// if we start a melee swing
-		if (!swung && GetPropInt(player, "m_nButtons") & IN_ATTACK)
+		if (!swung && player.GetActiveWeapon() == third_degree && GetPropInt(player, "m_nButtons") & IN_ATTACK)
 		{
 			swung = true
 			velocity_on_swing = velocity
 		}
 		// grab the highest velocity during the swing
+		// note: this 0.8 window may allow players to store fast velocities as they swap to this weapon, oh well
+		//        iirc melee swing happens 0.3 seconds after you left click, then that 0.5 seconds would be the recovery, i may be wrong tho idfk
 		else if (Time() + 0.8 <= time_grabbed_velocity && velocity > velocity_on_swing)
 			velocity_on_swing = velocity
 		// and when its over reset our counter (cant i use fire time? xD)

@@ -16,7 +16,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 		cow_mangler.AddAttribute("minicrits become crits", 1, -1)
 		cow_mangler.AddAttribute("crits_become_minicrits" 0, -1)
 	}
-
+	// todo make this a trait
 	last_frame_energy = 20
 
 	function OnFrameTickAlive()

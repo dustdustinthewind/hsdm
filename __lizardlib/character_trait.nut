@@ -75,6 +75,7 @@ AddListener("spawn", -1, function (player, params)
             newTrait.TryApply.call(newTrait, player);
         }
         catch(e) { throw e; }
+	player.Regenerate(true)
 });
 
 // post_inventory my old nemesis
@@ -89,6 +90,7 @@ AddListener("post_inventory", -1, function(player, params)
             newTrait.TryApply.call(newTrait, player);
         }
         catch(e) { throw e; }
+	player.Regenerate(true)
 })
 
 AddListener("tick_only_valid", 2, function (timeDelta)

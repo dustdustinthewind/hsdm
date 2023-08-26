@@ -48,19 +48,8 @@ characterTraitsClasses.push(class extends hsdm_trait
 			//todo ding player
 		}
 
+		// if we jump detach the frame we attach, this i assume doesn't work
 		local grappleTarget = player.GetGrapplingHookTarget()
-
-		// on detach
-		if (last_grapple_target && !grappleTarget)
-		{
-			// run class specific function for hookshot detach
-			FireListeners("on_detach", player)
-
-			last_grapple_target = null
-			grapple_projectile = null
-
-			StartReelInCooldown()
-		}
 
 		// while grappling
 		if (grappleTarget)
@@ -78,6 +67,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 
 			// on attach
+			// if you jump detach right as you attach this doesn't get called
 			if (!last_grapple_target)
 			{
 				// set LastGrappleTarget to what we attached to
@@ -147,6 +137,18 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 				GrappleImpulse(player, heading, tension * TENSION_STRENGTH, 1.0)
 			}
+		}
+
+		// on detach
+		if (last_grapple_target && !grappleTarget)
+		{
+			// run class specific function for hookshot detach
+			FireListeners("on_detach", player)
+
+			last_grapple_target = null
+			grapple_projectile = null
+
+			StartReelInCooldown()
 		}
 	}
 
