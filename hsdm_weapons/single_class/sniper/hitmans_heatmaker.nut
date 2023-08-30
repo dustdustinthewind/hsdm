@@ -5,15 +5,15 @@ characterTraitsClasses.push(class extends hsdm_trait
 	function CanApply()
 	{
 		return player_class_is(TF_CLASS_SNIPER)
-			&& (hitmans_heatmaker = find_wep_in_slot(player, "hitmans_heatmaker", 0))
+			&& (hitmans_heatmaker = find_wep_in_slot(player, "hitmans_heatmaker", 0, true))
 	}
 
 	function OnApply()
 	{
-		base_sniper_rifle(hitmans_heatmaker)
+		change_weapon_reserve(hitmans_heatmaker, 0, 3, 25.0)
+
 		hitmans_heatmaker.AddAttribute("damage penalty on bodyshot", 75 / 150.0, -1)
 		hitmans_heatmaker.AddAttribute("headshot damage increase", 125 / 150.0, -1)
-		hitmans_heatmaker.RemoveAttribute("sniper fires tracer")
 		// consider removing tracer
 		// consider 125/150 damage headshots
 		// consider changing focus ability into something new (faster firing rate? ammo regen?)

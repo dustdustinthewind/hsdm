@@ -12,7 +12,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 	{
 		change_weapon_damage(shortstop, 28.0 / 36.0) // max 112 damage, 28 dmg per pellet
 		change_weapon_clip(shortstop, 1, 6.0)
-		change_weapon_reserve(shortstop, TF_AMMO.PRIMARY, 0, 32.0, true)
+		change_weapon_reserve(shortstop, TF_AMMO.PRIMARY, 2, 32.0, true)
 
 		shortstop.AddAttribute("mult_spread_scales_consecutive", -1, -1) // spreads out like panic todo: test
 
@@ -31,8 +31,8 @@ overfill_weapons.push("shortstop")
 
 function fix_shortstop(player, shortstop)
 {
-	if (GetPropIntArray(player, "m_iAmmo", TF_AMMO.PRIMARY) > 0)
-		SetPropIntArray(player, "m_iAmmo", 0, TF_AMMO.PRIMARY)
+	if (GetPropIntArray(player, "m_iAmmo", TF_AMMO.PRIMARY) > 2)
+		SetPropIntArray(player, "m_iAmmo", 2, TF_AMMO.PRIMARY)
 
 	if (shortstop.Clip1() > 2)
 		shortstop.SetClip1(1)

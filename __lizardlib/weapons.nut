@@ -300,7 +300,7 @@
 		= GetModelIndex("models/workshop/weapons/c_models/c_invasion_sniperrifle/c_invasion_sniperrifle.mdl")
 
 	hitmans_heatmaker
-		= GetModelIndex("models/workshop_partner/weapons/c_models/c_dex_sniperrifle/c_dex_sniperrifle.mdl"),
+		= GetModelIndex("models/workshop/weapons/c_models/c_pro_rifle/c_pro_rifle.mdl"),
 
 	// tf_weapon_club
 	tribalmans_shiv

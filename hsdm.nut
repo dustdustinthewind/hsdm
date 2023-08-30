@@ -12,6 +12,7 @@ Include("game_setup.nut")
 Include("weapons_and_traits.nut")
 
 // TODO
-//  fix need to rerun script twice to work
+//  fix need to rerun script twice to work (sometimes dont need to on server huh)
 //  the character trait system is cool but i have a feeling it may be performance heavy in current implementation
 //   instead of pushing all our classes we should have a "scout.nut" file where scout picks and chooses what traits to have, based on loadout, and abilities.
+//    it really only effects spawning, so yeah we could do the above, but more optimization should be made prolly on the grapple hooks and other things
