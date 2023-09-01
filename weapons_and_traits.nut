@@ -6,7 +6,8 @@ weapons_and_traits <- [
 	"hsdm_traits/gain_clip_on_hit.nut",
 	"hsdm_traits/overfill_on_ammo_pickup.nut",
 	"hsdm_traits/jarate_debuff.nut",
-	"hsdm_traits/death_ammo_hovers.nut"
+	"hsdm_traits/death_ammo_hovers.nut",
+	"hsdm_traits/maintain_momentum_on_double_jump.nut"
 
 	"hsdm_traits/scout_on_attach_detach.nut",
 	"hsdm_traits/sniper_on_attach_detach.nut",

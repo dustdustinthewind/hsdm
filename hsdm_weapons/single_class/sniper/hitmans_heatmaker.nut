@@ -5,7 +5,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 	function CanApply()
 	{
 		return player_class_is(TF_CLASS_SNIPER)
-			&& (hitmans_heatmaker = find_wep_in_slot(player, "hitmans_heatmaker", 0, true))
+			&& (hitmans_heatmaker = find_wep_in_slot(player, "hitmans_heatmaker", 0))
 	}
 
 	function OnApply()
