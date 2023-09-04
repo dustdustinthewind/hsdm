@@ -54,15 +54,15 @@ GRAPPLE_SIDE_VELOCITY // <- 350.0
 // speed forward and back from hook strafing
 GRAPPLE_FORWARD_VELOCITY <- 150.0
 
-// when we stop reeling in and just, sit there
-// TOOD: make this less boring
-ROPE_SAFETY_RADIUS <- 100.0
+// rope will go slack when its shorter than this
+MINIMUM_ROPE_LENGTH <- 300.0
 
 // how "tight" the rope is
 TENSION_STRENGTH <- 0.92
 
 // these last ones change console commands
 // how fast you accelerate while grappling
+// todo: replicate tf2 acceleration without console command so different classes can use different feels
 GRAPPLE_ACCELERATION     // <- 700 // tf2 default: 3500 (too much ew ew)
                          // <- 650
 						    <- 600

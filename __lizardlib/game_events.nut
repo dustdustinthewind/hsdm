@@ -33,6 +33,7 @@ function OnPostSpawn()
 }
 
 // changed tick from .1 to .014999 (1 / 66.67)
+// maybe this is causing performance issues
 function Tick()
 {
     //try { TF_TEAM_MERCS; } catch(e) { return; }
