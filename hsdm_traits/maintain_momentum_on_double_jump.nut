@@ -20,7 +20,9 @@ characterTraitsClasses.push(class extends hsdm_trait
 			return
 		}
 		jump_status_last_frame = jump_status_this_frame
-		player.Yeet(velocity_before_jump * 0.5)
-		// todo make this not as useful on lower velocities, scout can chase real easy now
+		local length = velocity_before_jump.Length()
+		local slow = length < 600
+		player.Yeet(velocity_before_jump * (slow ? 0 : 0.5))
+		player.Yeet(Vector(0,0,velocity_before_jump.z * (slow ? 0 : -0.5)))
 	}
 })

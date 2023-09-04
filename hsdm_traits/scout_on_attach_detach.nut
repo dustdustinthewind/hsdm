@@ -12,6 +12,5 @@ characterTraitsClasses.push(class extends hsdm_trait
 	{
 		// reset double jump on attach
 		SetPropInt(player, "m_Shared.m_iAirDash", 0)
-
 	}
 })
