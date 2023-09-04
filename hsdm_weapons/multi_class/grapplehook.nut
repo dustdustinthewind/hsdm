@@ -5,20 +5,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 		return player.GetWeapon("Grappling Hook")
 	}
 
-	grapple_projectile = null
-	used_grapple_last_tick = false
-
-	last_grapple_target = null
-	last_grapple_target_center = null
-
-	reel_cooldown_dinged = false
-	last_time_reeled = 0
-	reeling_in = false
-
-	function OnApply()
-	{
-
-	}
+	function OnApply() {}
 
 	function OnFrameTickAlive()
 	{
@@ -28,6 +15,9 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 		grapplehook_code()
 	}
+
+	grapple_projectile = null
+	used_grapple_last_tick = false
 
 	function find_grapple_projectile()
 	{
@@ -46,15 +36,6 @@ characterTraitsClasses.push(class extends hsdm_trait
 			grapple_projectile = null
 
 		used_grapple_last_tick = grappling_this_tick
-	}
-
-	function reel_in_cooldown()
-	{
-		if (!reel_cooldown_dinged && Time() >= REEL_IN_COOLDOWN + last_time_reeled)
-		{
-			reel_cooldown_dinged = true
-			//todo ding player
-		}
 	}
 
 	grapple_target = null
@@ -93,6 +74,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 		{
 			rope_length = MINIMUM_ROPE_LENGTH
 			// acceleration to 0?
+			grapple_impulse(player, heading, 1, 0.998)
 		}
 
 		on_attach_code()
@@ -105,6 +87,9 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 		rope_length_code()
 	}
+
+	last_grapple_target = null
+	last_grapple_target_center = null
 
 	function on_attach_code()
 	{
@@ -149,12 +134,14 @@ characterTraitsClasses.push(class extends hsdm_trait
 		last_grapple_target_center = grapple_target_center
 	}
 
+	reeling_in = false
+
 	function reel_in_code()
 	{
 		// already reeling in or reel in using attack 3
 		if (reeling_in || (last_time_reeled + REEL_IN_COOLDOWN < Time() && (NetProps.GetPropInt(player, "m_nButtons") & IN_ATTACK3)))
 		{
-			if (player_distance_from_grapple < ROPE_SAFETY_RADIUS)
+			if (player_distance_from_grapple < MINIMUM_ROPE_LENGTH)
 				start_reel_in_cooldown()
 			else
 			{
@@ -162,6 +149,18 @@ characterTraitsClasses.push(class extends hsdm_trait
 				ReelIn(player, heading)
 				reeling_in = true
 			}
+		}
+	}
+
+	last_time_reeled = 0
+	reel_cooldown_dinged = false
+
+	function reel_in_cooldown()
+	{
+		if (!reel_cooldown_dinged && Time() >= REEL_IN_COOLDOWN + last_time_reeled)
+		{
+			reel_cooldown_dinged = true
+			//todo ding player
 		}
 	}
 

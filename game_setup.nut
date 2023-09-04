@@ -55,7 +55,7 @@ GRAPPLE_SIDE_VELOCITY // <- 350.0
 GRAPPLE_FORWARD_VELOCITY <- 150.0
 
 // rope will go slack when its shorter than this
-MINIMUM_ROPE_LENGTH <- 300.0
+MINIMUM_ROPE_LENGTH <- 100.0
 
 // how "tight" the rope is
 TENSION_STRENGTH <- 0.92
@@ -73,7 +73,7 @@ GRAPPLE_ACCELERATION     // <- 700 // tf2 default: 3500 (too much ew ew)
 MAX_GRAPPLE_SPEED <- 1500.0 // tf2 default: 750
 
 // meh
-GRAPPLE_DAMPEN <- 100 // tf2 default: 500 (too high, makes grapple feel like sliding on sandpaper)
+GRAPPLE_DAMPEN <- 150 // tf2 default: 500 (too high, makes grapple feel like sliding on sandpaper)
 
 // how often you can shoot grapple (effects grapple spam/chains)
 GRAPPLE_COOLDOWN <- 0.66 // tf2 default 0.5
