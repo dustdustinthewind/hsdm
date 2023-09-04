@@ -22,7 +22,9 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 		// hold right click before firing to fire both shells at once
 		if (/*soda_popper.Clip1() == 1 && */GetPropInt(player, "m_nButtons") & IN_ATTACK2)
-			SetPropFloat(soda_popper, "LocalActiveWeaponData.m_flNextPrimaryAttack", 0)
+			soda_popper.AddAttribute("fire rate bonus", 0.075, -1)
+		else
+			soda_popper.RemoveAttribute("fire rate bonus")
 	}
 })
 
