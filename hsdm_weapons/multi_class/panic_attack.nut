@@ -10,7 +10,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 	function OnApply()
 	{
-		change_weapon_damage(panic_attack, 173.0 / 3.0 / 15.0 / 18.0) // 15 pellets, tf2 stock shotty crit damage per pellet is 18
+		change_weapon_damage(panic_attack, 173 / 15.0 / 18.0 / (player_class_is(TF_CLASS_SOLDIER) ? 3.0 : 1.0)) // 15 pellets, tf2 stock shotty crit damage per pellet is 18
 		change_weapon_clip(panic_attack, 2, 6.0)
 		change_shotgun_reserve(player, panic_attack)
 	}

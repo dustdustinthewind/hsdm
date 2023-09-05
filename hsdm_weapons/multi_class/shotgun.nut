@@ -16,7 +16,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 function base_shotgun(player, weapon, change_reserve = true)
 {
-	change_weapon_damage(weapon, 144.0 / 180.0)
+	change_weapon_damage(weapon, 144.0 / 180.0 / (player_class_is(TF_CLASS_SOLDIER) ? 3.0 : 1.0))
 	change_weapon_clip(weapon, 2, 6.0)
 	if (change_reserve)
 		change_shotgun_reserve(player, weapon)

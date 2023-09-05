@@ -1,11 +1,13 @@
 characterTraitsClasses.push(class extends hsdm_trait
 {
+	grappling_hook = null
+
 	function CanApply()
 	{
-		return player.GetWeapon("Grappling Hook")
+		return grappling_hook = player.GetWeapon("Grappling Hook")
 	}
 
-	function OnApply() {}
+	function OnApply() { }
 
 	function OnFrameTickAlive()
 	{
@@ -46,8 +48,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 		grapple_target = player.GetGrapplingHookTarget()
 
 		// while grappling and on attach
-		if (grapple_target)
-			while_grappling()
+		while_grappling()
 
 		on_detach_code()
 	}
@@ -61,6 +62,8 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 	function while_grappling()
 	{
+		if (!grapple_target) return
+
 		grappling_func = grapple_target.tostring().find("func_") != null
 
 		grapple_target_center = grapple_target.GetCenter()
@@ -157,11 +160,10 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 	function reel_in_cooldown()
 	{
-		if (!reel_cooldown_dinged && Time() >= REEL_IN_COOLDOWN + last_time_reeled)
-		{
-			reel_cooldown_dinged = true
-			//todo ding player
-		}
+		if (reel_cooldown_dinged || Time() < REEL_IN_COOLDOWN + last_time_reeled) return
+
+		reel_cooldown_dinged = true
+		//todo ding player
 	}
 
 	function start_reel_in_cooldown()
@@ -178,12 +180,13 @@ characterTraitsClasses.push(class extends hsdm_trait
 		local keys = NetProps.GetPropInt(player, "m_nButtons")
 
 		if (!keys) return
+
 		// strafing left/right, forward/back
 		local eyes = player.EyeAngles()
-		local upImpulse = keys & IN_FORWARD ? eyes.Forward() * GRAPPLE_FORWARD_VELOCITY * 0.5 : Vector(0, 0, 0)
-		local downImpulse = keys & IN_BACK ? eyes.Forward() * -GRAPPLE_FORWARD_VELOCITY       : Vector(0, 0, 0)
-		local leftImpulse = keys & IN_MOVELEFT ? eyes.Left() * -GRAPPLE_SIDE_VELOCITY         : Vector(0, 0, 0)
-		local rightImpulse = keys & IN_MOVERIGHT ? eyes.Left() * GRAPPLE_SIDE_VELOCITY        : Vector(0, 0, 0)
+		local upImpulse = keys & IN_FORWARD ? eyes.Forward() * GRAPPLE_FORWARD_VELOCITY : Vector(0, 0, 0)
+		local downImpulse = keys & IN_BACK ? eyes.Forward() * -GRAPPLE_FORWARD_VELOCITY : Vector(0, 0, 0)
+		local leftImpulse = keys & IN_MOVELEFT ? eyes.Left() * -GRAPPLE_SIDE_VELOCITY   : Vector(0, 0, 0)
+		local rightImpulse = keys & IN_MOVERIGHT ? eyes.Left() * GRAPPLE_SIDE_VELOCITY  : Vector(0, 0, 0)
 
 		player.Yeet((upImpulse + downImpulse + leftImpulse + rightImpulse) * 0.014999)
 	}

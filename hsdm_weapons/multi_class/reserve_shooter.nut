@@ -10,7 +10,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 	function OnApply()
 	{
-		change_weapon_damage(reserve_shooter, 175.5 / 180.0) // max crit = 175.5
+		change_weapon_damage(reserve_shooter, 175.5 / 180.0 / (player_class_is(TF_CLASS_SOLDIER) ? 3.0 : 1.0)) // max crit = 175.5
 		change_weapon_clip(reserve_shooter, 1, 6.0)
 		change_weapon_reserve(reserve_shooter, TF_AMMO.SECONDARY, 2, 32.0, true)
 		reserve_shooter.AddAttribute("minicrits become crits", 1, -1)
