@@ -1,4 +1,4 @@
-characterTraitsClasses.push(class extends hsdm_trait
+class grapplehook extends hsdm_trait
 {
 	grappling_hook = null
 
@@ -11,11 +11,34 @@ characterTraitsClasses.push(class extends hsdm_trait
 
 	function OnFrameTickAlive()
 	{
+		update_grapple_buffs()
+
 		find_grapple_projectile()
 
 		reel_in_cooldown()
 
 		grapplehook_code()
+	}
+
+	buff_list = []
+
+	function update_grapple_buffs()
+	{
+		for(local i = 0; i < buff_list.len(); i++)
+			if (Time() >= buff_list[i][1])
+				remove_grapple_buff(buff_list.remove(i)[0])
+	}
+
+	function apply_grapple_buff(name, params = [], duration = -1)
+	{
+		buff_list.push([name, duration >= 0 ? Time() + duration : 99999])
+
+		// todo: change grapple variables dependent on what buff name is
+	}
+
+	function remove_grapple_buff(buff)
+	{
+		// todo: reset grapple variables dependent on what buff name is
 	}
 
 	grapple_projectile = null
@@ -222,4 +245,6 @@ characterTraitsClasses.push(class extends hsdm_trait
 	{
 		grapple_impulse(player, heading, REEL_IN_SPEED, 0, true)
 	}
-})
+}
+
+characterTraitsClasses.push(grapplehook)
