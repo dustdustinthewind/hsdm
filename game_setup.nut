@@ -24,7 +24,7 @@ GAME_GRAVITY <- 0.65 // perecentage
 NORMAL_GRAVITY_FOR_PROJECTILES <- true // set to true so projectiles behave similarly to vanilla tf2's gravity, pills especially effected by gravity
 
 // velocity needed to trigger demoknight crits
-DEMOKNIGHT_CRIT_SPEED_TRIGGER <- 700.0
+DEMOKNIGHT_CRIT_SPEED_TRIGGER <- 740.0
 
 // how much we jerk the player forward towards the grapple on an attach
 ON_ATTACH_IMPULSE // <- 650.0
@@ -99,7 +99,7 @@ GRAPPLE_HOOK_PROJECTILE_SPEED <- 1500 // tf2 default: 1500
 // projectiles keep the gravity of game start, even if the gravity changes half way through the match.
 //  so that means if we set the gravity *after* the game starts, we can have low grav for players but
 //  normal grav for projectiles
-//  i ~~love~~ hate how hacky source is
+//  i love how hacky source is
 // NOTE: unsure if changing NORMAL_GRAVITY_FOR_PROJECTILES will work on script refresh
 if (NORMAL_GRAVITY_FOR_PROJECTILES)
 	SetGravityMultiplier(1.0)
