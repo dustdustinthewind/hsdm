@@ -39,7 +39,7 @@ MOMENTUM_RETENTION // <- 0.3
 
 // how fast does the player move during reel-in
 REEL_IN_SPEED // <- 900.0
-                 <- 800.0
+                 <- 825.0
 			  // <- 600.0
 
 // how often the reel in powerup recharges (after detaching from current reel-in)
@@ -65,8 +65,9 @@ TENSION_STRENGTH <- 0.92
 // todo: replicate tf2 acceleration without console command so different classes can use different feels
 GRAPPLE_ACCELERATION     // <- 700 // tf2 default: 3500 (too much ew ew)
                          // <- 650
-						    <- 600
+						 // <- 600
 				         // <- 500
+                            <- 400
 
 // the maximum speed you can achieve while grappling
 // NOTE: seems to hard cap even other forms of momentum, as long as you're grappling, this is your max, good to know

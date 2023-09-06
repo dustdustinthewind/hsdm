@@ -7,7 +7,7 @@ weapons_and_traits <- [
 	"hsdm_traits/overfill_on_ammo_pickup.nut",
 	"hsdm_traits/jarate_debuff.nut",
 	"hsdm_traits/death_ammo_hovers.nut",
-	"hsdm_traits/maintain_momentum_on_double_jump.nut"
+	"hsdm_traits/maintain_momentum_on_double_jump.nut",
 
 	"hsdm_traits/scout_on_attach_detach.nut",
 	"hsdm_traits/sniper_on_attach_detach.nut",
@@ -17,12 +17,6 @@ weapons_and_traits <- [
 	"hsdm_weapons/melee_helpers.nut",
 
 	"hsdm_weapons/multi_class/grapplehook.nut",
-	"hsdm_weapons/multi_class/base_jumper.nut",
-	"hsdm_weapons/multi_class/shotgun.nut",
-	"hsdm_weapons/multi_class/panic_attack.nut",
-	"hsdm_weapons/multi_class/reserve_shooter.nut",
-	"hsdm_weapons/multi_class/pistol.nut",
-	"hsdm_weapons/multi_class/half_zatoichi.nut",
 
 	"hsdm_weapons/single_class/scout/scout_stock_melee.nut",
 	"hsdm_weapons/single_class/scout/scattergun.nut",
@@ -176,6 +170,13 @@ weapons_and_traits <- [
 	"hsdm_weapons/single_class/spy/enforcer.nut",
 	"hsdm_weapons/single_class/spy/diamondback.nut",
 	"hsdm_weapons/single_class/spy/where_the_fuck_is_rest_of_spy.nut",
+
+	"hsdm_weapons/multi_class/base_jumper.nut",
+	"hsdm_weapons/multi_class/shotgun.nut",
+	"hsdm_weapons/multi_class/panic_attack.nut",
+	"hsdm_weapons/multi_class/reserve_shooter.nut",
+	"hsdm_weapons/multi_class/pistol.nut",
+	"hsdm_weapons/multi_class/half_zatoichi.nut",
 ]
 
 foreach (file in weapons_and_traits)
