@@ -46,7 +46,7 @@ class grapplehook extends hsdm_trait
 
 	function find_grapple_projectile()
 	{
-		local grappling_this_tick = NetProps.GetPropBool(player, "m_bUsingActionSlot")
+		local grappling_this_tick = GetPropBool(player, "m_bUsingActionSlot")
 		// shooting grapple
 		// todo make this a listener event or something? on using action?
 		if (grappling_this_tick && !grapple_projectile)
@@ -130,7 +130,12 @@ class grapplehook extends hsdm_trait
 		FireListeners("on_attach", player)
 
 		// a single impulse towards grapple target
-		grapple_impulse(player, heading)
+		// if holding crouch, do crouch things
+		local crouch = GetPropInt(player, "m_nButtons") & IN_DUCK
+		grapple_impulse(player,
+			crouch ? player.EyeAngles().Forward() * -1 : heading, // if holding crouch, jolt the player forward wherever they're looking
+			ON_ATTACH_IMPULSE * (crouch ? 0.6 : 1), // if holding crouch, use crouch impulse (todo: make seperate variable)
+			crouch ? MOMENTUM_RETENTION : 1.0) // if holding crouch, retain all momentum
 
 		if (grappling_func) last_grapple_target_center = grapple_target_center
 	}
@@ -165,7 +170,7 @@ class grapplehook extends hsdm_trait
 	function reel_in_code()
 	{
 		// already reeling in or reel in using attack 3
-		if (reeling_in || (last_time_reeled + REEL_IN_COOLDOWN < Time() && (NetProps.GetPropInt(player, "m_nButtons") & IN_ATTACK3)))
+		if (reeling_in || (last_time_reeled + REEL_IN_COOLDOWN < Time() && (GetPropInt(player, "m_nButtons") & IN_ATTACK3)))
 		{
 			if (player_distance_from_grapple < MINIMUM_ROPE_LENGTH)
 				start_reel_in_cooldown()
@@ -200,7 +205,7 @@ class grapplehook extends hsdm_trait
 
 	function swing_code()
 	{
-		local keys = NetProps.GetPropInt(player, "m_nButtons")
+		local keys = GetPropInt(player, "m_nButtons")
 
 		if (!keys) return
 
