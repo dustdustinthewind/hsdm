@@ -4,6 +4,7 @@ weapons_and_traits <- [
 	"hsdm_traits/weapon_crit_manager.nut",
 	"hsdm_traits/blast_jumping_debuff_hack.nut"
 	"hsdm_traits/gain_clip_on_hit.nut",
+	"hsdm_traits/gain_reserve_on_hit.nut",
 	"hsdm_traits/overfill_on_ammo_pickup.nut",
 	"hsdm_traits/jarate_debuff.nut",
 	"hsdm_traits/death_ammo_hovers.nut",

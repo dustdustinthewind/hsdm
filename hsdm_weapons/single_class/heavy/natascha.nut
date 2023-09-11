@@ -14,3 +14,5 @@ characterTraitsClasses.push(class extends hsdm_trait
 		change_weapon_damage(natascha, 17 * 0.75 / 27.0) // dmg per bullet with 25% dmg reduction
 	}
 })
+
+gain_reserve_on_hit_primaries.push("natascha")

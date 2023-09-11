@@ -17,5 +17,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 function base_minigun(weapon)
 {
 	change_weapon_damage(weapon, 17 / 27.0) // dmg per bullet
-	change_weapon_reserve(weapon, TF_AMMO.PRIMARY, 30, 200.0)
+	change_weapon_reserve(weapon, TF_AMMO.PRIMARY, 20, 200.0)
 }
+
+gain_reserve_on_hit_primaries.push("minigun")

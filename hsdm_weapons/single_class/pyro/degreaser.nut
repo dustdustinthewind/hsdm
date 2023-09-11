@@ -11,7 +11,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 	function OnApply()
 	{
 		degreaser.AddAttribute("airblast cost increased", 1, -1)
-		base_flamethrower(player, degreaser, 6)
+		base_flamethrower(player, degreaser, 5)
 	}
 })
 non_crit_weapons.push("degreaser")

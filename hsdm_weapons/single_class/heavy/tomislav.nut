@@ -13,3 +13,5 @@ characterTraitsClasses.push(class extends hsdm_trait
 		base_minigun(tomislav)
 	}
 })
+
+gain_reserve_on_hit_primaries.push("tomislav")

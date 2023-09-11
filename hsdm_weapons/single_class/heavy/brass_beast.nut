@@ -14,3 +14,5 @@ characterTraitsClasses.push(class extends hsdm_trait
 		// should still keep damage bonus due to both a damage bonus and a damage penalty at once
 	}
 })
+
+gain_reserve_on_hit_primaries.push("brass_beast")

@@ -12,8 +12,12 @@ characterTraitsClasses.push(class extends hsdm_trait
 	// todo: test this works
 	function OnDamageDealt(victim, params)
 	{
-		if (victim.GetActiveWeapon() == victim.ReturnWeaponBySlot(2))
-			damage *= 2.0
+		if (params.attacker.GetActiveWeapon() != fists_of_steel
+		|| !IsValidPlayer(victim)
+		|| victim.GetActiveWeapon() != victim.ReturnWeaponBySlot(2))
+			return
+
+		params.damage *= 2.0
 	}
 })
 heavy_stock_melee_list.push("fists_of_steel")

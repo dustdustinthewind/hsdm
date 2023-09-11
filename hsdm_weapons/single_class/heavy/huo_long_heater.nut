@@ -14,3 +14,5 @@ characterTraitsClasses.push(class extends hsdm_trait
 		change_weapon_damage(huo_long_heater, 17 * 0.9 / 27.0) // dmg per bullet with 15% dmg reduction
 	}
 })
+
+gain_reserve_on_hit_primaries.push("huo_long_heater")

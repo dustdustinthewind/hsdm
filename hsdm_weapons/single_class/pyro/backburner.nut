@@ -11,7 +11,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 	function OnApply()
 	{
 		backburner.AddAttribute("airblast cost increased", 1, -1)
-		base_flamethrower(player, backburner, 10)
+		base_flamethrower(player, backburner, 6)
 	}
 })
 

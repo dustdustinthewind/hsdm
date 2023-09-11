@@ -156,10 +156,17 @@ class grapplehook extends hsdm_trait
 	function attached_to_func()
 	{
 		// attached to func parent code
-		// very basic follow func code, does not respect rotations, todo
 		if (!grappling_func) return
 
+		// very basic follow func code, does not respect rotations, todo
+		translate_position()
+	}
+
+	function translate_position()
+	{
 		local center_difference = last_grapple_target_center - grapple_target_center
+		if (center_difference == 0) return
+
 		grapple_projectile.SetAbsOrigin(grapple_location + (center_difference * -1))
 		player.SetAbsOrigin(player.GetOrigin() + (center_difference * -1))
 		last_grapple_target_center = grapple_target_center
