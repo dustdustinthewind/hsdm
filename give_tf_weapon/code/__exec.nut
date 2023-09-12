@@ -2,10 +2,10 @@ GTFW_VScript <- Entities.FindByName(null, "vscript_give_tf_weapon_entity");
 
 if ( GTFW_VScript == null ) {
 	::TF_CUSTOM_WEAPONS_REGISTRY <- {};
-	
+
 	PrecacheModel("models/weapons/c_models/c_engineer_gunslinger.mdl");
 	::worldspawn <- Entities.First();
-	
+
 	GTFW_VScript <- SpawnEntityFromTable("move_rope", {targetname = "vscript_give_tf_weapon_entity", vscripts="give_tf_weapon/_master.nut"});
 	printl("Executing give_tf_weapon for the first time. Creating 'vscript_give_tf_weapon_entity' (ent: move_rope) entity.");
 }
@@ -22,18 +22,18 @@ gtfw_exec_code <- [
 "SwitchToBest()",
 
 //second batch
-"GiveWeapon()",
+//"GiveWeapon()",
 "GetWeapon()",
-"DeleteWeapon()",
+//"DeleteWeapon()",
 
 //third batch
-"AnnounceWeapon()",
+/*"AnnounceWeapon()",
 "CustomWeaponRegistration",
 "Loadouts",
-"toggleWeaponByAmmo",
+"toggleWeaponByAmmo",*/
 
 //end
-"zz_BotFix"
+//"zz_BotFix"
 ]
 
 foreach ( file in gtfw_exec_code )

@@ -1,21 +1,24 @@
 weapons_and_traits <- [
+	"hsdm_weapons/weapon_helpers.nut",
+	"hsdm_weapons/melee_helpers.nut",
+
 	"hsdm_traits/hsdm_trait.nut",
+
 	"hsdm_traits/apply_weapons.nut"
+
 	"hsdm_traits/weapon_crit_manager.nut",
 	"hsdm_traits/blast_jumping_debuff_hack.nut"
 	"hsdm_traits/gain_clip_on_hit.nut",
 	"hsdm_traits/gain_reserve_on_hit.nut",
 	"hsdm_traits/overfill_on_ammo_pickup.nut",
 	"hsdm_traits/jarate_debuff.nut",
-	"hsdm_traits/death_ammo_hovers.nut",
+	"hsdm_traits/drop_pack_on_death.nut",
 	"hsdm_traits/maintain_momentum_on_double_jump.nut",
+	"hsdm_traits/force_pull_ammo_boxes.nut",
 
 	"hsdm_traits/scout_on_attach_detach.nut",
 	"hsdm_traits/sniper_on_attach_detach.nut",
 	"hsdm_traits/heavy_on_attach_detach.nut",
-
-	"hsdm_weapons/weapon_helpers.nut",
-	"hsdm_weapons/melee_helpers.nut",
 
 	"hsdm_weapons/multi_class/grapplehook.nut",
 

@@ -126,6 +126,12 @@ Include("__lizardlib/player_cache.nut"); //
     local persistentVars = tf_gamerules.GetScriptScope();
     return name in persistentVars ? persistentVars[name] : defValue;
 }
+*/
+
+::lerp <- function(from, to, smooth = 0.5)
+{
+	return from + (to - from) * smooth
+}
 
 ::RunWithDelay <- function(func, activator, delay)
 {
@@ -142,4 +148,4 @@ Include("__lizardlib/player_cache.nut"); //
         delete vsh_vscript[name];
     }
     RunWithDelay(name + "()", null, delay);
-}*/
+}
