@@ -23,7 +23,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 				local scope = new_pack.GetScriptScope()
 				scope["kill_if_reset"] <- function()
 				{
-					if (abs(new_pack.GetOrigin().Length() - position_last_frame.Length()) > 100) // edge case, if ammo pack is picked up near 0,0,0, it'll still respawn
+					if (abs((new_pack.GetOrigin() - position_last_frame).Length()) > 100) // edge case, if ammo pack is picked up near 0,0,0, it'll still respawn, maybe
 					{
 						AddThinkToEnt(new_pack, null)
 						new_pack.Kill()

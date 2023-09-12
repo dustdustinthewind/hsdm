@@ -114,6 +114,7 @@ Include("__lizardlib/player_cache.nut"); //
         return max;
     return value;
 }
+*/
 
 ::SetPersistentVar <- function(name, value)
 {
@@ -126,7 +127,6 @@ Include("__lizardlib/player_cache.nut"); //
     local persistentVars = tf_gamerules.GetScriptScope();
     return name in persistentVars ? persistentVars[name] : defValue;
 }
-*/
 
 ::lerp <- function(from, to, smooth = 0.5)
 {

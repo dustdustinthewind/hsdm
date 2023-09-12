@@ -17,3 +17,6 @@ function SpawnEntities()
 	AddThinkToEnt(team_round_timer, "Tick")
 }
 SpawnEntities()
+
+::tf_gamerules <- Entities.FindByClassname(null, "tf_gamerules")
+tf_gamerules.ValidateScriptScope()
