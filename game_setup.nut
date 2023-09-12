@@ -77,9 +77,9 @@ MAX_GRAPPLE_SPEED <- 1500.0 // tf2 default: 750
 GRAPPLE_DAMPEN <- 150 // tf2 default: 500 (too high, makes grapple feel like sliding on sandpaper)
 
 // how often you can shoot grapple (effects grapple spam/chains)
-GRAPPLE_COOLDOWN <- 0.60 // tf2 default 0.5
+GRAPPLE_COOLDOWN <- 0.6 // tf2 default 0.5
 
-// the speeds of jump detaching from a grappl
+// the speeds of jump detaching from a grapple
 GRAPPLE_JUMP_DETACH_SPEED <- 350 // tf2 default: 375
 HEAVY_JUMP_DETACH_SPEED <- 250 // heavy is fat
 

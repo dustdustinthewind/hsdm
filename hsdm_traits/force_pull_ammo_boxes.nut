@@ -4,12 +4,15 @@ DRAG_DISTANCE <- 200.0
 
 class force_pull_ammo_boxes extends hsdm_trait
 {
+	dragged_items = []
 	function OnFrameTickAlive()
 	{
+		dragged_items = []
 		local nearby_items = search_for_items()
 		foreach(item in nearby_items)
 		{
 			SetPersistentVar(item, false) // hack
+
 			if (!(item in item_origins))
 				item_origins[item] <- item.GetOrigin()
 
@@ -17,8 +20,16 @@ class force_pull_ammo_boxes extends hsdm_trait
 			{
 				item.SetAbsOrigin(lerp(item.GetOrigin(), player.EyePosition(), 0.15))
 				SetPersistentVar(item, true)
+
+				dragged_items.push(item)
 			}
 		}
+	}
+
+	function OnDeath(attacker, params)
+	{
+		foreach(item in dragged_items)
+			SetPersistentVar(item, false)
 	}
 
 	function search_for_items()
