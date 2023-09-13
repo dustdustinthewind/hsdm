@@ -7,7 +7,7 @@ characterTraitsClasses.push(class extends hsdm_trait
 		local victim = GetPlayerFromUserID(params.userid)
 		local victim_vel = victim ? victim.GetVelocity().Length() : 0
 		local vel = victim_vel + attack_vel
-		local size = vel > 900 ? "full" : vel > 600 ? "medium" : "small"
+		local size = vel > 1000 ? "full" : vel > 600 ? "medium" : "small"
 		// ^ todo make these controllable variables
 		// todo: test with players, doesn't work well with tr_walkway bots
 

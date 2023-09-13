@@ -129,13 +129,7 @@ class grapplehook extends hsdm_trait
 		// run class specific function for hookshot attach
 		FireListeners("on_attach", player)
 
-		// a single impulse towards grapple target
-		// if holding crouch, do crouch things
-		local crouch = GetPropInt(player, "m_nButtons") & IN_DUCK
-		grapple_impulse(player,
-			crouch ? player.EyeAngles().Forward() * -1 : heading, // if holding crouch, jolt the player forward wherever they're looking
-			ON_ATTACH_IMPULSE * (crouch ? 0.6 : 1), // if holding crouch, use crouch impulse (todo: make seperate variable)
-			crouch ? MOMENTUM_RETENTION : 1.0) // if holding crouch, retain all momentum
+	jolt_or_swing()
 
 		if (grappling_func) last_grapple_target_center = grapple_target_center
 	}
@@ -151,6 +145,17 @@ class grapplehook extends hsdm_trait
 		grapple_projectile = null
 
 		start_reel_in_cooldown()
+	}
+
+	function jolt_or_swing()
+	{
+		// a single impulse towards grapple target
+		// if holding crouch, do crouch things"
+		local crouch = GetPropInt(player, "m_nButtons") & IN_DUCK
+		grapple_impulse(player,
+			crouch ? player.EyeAngles().Forward() * -1 : heading, // if holding crouch, jolt the player forward wherever they're looking
+			ON_ATTACH_IMPULSE * (crouch ? 0.6 : 1), // if holding crouch, use crouch impulse (todo: make seperate variable)
+			crouch ? MOMENTUM_RETENTION : 1.0) // if holding crouch, retain all momentum
 	}
 
 	function attached_to_func()
@@ -218,10 +223,10 @@ class grapplehook extends hsdm_trait
 
 		// strafing left/right, forward/back
 		local eyes = player.EyeAngles()
-		local upImpulse = keys & IN_FORWARD ? eyes.Forward() * GRAPPLE_FORWARD_VELOCITY : Vector(0, 0, 0)
-		local downImpulse = keys & IN_BACK ? eyes.Forward() * -GRAPPLE_FORWARD_VELOCITY : Vector(0, 0, 0)
-		local leftImpulse = keys & IN_MOVELEFT ? eyes.Left() * -GRAPPLE_SIDE_VELOCITY   : Vector(0, 0, 0)
-		local rightImpulse = keys & IN_MOVERIGHT ? eyes.Left() * GRAPPLE_SIDE_VELOCITY  : Vector(0, 0, 0)
+		local upImpulse    = keys & IN_FORWARD   ? eyes.Forward() * GRAPPLE_FORWARD_VELOCITY  : Vector(0, 0, 0)
+		local downImpulse  = keys & IN_BACK      ? eyes.Forward() * -GRAPPLE_FORWARD_VELOCITY : Vector(0, 0, 0)
+		local leftImpulse  = keys & IN_MOVELEFT  ? eyes.Left()    * -GRAPPLE_SIDE_VELOCITY    : Vector(0, 0, 0)
+		local rightImpulse = keys & IN_MOVERIGHT ? eyes.Left()    * GRAPPLE_SIDE_VELOCITY     : Vector(0, 0, 0)
 
 		player.Yeet((upImpulse + downImpulse + leftImpulse + rightImpulse) * 0.014999)
 	}
@@ -234,7 +239,7 @@ class grapplehook extends hsdm_trait
 		local tension = player_distance_from_grapple - rope_length
 		tension *= player_distance_from_grapple / rope_length
 
-		grapple_impulse(player, heading, tension * TENSION_STRENGTH, 1.0)
+		grapple_impulse(player, heading, tension * TENSION_STRENGTH * (GetPropInt(player, "m_nButtons") & IN_DUCK ? TENSION_STRENGTH : 1), 1.0)
 	}
 
 	function grapple_impulse(player, heading, initialImpulse = ON_ATTACH_IMPULSE, reduceMomentum = MOMENTUM_RETENTION, capSpeed = false)
